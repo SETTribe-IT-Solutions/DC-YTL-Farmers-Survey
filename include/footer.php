@@ -1,23 +1,35 @@
+<style>
+    .menu a:hover {
+        color: #00bcd4;
+        /* Light blue on hover */
+        text-decoration: underline;
+    }
+</style>
 <div id="kt_app_footer"
-    class="app-footer align-items-center justify-content-center justify-content-md-between flex-column flex-md-row py-3 py-lg-6">
+    class="app-footer d-flex flex-column align-items-center justify-content-center py-4"
+    style="background-color: #000; color: #fff;">
+
     <!--begin::Copyright-->
-    <div class="text-dark order-2 order-md-1">
-        <span class="text-muted fw-semibold me-1">2023&copy;</span>
-        <a href="https://keenthemes.com" target="_blank" class="text-gray-800 text-hover-primary">Keenthemes</a>
+    <div class="text-center mb-2">
+        <span class="fw-semibold me-1">2023 &copy;</span>
+        <a href="https://keenthemes.com" target="_blank" class="text-white text-decoration-underline">
+            Keenthemes
+        </a>
     </div>
     <!--end::Copyright-->
+
     <!--begin::Menu-->
-    <ul class="menu menu-gray-600 menu-hover-primary fw-semibold order-1">
+    <ul class="menu d-flex gap-3 list-unstyled mb-0">
         <li class="menu-item">
-            <a href="https://keenthemes.com" target="_blank" class="menu-link px-2">About</a>
+            <a href="https://keenthemes.com" target="_blank" class="text-white text-decoration-none">About</a>
         </li>
         <li class="menu-item">
-            <a href="https://devs.keenthemes.com" target="_blank" class="menu-link px-2">Support</a>
+            <a href="https://devs.keenthemes.com" target="_blank" class="text-white text-decoration-none">Support</a>
         </li>
         <li class="menu-item">
-            <a href="https://keenthemes.com/products/oswald-html-pro" target="_blank"
-                class="menu-link px-2">Purchase</a>
+            <a href="https://keenthemes.com/products/oswald-html-pro" target="_blank" class="text-white text-decoration-none">Purchase</a>
         </li>
     </ul>
     <!--end::Menu-->
+
 </div>
