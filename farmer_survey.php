@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>आत्महत्याग्रस्त शेतकरी माहिती फॉर्म</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <?php include('include/jsLinks.php'); ?>
+  <?php include('include/cssLinks.php'); ?>
+  
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --secondary-color: #3498db;
+      --accent-color: #27ae60;
+      --light-bg: #f8f9fa;
+    }
+    
+    /* body {
+      background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+      font-family: 'Segoe UI', 'Nirmala UI', 'Arial', sans-serif;
+      color: #333;
+      min-height: 100vh;
+      padding-bottom: 40px;
+    }
+     */
+    .container-fluid {
+      /* max-width: 1200px; */
+      margin: 20px auto;
+      padding: 0 15px;
+    }
+
+    .header {
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+      color: white;
+      text-align: center;
+      padding: 30px 0;
+      border-radius: 15px 15px 0 0;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+      margin-bottom: 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      transform: rotate(30deg);
+    }
+
+    .header h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+      font-weight: 700;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+      position: relative;
+    }
+
+    .header p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      position: relative;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .main-container {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+      overflow: hidden;
+      padding: 30px;
+      margin-bottom: 30px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .form-label {
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--primary-color);
+      font-size: 1.05rem;
+      display: block;
+    }
+
+    .form-control, .form-select {
+      border: 2px solid #e0e6ed;
+      border-radius: 8px;
+      padding: 12px 15px;
+      transition: all 0.3s;
+      background: var(--light-bg);
+      font-size: 1rem;
+    }
+
+    .form-control:focus, .form-select:focus {
+      border-color: var(--secondary-color);
+      background: white;
+      box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.1);
+      outline: none;
+    }
+
+    .btn-submit {
+      background: linear-gradient(135deg, var(--accent-color) 0%, #2ecc71 100%);
+      border: none;
+      border-radius: 50px;
+      padding: 14px 45px;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+      color: white;
+      display: block;
+      margin: 40px auto 10px;
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(39, 174, 96, 0.4);
+    }
+
+    .btn-submit:active {
+      transform: translateY(-1px);
+    }
+
+    .btn-submit::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: 0.5s;
+    }
+
+    .btn-submit:hover::after {
+      left: 100%;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    .info-box {
+      background: linear-gradient(135deg, rgba(52, 152, 219, 0.1) 0%, rgba(41, 128, 185, 0.1) 100%);
+      border-left: 4px solid var(--secondary-color);
+      padding: 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 25px 0;
+      font-size: 1rem;
+      color: var(--primary-color);
+      text-align: center;
+    }
+
+    .required::after {
+      content: " *";
+      color: #e74c3c;
+    }
+    
+    .conditional-field {
+      display: none;
+      margin-top: 15px;
+      animation: fadeIn 0.4s ease;
+      padding: 15px;
+      /* background-color: #f8fafc; */
+      border-radius: 8px;
+      /* border: 1px dashed #cbd5e1; */
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .form-footer {
+      text-align: center;
+      margin-top: 30px;
+      color: #7f8c8d;
+      font-size: 0.95rem;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+    }
+
+    /* .section-divider {
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--secondary-color), transparent);
+      margin: 35px 0;
+      border: none;
+    } */
+    
+    .radio-group {
+      display: flex;
+      gap: 20px;
+      margin-top: 8px;
+    }
+    
+    .radio-option {
+      display: flex;
+      align-items: center;
+    }
+    
+    .radio-option input {
+      margin-right: 8px;
+    }
+
+    .form-row {
+      margin-bottom: 20px;
+    }
+
+    .form-section {
+      margin-bottom: 30px;
+      padding: 0 10px;
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        padding: 20px 0;
+      }
+      
+      .header h1 {
+        font-size: 1.8rem;
+      }
+      
+      .main-container {
+        padding: 20px;
+      }
+      
+      .btn-submit {
+        width: 100%;
+        padding: 15px;
+        font-size: 16px;
+      }
+      
+      .radio-group {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+    
+  </style>
+</head>
+<body>
+  <?php include('include/header.php'); ?>
+
+<div class="container-fluid">
+  <div class="header">
+    <h1>आत्महत्याग्रस्त शेतकरी माहिती फॉर्म</h1>
+    <p>महाराष्ट्र सरकारची शेतकरी कल्याण योजना</p>
+  </div>
+  
+  <div class="main-container">
+    <div class="info-box">
+      कृपया आत्महत्याग्रस्त शेतकऱ्यांच्या कुटुंबासंबंधीची सर्व माहिती अचूक भरुन सबमिट करा.
+    </div>
+
+    <form id="farmerForm" action="farmer_survey_db.php" method="POST">
+      <!-- Section 1: Basic Information -->
+      <div class="form-section">
+        <!-- <h4 class="form-label" style="color: var(--secondary-color); margin-bottom: 20px; border-bottom: 2px solid var(--secondary-color); padding-bottom: 8px;">
+          माहितीचे तपशील
+        </h4> -->
+        
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <!-- <label class="form-label required">क्रमांक</label> -->
+            <input type="hidden" class="form-control" name="survey_id"placeholder="अहवाल क्रमांक" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label required">सर्वेक्षणाचा दिनांक</label>
+            <input type="date" class="form-control" name="survey_date" required>
+          </div>
+        </div>
+      </div>
+      
+      <!-- <hr class="section-divider"> -->
+      
+      <!-- Section 2: Farmer Details -->
+      <div class="form-section">
+        <h4 class="form-label" style="color: var(--secondary-color); margin-bottom: 20px; border-bottom: 2px solid var(--secondary-color); padding-bottom: 8px;">
+          आत्महत्या झालेल्या शेतकऱ्याची माहिती
+        </h4>
+        
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label required">आत्महत्या झालेल्या शेतकऱ्याचे नाव</label>
+            <input type="text" class="form-control" placeholder="पूर्ण नाव" name="farmer_name"  required>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label required">आत्महत्येचा दिनांक</label>
+            <input type="date" class="form-control" name="suicide_date" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label required">आत्महत्येचा प्रकार</label>
+            <select class="form-select" name="suicide_type" required >
+              <option selected disabled>निवडा</option>
+              <option>विष प्राशन</option>
+              <option>विहीरीत उडी</option>
+              <option>गळफास</option>
+              <option>इतर</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-12 mb-3">
+            <label class="form-label required">आत्महत्येचे कारण</label>
+            <textarea class="form-control" rows="3" placeholder="कारणांचा तपशील" name="suicide_reason" required></textarea>
+          </div>
+        </div>
+      </div>
+      
+      <!-- <hr class="section-divider"> -->
+      
+      <!-- Section 3: Personal Details -->
+      <div class="form-section">
+        <h4 class="form-label" style="color: var(--secondary-color); margin-bottom: 20px; border-bottom: 2px solid var(--secondary-color); padding-bottom: 8px;">
+          वैयक्तिक माहिती
+        </h4>
+        
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label">जन्म दिनांक (माहिती असल्यास)</label>
+            <input type="date" class="form-control" name="birth_date">
+          </div>
+          <div class="col-md-3 mb-3">
+            <label class="form-label required">वय</label>
+            <input type="number" class="form-control" placeholder="वर्षे" name="age" required>
+          </div>
+          <div class="col-md-3 mb-3">
+            <label class="form-label required">लिंग</label>
+            <select class="form-select" name="gender" required>
+              <option selected disabled>निवडा</option>
+              <option>पुरुष</option>
+              <option>स्त्री</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label required">आधार क्रमांक</label>
+            <input type="text" class="form-control" name="aadhar_number" id="aadhaar"  pattern="\d{4}\s\d{4}\s\d{4}" maxlength="14"  placeholder="12 अंकी क्रमांक" required>
+          </div>
+          <div class="col-md-3 mb-3">
+            <label class="form-label required">बँक खाते क्रमांक</label>
+            <input type="text" class="form-control" name="bank_account" placeholder="खाते क्रमांक" required>
+          </div>
+          <div class="col-md-3 mb-3">
+            <label class="form-label required">IFSC CODE</label>
+            <input type="text" class="form-control" placeholder="IFSC कोड" name="ifsc_code" required>
+          </div>
+        </div>
+      </div>
+      
+      <!-- <hr class="section-divider"> -->
+      
+      <!-- Section 4: Address -->
+      <div class="form-section">
+        <h4 class="form-label" style="color: var(--secondary-color); margin-bottom: 20px; border-bottom: 2px solid var(--secondary-color); padding-bottom: 8px;">
+          पत्ता
+        </h4>
+        
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label"  required>गावाचे नाव</label>
+            <select class="form-select" name="village" required>
+              <option selected disabled>निवडा</option>
+              <option value="पांढरकवडा">पांढरकवडा</option>
+              <option value="झरी जामनी">झरी जामनी</option>
+              <option value="वणी">वणी</option>
+              <option value="नेर">नेर</option>
+              <option value="पोहरादेवी">पोहरादेवी</option>
+            </select>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label required">तालुका</label>
+            <select class="form-select" name="taluka"required>
+              <option selected disabled>निवडा</option>
+              <option value="पांढरकवडा">पांढरकवडा</option>
+              <option value="दिग्रस">दिग्रस</option>
+              <option value="उमरखेड">उमरखेड</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label required">जिल्हा</label>
+            <input type="text" class="form-control" value="यवतमाळ" name="district" readonly>
+          </div>
+        </div>
+      </div>
+      
+      <!-- <hr class="section-divider"> -->
+      
+      <!-- Section 5: Informant -->
+      <div class="form-section">
+        <h4 class="form-label" style="color: var(--secondary-color); margin-bottom: 20px; border-bottom: 2px solid var(--secondary-color); padding-bottom: 8px;">
+          माहिती देणारा
+        </h4>
+        
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label required">माहिती देणाऱ्या व्यक्तीचे नाव</label>
+            <input type="text" class="form-control" name="informant_name" placeholder="पूर्ण नाव" required>
+          </div>
+        </div>
+      </div>
+      
+      <!-- <hr class="section-divider"> -->
+      
+      <!-- Section 6: Family Details -->
+      <div class="form-section">
+        <h4 class="form-label" style="color: var(--secondary-color); margin-bottom: 20px; border-bottom: 2px solid var(--secondary-color); padding-bottom: 8px;">
+          कुटुंबाचे तपशील
+        </h4>
+        
+        <!-- Migration Question -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label required">कुटुंबाने सद्यस्थितीत रोजगारासाठी स्थलांतर केले आहे का?</label>
+            <div class="radio-group">
+              <div class="radio-option">
+                <input class="form-check-input" type="radio" name="family_migration" id="migrationYes" value="होय" required>
+                <label class="form-check-label" for="migrationYes">होय</label>
+              </div>
+              <div class="radio-option">
+                <input class="form-check-input" type="radio" name="family_migration" id="migrationNo" value="नाही" required>
+                <label class="form-check-label" for="migrationNo">नाही</label>
+              </div>
+            </div>
+            
+            <div class="conditional-field" id="migrationDetails">
+              <label class="form-label">स्थलांतर केव्हापासून</label>
+              <input type="text" class="form-control" name="migration_since" placeholder="स्थलांतराचा तपशील">
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label class="form-label required">शासनाकडून अनुदान / लाभ मिळतात का?</label>
+            <div class="radio-group">
+              <div class="radio-option">
+                <input class="form-check-input" type="radio" name="government_subsidy" id="benefitsYes" value="होय" required>
+                <label class="form-check-label" for="benefitsYes">होय</label>
+              </div>
+              <div class="radio-option">
+                <input class="form-check-input" type="radio" name="government_subsidy" id="benefitsNo" value="नाही" required>
+                <label class="form-check-label" for="benefitsNo">नाही</label>
+              </div>
+            </div>
+            
+            <div class="conditional-field" id="benefitsDetails">
+              <label class="form-label">लाभांचा तपशील</label>
+              <input type="text" class="form-control" name="subsidy_details" placeholder="योजनेचा तपशील">
+            </div>
+          </div>
+        </div>
+        
+        <!-- Education and Occupation -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label required">कुटुंब प्रमुखाचे शिक्षण</label>
+            <select class="form-select" name="family_head_education" required>
+              <option disabled selected>निवडा</option>
+              <option value="अशिक्षित">1. अशिक्षित</option>
+              <option value="प्राथमिक">2. प्राथमिक</option>
+              <option value="माध्यमिक">3. माध्यमिक</option>
+              <option value="उच्च माध्यमिक">4. उच्च माध्यमिक</option>
+              <option value="पदवी">5. पदवी</option>
+              <option value="पदव्यूत्तर">6. पदव्यूत्तर</option>
+              <option value="तांत्रिक पदवी/पदविका">7. तांत्रिक पदवी/पदविका</option>
+              <option value="इतर">8. इतर (असल्‍यास)</option>
+            </select>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label" required >कुटुंब प्रमुखाचा प्रमुख व्यवसाय</label>
+            <select class="form-select" name="family_head_occupation" required>
+              <option selected disabled>निवडा</option>
+              <option value="स्वतःची शेती">स्वतःची शेती</option>
+              <option value="शेतमजूर">शेतमजूर</option>
+              <option value="रोजंदारीचे काम">रोजंदारीचे काम</option>
+              <option value="घरकाम">घरकाम</option>
+              <option value="विद्यार्थी">विद्यार्थी</option>
+              <option value="स्वयंरोजगार">स्वयंरोजगार</option>
+              <option value="निवृत्त">निवृत्त</option>
+              <option value="खाजगी">खाजगी</option>
+              <option value="शिक्षणासाठी">शिक्षणासाठी</option>
+              <option value="सरकारी नोकरी">सरकारी नोकरी</option>
+              <option value="इतर">इतर</option>
+            </select>
+          </div>
+        </div>
+        
+        <!-- Loan Question -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label required">७/१२ वर बोजा आहे का?</label>
+            <div class="radio-group">
+              <div class="radio-option">
+                <input class="form-check-input" type="radio" name="land_mortgage" id="loanYes" value="होय" required>
+                <label class="form-check-label" for="loanYes">होय</label>
+              </div>
+              <div class="radio-option">
+                <input class="form-check-input" type="radio" name="land_mortgage" id="loanNo" value="नाही" required>
+                <label class="form-check-label" for="loanNo">नाही</label>
+              </div>
+            </div>
+            
+            <div class="conditional-field" id="loanDetails">
+              <label class="form-label">बोजाचा तपशील</label>
+              <textarea class="form-control" name=" mortgage_details" rows="3" placeholder="केव्हापासून, सविस्तर तपशील, गट नंबर, रक्कम, थकीत कालावधी"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Submit Button -->
+      <div class="text-center">
+        <button type="submit" class="btn btn-submit" name="register">
+          सबमिट करा
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Set today's date for survey date field
+    const today = new Date().toISOString().split('T')[0];
+    document.querySelector('input[type="date"]').value = today;
+    
+    // Migration radio button logic
+    const migrationYes = document.getElementById('migrationYes');
+    const migrationNo = document.getElementById('migrationNo');
+    const migrationDetails = document.getElementById('migrationDetails');
+    
+    migrationYes.addEventListener('change', function() {
+      if (this.checked) {
+        migrationDetails.style.display = 'block';
+      }
+    });
+    
+    migrationNo.addEventListener('change', function() {
+      if (this.checked) {
+        migrationDetails.style.display = 'none';
+      }
+    });
+    
+    // Benefits radio button logic
+    const benefitsYes = document.getElementById('benefitsYes');
+    const benefitsNo = document.getElementById('benefitsNo');
+    const benefitsDetails = document.getElementById('benefitsDetails');
+    
+    benefitsYes.addEventListener('change', function() {
+      if (this.checked) {
+        benefitsDetails.style.display = 'block';
+      }
+    });
+    
+    benefitsNo.addEventListener('change', function() {
+      if (this.checked) {
+        benefitsDetails.style.display = 'none';
+      }
+    });
+    
+    // Loan radio button logic
+    const loanYes = document.getElementById('loanYes');
+    const loanNo = document.getElementById('loanNo');
+    const loanDetails = document.getElementById('loanDetails');
+    
+    loanYes.addEventListener('change', function() {
+      if (this.checked) {
+        loanDetails.style.display = 'block';
+      }
+    });
+    
+    loanNo.addEventListener('change', function() {
+      if (this.checked) {
+        loanDetails.style.display = 'none';
+      }
+    });
+    
+    // Form submission
+    const form = document.getElementById('farmerForm');
+    
+    form.addEventListener('submit', function(e) {
+      // e.preventDefault();
+      
+      // Form validation
+      let isValid = true;
+      const requiredFields = form.querySelectorAll('[required]');
+      
+      requiredFields.forEach(field => {
+        if (!field.value) {
+          isValid = false;
+          field.classList.add('is-invalid');
+        } else {
+          field.classList.remove('is-invalid');
+        }
+      });
+      
+      if (!isValid) {
+        Swal.fire({
+          icon: 'error',
+          title: 'त्रुटी',
+          // text: 'कृपया सर्व आवश्यक माहिती भरा.',
+          confirmButtonText: 'ठीक आहे'
+        });
+        return;
+      }
+      
+      // Show success message
+      Swal.fire({
+        icon: 'success',
+        title: 'यशस्वी!',
+        // text: 'तुमची माहिती यशस्वीरित्या सबमिट केली गेली आहे.',
+        confirmButtonText: 'ठीक आहे'
+      }).then(() => {
+        form.reset();
+        // Reset conditional fields
+        migrationDetails.style.display = 'none';
+        benefitsDetails.style.display = 'none';
+        loanDetails.style.display = 'none';
+      });
+    });
+  });
+
+// for adhaar validation
+  const aadhaarInput = document.getElementById('aadhaar');
+
+    aadhaarInput.addEventListener('input', function (e) {
+  // Remove all non-digits and spaces
+  let value = this.value.replace(/\D/g, '').substring(0, 12);
+  
+  // Split into groups of 4 digits
+  const parts = value.match(/.{1,4}/g);
+  
+  this.value = parts ? parts.join(' ') : '';
+});
+
+</script>
+
+<?php include('include/footer.php'); ?>
+</body>
+</html>
