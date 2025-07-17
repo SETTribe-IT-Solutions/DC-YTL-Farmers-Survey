@@ -264,9 +264,9 @@
     <form id="farmerForm" action="farmer_survey_db.php" method="POST">
       <!-- Section 1: Basic Information -->
       <div class="form-section">
-        <h4 class="form-label" style="color: var(--secondary-color); margin-bottom: 20px; border-bottom: 2px solid var(--secondary-color); padding-bottom: 8px;">
+        <!-- <h4 class="form-label" style="color: var(--secondary-color); margin-bottom: 20px; border-bottom: 2px solid var(--secondary-color); padding-bottom: 8px;">
           माहितीचे तपशील
-        </h4>
+        </h4> -->
         
         <div class="row">
           <div class="col-md-6 mb-3">
