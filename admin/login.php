@@ -199,8 +199,11 @@ error_reporting(0);
                         <h1 class="d-none d-lg-block fw-bold text-white fs-2qx pb-3">
                             <span class="noc-title">Farmers Survey Portal</span>
                         </h1>
+                        <h6 class="d-none d-lg-block fw-bold text-white fs-3 pb-3">
+                            <span class="noc-title">Collector Office, Yavatmal</span>
+                        </h6>
                         <div class="d-none d-lg-block government-text mb-4">
-                            <div style="font-size: 1.3rem; margin-bottom: 5px;">महाराष्ट्र शासन</div>
+                            <!-- <div style="font-size: 1.3rem; margin-bottom: 5px;">महाराष्ट्र शासन</div> -->
                             <div style="font-size: 1.1rem;">Government of Maharashtra</div>
                         </div>
                         <!--end::Title-->
