@@ -2,468 +2,633 @@
 <html lang="mr">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>शेतजमीन विषयक माहिती</title>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <?php
-    include('include/cssLinks.php');
-    include('include/jsLinks.php');
-    ?>
-    <style>
-        /* --- Previous Styles (unchanged for consistency) --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>शेतजमीन विषयक माहिती</title>
+  <?php
+  // include('include/cssLinks.php');
+  // include('include/header.php');
+  // include('include/jsLinks.php')
+  ?>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            background: #f2f4f8;
-        }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f2f4f8;
+    }
 
-        .container-fluid {
-            margin: 20px auto;
-            padding: 0 20px;
-        }
+    .container-fluid {
+      margin: 20px auto;
+      padding: 0 20px;
+    }
 
-        .header {
-            background: linear-gradient(135deg, #2c3e50, #3498db);
-            color: white;
-            text-align: center;
-            padding: 25px 0;
-            border-radius: 15px 15px 0 0;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        }
+    .header1 {
+      background: linear-gradient(135deg, #2c3e50, #3498db);
+      color: white;
+      text-align: center;
+      padding: 25px 0;
+      border-radius: 15px 15px 0 0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
 
-        .header h1 {
-            font-size: 2rem;
-            font-weight: bold;
-        }
+    .header1 h1 {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    /* Main Form Styles */
+    .main-form {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      padding: 30px;
+      margin: 0 auto;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Section Styles */
+    .form-section {
+      margin-bottom: 30px;
+    }
+
+    .section-title {
+      font-size: 22px;
+      color: #2c3e50;
+      border-bottom: 2px solid #f0f0f0;
+      padding-bottom: 10px;
+      margin-bottom: 25px;
+    }
+
+    .heading-icon {
+      margin-right: 10px;
+    }
+
+    /* Form Rows */
+    .form-row {
+      display: flex;
+      gap: 25px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      width: 100%;
+    }
+
+    .half-width {
+      flex: 1 1 calc(50% - 12.5px);
+      min-width: 280px;
+    }
+
+    /* Labels */
+    .form-label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #2c3e50;
+      font-size: 15px;
+    }
+
+    .form-label.required::after {
+      content: '*';
+      color: red;
+      margin-left: 4px;
+    }
+
+    /* Input Fields */
+    input[type="text"],
+    input[type="number"],
+    select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 15px;
+      transition: all 0.2s;
+    }
+
+    input[type="text"]:focus,
+    input[type="number"]:focus,
+    select:focus {
+      border-color: #3498db;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+    }
+
+    /* Radio Groups */
+    .radio-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .radio-group label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .radio-group input[type="radio"] {
+      width: 16px;
+      height: 16px;
+      accent-color: #3498db;
+    }
+
+    /* Water Source Section */
+    .multi-source {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
 
 
-        /* Form Container */
-        .main-container {
-            margin: 0px auto;
-            padding: 40px;
-            background: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            border: 1px solid #f0f0f0;
-        }
+    .sub-row {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
 
-        /* Section Heading */
-        .section-heading {
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 30px;
-            color: #333;
-            text-align: center;
-            position: relative;
-        }
+    .sub-row span {
+      min-width: 60px;
+      font-weight: 500;
+    }
 
-        .section-heading::after {
-            content: '';
-            display: block;
-            width: 50px;
-            height: 3px;
-            background: #5e35b1;
-            margin: 12px auto 0;
-            border-radius: 3px;
-        }
+    .sub-row input {
+      flex: 1;
+      max-width: 100px;
+    }
 
-        /* Form Group */
-        .form-group {
-            margin-bottom: 22px;
-        }
+    /* Submit Button */
+    .submit-btn {
+      background: #27ae60;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 12px 30px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      display: block;
+      margin: 30px auto 0;
+      transition: all 0.2s;
+    }
 
-        /* Labels */
-        .form-label {
-            display: block;
-            font-weight: 500;
-            margin-bottom: 8px;
-            color: #555;
-            font-size: 15px;
-        }
+    .submit-btn:hover {
+      background: #219955;
+      transform: translateY(-1px);
+    }
 
-        /* Input Fields */
-        .form-control {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            background: #f9f9f9;
-            font-size: 15px;
-            transition: all 0.2s ease;
-        }
+    .form-label.required::after {
+      content: '*';
+      color: red;
+      margin-left: 4px;
+    }
 
-        .form-control:focus {
-            border-color: #5e35b1;
-            box-shadow: 0 0 0 3px rgba(94, 53, 177, 0.1);
-            outline: none;
-            background: #fff;
-        }
+    /* Responsive */
+    @media (max-width: 768px) {
+      .form-row {
+        flex-direction: column;
+        gap: 15px;
+      }
 
-        /* Radio & Checkbox Groups */
-        .radio-group,
-        .checkbox-group {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
+      .half-width {
+        flex: 1 1 100%;
+      }
 
-        .radio-group label,
-        .checkbox-group label {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 500;
-            cursor: pointer;
-            padding: 8px 15px;
-            border-radius: 8px;
-            background: #f5f5f5;
-            transition: all 0.2s ease;
-        }
+      .sub-row {
+        flex-wrap: wrap;
+      }
+    }
 
-        .radio-group label:hover,
-        .checkbox-group label:hover {
-            background: #e9e9e9;
-        }
 
-        .radio-group input[type="radio"],
-        .checkbox-group input[type="checkbox"] {
-            width: 16px;
-            height: 16px;
-            accent-color: #5e35b1;
-            cursor: pointer;
-        }
+    @media (max-width: 768px) {
+      .radio-group {
+        flex-direction: column;
+        align-items: center;
+      }
 
-        /* Split Fields (for side-by-side inputs) */
-        .split-fields {
-            display: flex;
-            gap: 20px;
-        }
+      table th,
+      table td {
+        font-size: 0.9rem;
+        padding: 8px;
+      }
+    }
+  </style>
+  <style>
+    .styled-heading {
+      font-size: 24px;
+      color: #0074cc;
+      position: relative;
+      display: inline-block;
+      margin-bottom: 1.2rem;
+      font-weight: 600;
+      padding-bottom: 6px;
+      padding-left: 5px;
+    }
 
-        .split-fields .form-group {
-            flex: 1;
-        }
+    .styled-heading::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 3px;
+      width: 100%;
+      background-color: #0074cc;
+      border-radius: 2px;
+    }
 
-        /* Submit Button */
-        .btn-submit {
-            background: #15724aff;
-            color: white;
-            padding: 14px 30px;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            display: block;
-            margin: 30px auto 0;
-            box-shadow: 0 4px 10px rgba(94, 53, 177, 0.2);
-        }
+    .heading-icon {
+      margin-right: 8px;
+      font-size: 1.2em;
+      vertical-align: middle;
+    }
+  </style>
+  <style>
+    .custom-option-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+    }
 
-        .btn-submit:hover {
-            background: #519a64ff;
-            transform: translateY(-1px);
-            box-shadow: 0 6px 12px rgba(61, 235, 90, 0.25);
-        }
+    .custom-option-card {
+      background: #fff;
+      border: 2px solid #e0e0e0;
+      border-radius: 10px;
+      padding: 12px 15px;
+      text-align: center;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-        .btn-submit:active {
-            transform: translateY(0);
-        }
+    .custom-option-card:hover {
+      border-color: #667eea;
+      box-shadow: 0 4px 10px rgba(102, 126, 234, 0.15);
+    }
 
-        /* Responsive Adjustments */
-        @media (max-width: 768px) {
-            .main-container {
-                padding: 30px;
-                margin: 20px auto;
-            }
+    .custom-option-card input[type="radio"] {
+      display: none;
+    }
 
-            .split-fields {
-                flex-direction: column;
-                gap: 15px;
-            }
+    .custom-option-card input[type="radio"]:checked+span {
+      background: #667eea;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 8px;
+      display: inline-block;
+      width: 100%;
+    }
+    
+  </style>
+  <?php
+  include('include/header.php')
 
-            .radio-group,
-            .checkbox-group {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            .btn-submit {
-                width: 100%;
-            }
-        }
-    </style>
-    <style>
-        .heading {
-            font-size: 24px;
-            font-weight: 600;
-            color: #2c3e50;
-            position: relative;
-            padding-left: 40px;
-            margin: 20px 0;
-            animation: slideIn 0.8s ease-out;
-            font-family: 'Segoe UI', sans-serif;
-        }
-
-        /* Add icon (🌾) using ::before */
-        .heading::before {
-            content: "🌾";
-            position: absolute;
-            left: 0;
-            top: 0;
-            font-size: 28px;
-            animation: popIn 0.5s ease;
-        }
-
-        /* Underline using ::after */
-        .heading::after {
-            content: "";
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(to right, #27ae60, #2ecc71);
-            border-radius: 2px;
-            animation: expandLine 1s ease;
-        }
-
-        /* Slide in animation */
-        @keyframes slideIn {
-            from {
-                transform: translateX(-30px);
-                opacity: 0;
-            }
-
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        /* Icon pop animation */
-        @keyframes popIn {
-            0% {
-                transform: scale(0.3);
-                opacity: 0;
-            }
-
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        /* Underline grow animation */
-        @keyframes expandLine {
-            0% {
-                width: 0%;
-            }
-
-            100% {
-                width: 100%;
-            }
-        }
-    </style>
-   
+  ?>
 </head>
- <?php
-    include('include/header.php')
-    ?>
-   
+
 <body>
-    <div class="container-fluid">
-        <div class="header">
-            <h1>शेतजमीन विषयक माहिती</h1>
-            <p>कृपया खालील माहिती अचूकपणे भरा</p>
-        </div>
-        <form id="land-info-form" class="main-container" action="Agricultural_land_information_db.php" method="POST">
-
-            <div class="div heading">शेतजमीन विषयक माहिती</div><br>
-
-            <!-- Land area options -->
-            <div class="form-group">
-                <label class="form-label">शेतजमीन (एकूण) क्षेत्रफळ:</label>
-                <div class="checkbox-group">
-                    <label><input type="checkbox" name="land_total[]" required> 1 एकर पेक्षा कमी</label>
-                    <label><input type="checkbox" name="land_total[]"> 1 ते 2 एकर</label>
-                    <label><input type="checkbox" name="land_total[]"> 2 ते 4 एकर</label>
-                    <label><input type="checkbox" name="land_total[]"> 4 ते 5 एकर</label>
-                    <label><input type="checkbox" name="land_total[]"> 5 एकर पेक्षा जास्त</label>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label">शेतजमीन (एकूण):</label>
-                <div class="split-fields">
-                    <input type="text" name="land_total_acre" class="form-control" placeholder="एकर" required>
-                    <input type="text" name="land_total_gunta" class="form-control" placeholder="गुंठा" required>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label">कोरडवाहू / जिरायत शेतजमीन:</label>
-                <div class="split-fields">
-                    <input type="text" name="dry_acre" class="form-control" placeholder="एकर">
-                    <input type="text" name="dry_gunta" class="form-control" placeholder="गुंठा">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label">हंगामी बागायत शेतजमीन:</label>
-                <div class="split-fields">
-                    <input type="text" name="seasonal_acre" class="form-control" placeholder="एकर">
-                    <input type="text" name="seasonal_gunta" class="form-control" placeholder="गुंठा">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label">बागायती शेतजमीन:</label>
-                <div class="split-fields">
-                    <input type="text" name="irrigated_acre" class="form-control" placeholder="एकर">
-                    <input type="text" name="irrigated_gunta" class="form-control" placeholder="गुंठा">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label">बागायती असल्यास पाण्याचे स्रोत:</label>
-                <div class="checkbox-group">
-                    <label><input type="checkbox" name="source[]" value="विहीर"> विहीर</label>
-                    <label><input type="checkbox" name="source[]" value="बोर"> बोर</label>
-                    <label><input type="checkbox" name="source[]" value="कालवा"> कालवा</label>
-                    <label><input type="checkbox" name="source[]" value="इतर"> नाही</label>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label">शेतामध्ये वीज जोडणी आहे काय?</label>
-                <div class="radio-group">
-                    <label><input type="radio" name="electricity_connection" value="होय" required> होय</label>
-                    <label><input type="radio" name="electricity_connection" value="नाही"> नाही</label>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label">शेतात पाण्याच्या किती मोटार आहेत?</label>
-                <input type="number" name="motor_count" class="form-control" placeholder="मोटारची संख्या लिखा" required>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label">वीज बील थकित आहे काय?</label>
-                <div class="radio-group">
-                    <label>
-                        <input type="radio" name="bill_pending" value="होय" required onclick="toggleDetails(true)"> होय
-                    </label>
-                    <label>
-                        <input type="radio" name="bill_pending" value="नाही" onclick="toggleDetails(false)"> नाही
-                    </label>
-                </div>
-            </div>
-
-            <div class="form-group" id="pendingBillDetails" style="display: none;">
-                <label class="form-label">असल्यास तप्शील केलेला भुभाग व रक्कम</label>
-                <input type="text" name="pending_bill_details" class="form-control" placeholder="तप्शील लिखा">
-            </div>
-
-            <script>
-                function toggleDetails(show) {
-                    const details = document.getElementById('pendingBillDetails');
-                    details.style.display = show ? 'block' : 'none';
-                }
-            </script>
-
-
-            <button type="submit" class="btn-submit">सबमिट करा</button>
-        </form>
-
-        <?php
-        // ✅ SweetAlert based on GET response
-        if (isset($_GET['status'])) {
-            if ($_GET['status'] == 'success' && isset($_GET['survey_id'])) {
-                echo "<script>
-            document.addEventListener('DOMContentLoaded', function() {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'सुरक्षितपणे जतन केले गेले!',
-                    text: 'तुमची माहिती सेव्ह झाली आहे. (Survey ID: {$_GET['survey_id']})',
-                    confirmButtonColor: '#28a745'
-                });
-            });
-        </script>";
-            } elseif ($_GET['status'] == 'error') {
-                echo "<script>
-            document.addEventListener('DOMContentLoaded', function() {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'त्रुटी!',
-                    text: 'कृपया पुन्हा प्रयत्न करा.',
-                    confirmButtonColor: '#d33'
-                });
-            });
-        </script>";
-            }
-        }
-        ?>
-
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-        <script>
-            document.getElementById("land-info-form").addEventListener("submit", function(e) {
-                let valid = true;
-                let messages = [];
-
-                // 1. Check required text/number fields
-                const requiredFields = this.querySelectorAll("input[required]:not([type='checkbox']):not([type='radio'])");
-                requiredFields.forEach(field => {
-                    if (!field.value.trim()) {
-                        valid = false;
-                    }
-                });
-
-                // 2. Check that at least one 'land_total[]' checkbox is selected
-                const landCheckboxes = this.querySelectorAll("input[name='land_total[]']");
-                const oneChecked = Array.from(landCheckboxes).some(cb => cb.checked);
-                if (!oneChecked) {
-                    valid = false;
-                    messages.push("कृपया किमान एक 'शेतजमीन क्षेत्रफळ' पर्याय निवडा.");
-                }
-
-                // 3. Check required radio groups (e.g., electricity_connection, bill_pending)
-                const radioGroups = ['electricity_connection', 'bill_pending'];
-                radioGroups.forEach(groupName => {
-                    const radios = this.querySelectorAll(`input[name='${groupName}']`);
-                    const oneSelected = Array.from(radios).some(r => r.checked);
-                    if (!oneSelected) {
-                        valid = false;
-                        messages.push(`कृपया '${groupName}' साठी उत्तर निवडा.`);
-                    }
-                });
-
-                if (!valid) {
-                    e.preventDefault(); // stop form submission
-
-                    // Combine all validation messages
-                    Swal.fire({
-                        icon: 'warning',
-                        title: 'कृपया सर्व आवश्यक माहिती भरा.',
-                        html: messages.length > 0 ? messages.join('<br>') : 'कृपया फॉर्म पुन्हा तपासा.',
-                        confirmButtonText: 'ठीक आहे',
-                    });
-                }
-            });
-        </script>
-
-        <?php
-        include('include/footer.php')
-        ?>
-
-
+  <div class="container-fluid">
+    <div class="header1">
+      <h1>शेतजमीन विषयक माहिती</h1>
+      <p>कृपया खालील माहिती अचूकपणे भरा</p>
     </div>
+
+    <form class="main-form" action="Agricultural_land_information_db.php" method="POST" novalidate>
+      <div class="form-section container mt-4">
+        <h3 class="section-title styled-heading text-center mb-4">
+          <span class="heading-icon">🌾</span> शेतजमीन विषयक माहिती
+        </h3>
+
+        <!-- Radio Options Section -->
+        <div class="row mb-4">
+          <!-- Total Land -->
+          <div class="col-md-6 mb-3">
+            <label class="form-label required heading-title">शेतजमीन (एकुण)</label>
+            <div class="custom-option-grid">
+              <label class="custom-option-card">
+                <input type="radio" name="total_land" value="<1" required>
+                <span>1 एकर पेक्षा कमी</span>
+              </label>
+              <label class="custom-option-card">
+                <input type="radio" name="total_land" value="1-2">
+                <span>1 एकर ते 2 एकर</span>
+              </label>
+              <label class="custom-option-card">
+                <input type="radio" name="total_land" value="2-4">
+                <span>2 एकर ते 4 एकर</span>
+              </label>
+              <label class="custom-option-card">
+                <input type="radio" name="total_land" value="4-5">
+                <span>4 एकर ते 5 एकर</span>
+              </label>
+              <label class="custom-option-card">
+                <input type="radio" name="total_land" value=">5">
+                <span>5 एकर पेक्षा जास्त</span>
+              </label>
+            </div>
+            <!-- <div class="invalid-feedback">कृपया एक पर्याय निवडा</div> -->
+          </div><br><br>
+
+          <!-- Dry Land -->
+          <div class="col-md-6 mb-3">
+            <label class="form-label required heading-title">कोरडवाहु /जिरायत शेतजमीन (एकुण)</label>
+            <div class="custom-option-grid">
+              <label class="custom-option-card">
+                <input type="radio" name="dry_land" value="<1" required>
+                <span>1 एकर पेक्षा कमी</span>
+              </label>
+              <label class="custom-option-card">
+                <input type="radio" name="dry_land" value="1-2">
+                <span>1 एकर ते 2 एकर</span>
+              </label>
+              <label class="custom-option-card">
+                <input type="radio" name="dry_land" value="2-4">
+                <span>2 एकर ते 4 एकर</span>
+              </label>
+              <label class="custom-option-card">
+                <input type="radio" name="dry_land" value="4-5">
+                <span>4 एकर ते 5 एकर</span>
+              </label>
+              <label class="custom-option-card">
+                <input type="radio" name="dry_land" value=">5">
+                <span>5 एकर पेक्षा जास्त</span>
+              </label>
+            </div>
+            <!-- <div class="invalid-feedback">कृपया एक पर्याय निवडा</div> -->
+          </div>
+        </div><br><br>
+
+        <div class="row mb-4">
+          <!-- Seasonal Irrigated -->
+          <div class="col-md-6 mb-3">
+            <label class="form-label required heading-title">हंगामी बागायत शेतजमीन (एकुण)</label>
+            <div class="custom-option-grid">
+              <label class="custom-option-card">
+                <input type="radio" name="seasonal_irrigated" value="<1" required>
+                <span>1 एकर पेक्षा कमी</span>
+              </label>
+              <label class="custom-option-card">
+                <input type="radio" name="seasonal_irrigated" value="1-2">
+                <span>1 एकर ते 2 एकर</span>
+              </label>
+              <label class="custom-option-card">
+                <input type="radio" name="seasonal_irrigated" value="2-4">
+                <span>2 एकर ते 4 एकर</span>
+              </label>
+              <label class="custom-option-card">
+                <input type="radio" name="seasonal_irrigated" value="4-5">
+                <span>4 एकर ते 5 एकर</span>
+              </label>
+              <label class="custom-option-card">
+                <input type="radio" name="seasonal_irrigated" value=">5">
+                <span>5 एकर पेक्षा जास्त</span>
+              </label>
+            </div>
+            <!-- <div class="invalid-feedback">कृपया एक पर्याय निवडा</div> -->
+          </div><br><br>
+
+          <!-- Irrigated Total -->
+          <div class="col-md-6 mb-3">
+            <label class="form-label required heading-title">बागायत शेतजमीन (एकुण)</label>
+            <div class="custom-option-grid">
+              <label class="custom-option-card">
+                <input type="radio" name="irrigated_total" value="<1" required>
+                <span>1 एकर पेक्षा कमी</span>
+              </label>
+              <label class="custom-option-card">
+                <input type="radio" name="irrigated_total" value="1-2">
+                <span>1 एकर ते 2 एकर</span>
+              </label>
+              <label class="custom-option-card">
+                <input type="radio" name="irrigated_total" value="2-4">
+                <span>2 एकर ते 4 एकर</span>
+              </label>
+              <label class="custom-option-card">
+                <input type="radio" name="irrigated_total" value="4-5">
+                <span>4 एकर ते 5 एकर</span>
+              </label>
+              <label class="custom-option-card">
+                <input type="radio" name="irrigated_total" value=">5">
+                <span>5 एकर पेक्षा जास्त</span>
+              </label>
+            </div>
+            <!-- <div class="invalid-feedback">कृपया एक पर्याय निवडा</div> -->
+          </div>
+        </div><br><br>
+
+        <!-- Acre/Guntha Fields -->
+        <div class="form-row">
+          <div class="form-group half-width">
+            <label class="form-label required">शेतजमीन (एकर)</label>
+            <input type="number" min="0" required>
+          </div>
+          <div class="form-group half-width">
+            <label class="form-label required">गुंठा</label>
+            <input type="number" min="0" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group half-width">
+            <label class="form-label required">कोरडवाहु / जिरायत (एकर)</label>
+            <input type="number" min="0" required>
+          </div>
+          <div class="form-group half-width">
+            <label class="form-label required">गुंठा</label>
+            <input type="number" min="0" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group half-width">
+            <label class="form-label required">हंगामी बागायत (एकर)</label>
+            <input type="number" min="0" required>
+          </div>
+          <div class="form-group half-width">
+            <label class="form-label required">गुंठा</label>
+            <input type="number" min="0" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group half-width">
+            <label class="form-label required">बागायती (एकर)</label>
+            <input type="number" min="0" required>
+          </div>
+          <div class="form-group half-width">
+            <label class="form-label required">गुंठा</label>
+            <input type="number" min="0" required>
+          </div>
+        </div>
+
+        <!-- Water Source -->
+        <div class="form-group">
+          <label class="form-label">बागायती असल्‍यास पाण्‍याचे स्‍त्रोत:</label>
+          <div class="multi-source">
+            <div class="sub-row">
+              <span>विहीर</span>
+              <input type="number" placeholder="एकर" min="0">
+              <input type="number" placeholder="गुंठा" min="0">
+            </div>
+            <div class="sub-row">
+              <span>बोर</span>
+              <input type="number" placeholder="एकर" min="0">
+              <input type="number" placeholder="गुंठा" min="0">
+            </div>
+            <div class="sub-row">
+              <span>कालवा</span>
+              <input type="number" placeholder="एकर" min="0">
+              <input type="number" placeholder="गुंठा" min="0">
+            </div>
+            <div class="sub-row">
+              <span>इतर</span>
+              <input type="number" placeholder="एकर" min="0">
+              <input type="number" placeholder="गुंठा" min="0">
+            </div>
+          </div>
+        </div>
+
+        <!-- Electricity Info -->
+        <div class="form-row">
+          <div class="form-group half-width">
+            <label class="form-label required">शेतामध्‍ये वीज जोडणी आहे काय?</label>
+            <select required>
+              <option value="">-- निवडा --</option>
+              <option>होय</option>
+              <option>नाही</option>
+            </select>
+          </div>
+
+          <div class="form-group half-width">
+            <label class="form-label required">शेतात पाण्‍याच्‍या किती मोटार आहेत</label>
+            <input type="number" min="0" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group half-width">
+            <label class="form-label">वीज बील थकीत आहे काय?</label>
+            <select>
+              <option value="">-- निवडा --</option>
+              <option>होय</option>
+              <option>नाही</option>
+            </select>
+          </div>
+          <div class="form-group half-width">
+            <label class="form-label">असल्‍यास तपशील (केव्‍हा पासुन व रक्‍कम)</label>
+            <input type="text">
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-4">
+        <button type="submit" class="btn btn-primary submit-btn">सबमिट करा</button>
+      </div>
+  </div>
+  </form>
+  <!-- Bootstrap Validation Script -->
+  <script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function() {
+      'use strict'
+
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.querySelectorAll('.main-form')
+
+      // Loop over them and prevent submission
+      Array.prototype.slice.call(forms)
+        .forEach(function(form) {
+          form.addEventListener('submit', function(event) {
+            if (!form.checkValidity()) {
+              event.preventDefault()
+              event.stopPropagation()
+            }
+
+            form.classList.add('was-validated')
+          }, false)
+        })
+    })()
+  </script>
+
+  <style>
+    .form-label.required:after {
+      content: " *";
+      color: red;
+    }
+
+    .styled-heading {
+      color: #2c3e50;
+      border-bottom: 2px solid #3498db;
+      padding-bottom: 10px;
+    }
+
+    .heading-icon {
+      margin-right: 10px;
+    }
+
+    .form-control {
+      padding: 15px;
+      border-radius: 5px;
+      background-color: #f8f9fa;
+    }
+
+    .submit-btn {
+      padding: 10px 30px;
+      font-size: 18px;
+      background-color: #28a745;
+      border: none;
+    }
+
+    .submit-btn:hover {
+      background-color: #218838;
+    }
+
+    .form-check {
+      margin-bottom: 8px;
+    }
+
+    .invalid-feedback {
+      color: #dc3545;
+      font-size: 0.875em;
+    }
+  </style>
+  <script>
+    document.querySelector(".main-form").addEventListener("submit", function(e) {
+      const requiredFields = document.querySelectorAll("input[required], select[required]");
+      let valid = true;
+
+      requiredFields.forEach(field => {
+        if (!field.value) {
+          field.style.borderColor = "red";
+          valid = false;
+        } else {
+          field.style.borderColor = "#ccc";
+        }
+      });
+
+      if (!valid) {
+        alert("कृपया सर्व आवश्यक माहिती भरा.");
+        e.preventDefault();
+      }
+    });
+  </script>
+  </div>
+  <?php
+
+  include('include/footer.php')
+  ?>
+
 </body>
 
 </html>

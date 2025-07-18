@@ -6,8 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>कल्याणकारी योजना माहिती</title>
   <?php
-  include('include/cssLinks.php');
-  include('include/jsLinks.php');
+  // include('include/cssLinks.php');
+  // include('include/jsLinks.php');
+  // include('include/header.php');
   ?>
 
   <style>

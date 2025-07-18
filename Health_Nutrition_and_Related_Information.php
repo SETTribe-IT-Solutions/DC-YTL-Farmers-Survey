@@ -5,6 +5,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>आरोग्‍य पोषण व शिक्षण विषयक माहीती </title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <?php
+    include('include/header.php');
+    ?>
     <style>
         /* --- Previous Styles (unchanged for consistency) --- */
         * {
@@ -23,7 +30,7 @@
             padding: 0 20px;
         }
 
-        .header {
+        .header1 {
             background: linear-gradient(135deg, #2c3e50, #3498db);
             color: white;
             text-align: center;
@@ -32,7 +39,7 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
 
-        .header h1 {
+        .header1 h1 {
             font-size: 2rem;
             font-weight: bold;
         }
@@ -213,6 +220,7 @@
             margin: 25px 0;
             font-family: 'Segoe UI', sans-serif;
             animation: fadeInSlide 0.6s ease-out;
+            margin-right: 75rem;
         }
 
         /* Smooth fade and slide-in animation */
@@ -228,34 +236,61 @@
             }
         }
     </style>
+    <style>
+        .section-heading {
+            font-size: 20px;
+            font-weight: 600;
+            color: #033c5dff;
+            /* Deep red */
+            background-color: #b7b5e8ff;
+            /* Light pinkish background */
+            padding: 12px 20px;
+            border-left: 5px solid #1b2531ff;
+            border-radius: 6px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .section-heading i {
+            font-size: 22px;
+            margin-right: 10px;
+        }
+    </style>
     <?php
-    include('include/header.php');
-    include('include/cssLinks.php');
-    include('include/jsLinks.php')
+    // include('include/header.php');
+    // include('include/cssLinks.php');
+    // include('include/jsLinks.php')
     ?>
-  
+
 </head>
 
 <body>
     <div class="container-fluid">
-        <div class="header">
+        <div class="header1">
             <h1>आरोग्‍य पोषण व शिक्षण विषयक माहीती </h1>
             <p>कृपया खालील माहिती अचूकपणे भरा</p>
         </div>
 
-        <form class="main-container" action="Health_Nutrition_and_Related_Information_db.php" method="POST">
-            <div class="heading health-education">आरोग्‍य पोषण व शिक्षण विषयक माहीती</div>
+        <form class="main-container needs-validation" action="Health_Nutrition_and_Related_Information_db.php" method="POST" novalidate>
+            <div class="section-heading health-education">
+                <i class="bi bi-heart-pulse-fill text-danger me-2"></i>
+                आरोग्‍य पोषण व शिक्षण विषयक माहीती
+            </div><br>
 
             <!-- Row 1 -->
             <div class="form-row">
                 <div class="form-group half-width">
-                    <label class="form-label">कुटुंबातील सदस्यांपैकी कुणाला आरोग्य विषयक उपचाराची आवश्यकता आहे का? <span style="color:red;">*</span></label>
+                    <label class="form-label">कुटुंबातील सदस्यांपैकी कुणाला आरोग्य विषयक उपचाराची आवश्यकता आहे का? <span class="text-danger">*</span></label>
                     <div class="radio-group">
-                        <label class="radio-option"><input type="radio" name="health_required" value="होय" onclick="toggleField('health_required','health_details',true)" required> होय</label>
-                        <label class="radio-option"><input type="radio" name="health_required" value="नाही" onclick="toggleField('health_required','health_details',false)"> नाही</label>
+                        <label class="radio-option"><input type="radio" name="health_required" value="होय" required> होय</label>
+                        <label class="radio-option"><input type="radio" name="health_required" value="नाही"> नाही</label>
                     </div>
+                    <div class="invalid-feedback">कृपया एक पर्याय निवडा.</div>
                 </div>
-                <div class="form-group half-width" id="health_details_wrapper" style="display:none">
+                <div class="form-group half-width" id="health_details_wrapper">
                     <label class="form-label">अस्वस्थतेचा सविस्तर तपशील</label>
                     <input type="text" class="form-control" name="health_details" id="health_details" placeholder="तपशील लिहा">
                 </div>
@@ -309,66 +344,51 @@
                 <div class="form-group half-width">
                     <label class="form-label">6 ते 18 वयोगटातील कोणी शिक्षण सोडले आहे का?</label>
                     <div class="radio-group">
-                        <label class="radio-option">
-                            <input type="radio" name="dropout_6_18" value="होय" onclick="toggleDropoutDetails(true)"> होय
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="dropout_6_18" value="नाही" onclick="toggleDropoutDetails(false)"> नाही
-                        </label>
+                        <label class="radio-option"><input type="radio" name="dropout_6_18" value="होय"> होय</label>
+                        <label class="radio-option"><input type="radio" name="dropout_6_18" value="नाही"> नाही</label>
                     </div>
                 </div>
             </div>
 
-            <!-- Conditional Row - Dropout Details -->
-            <div class="form-row" id="dropoutDetailsSection" style="display: none;">
+            <!-- Dropout Details (Always Visible) -->
+            <div class="form-row" id="dropoutDetailsSection">
                 <div class="form-group half-width">
                     <label class="form-label">शिक्षण सोडलेले वय व वर्ग</label>
                     <input type="text" class="form-control" name="dropout_details" placeholder="वय व वर्ग लिहा">
                 </div>
-                <div class="form-group half-width"></div> <!-- Empty column for alignment -->
+                <div class="form-group half-width"></div>
             </div>
 
             <!-- Row 5 -->
-            <!-- Row: Education Problem & Financial Details -->
             <div class="form-row">
                 <div class="form-group half-width">
                     <label class="form-label">मुलांचे शिक्षण विषयक आर्थिक विवंचना आहे का?</label>
                     <div class="radio-group">
-                        <label class="radio-option">
-                            <input type="radio" name="education_problem" value="होय" onclick="document.getElementById('financial_details_input').style.display = 'block';"> होय
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="education_problem" value="नाही" onclick="document.getElementById('financial_details_input').style.display = 'none';"> नाही
-                        </label>
+                        <label class="radio-option"><input type="radio" name="education_problem" value="होय"> होय</label>
+                        <label class="radio-option"><input type="radio" name="education_problem" value="नाही"> नाही</label>
                     </div>
                 </div>
-                <div class="form-group half-width" id="financial_details_input" style="display: none;">
+                <div class="form-group half-width" id="financial_details_input">
                     <label class="form-label">आर्थिक विवंचनेचा तपशील</label>
                     <input type="text" class="form-control" name="financial_details" placeholder="तपशील लिहा">
                 </div>
             </div>
 
-            <!-- Row: Hostel Requirement & Details -->
+            <!-- Hostel Details -->
             <div class="form-row">
                 <div class="form-group half-width">
                     <label class="form-label">शासकीय होस्टेलची आवश्यकता आहे का?</label>
                     <div class="radio-group">
-                        <label class="radio-option">
-                            <input type="radio" name="hostel_required" value="होय" onclick="document.getElementById('hostel_details_input').style.display = 'block';"> होय
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="hostel_required" value="नाही" onclick="document.getElementById('hostel_details_input').style.display = 'none';"> नाही
-                        </label>
+                        <label class="radio-option"><input type="radio" name="hostel_required" value="होय"> होय</label>
+                        <label class="radio-option"><input type="radio" name="hostel_required" value="नाही"> नाही</label>
                     </div>
                 </div>
-                <div class="form-group half-width" id="hostel_details_input" style="display: none;">
+                <div class="form-group half-width" id="hostel_details_input">
                     <label class="form-label">असल्यास तपशील द्यावा</label>
                     <input type="text" class="form-control" name="hostel_details" placeholder="तपशील लिहा">
                 </div>
             </div>
 
-
-            <!-- Row 6 -->
             <div class="form-row">
                 <div class="form-group half-width">
                     <label class="form-label">शुभमंगल विवाह योजनेचा लाभ घेतला आहे का?</label>
@@ -387,42 +407,56 @@
         </form>
 
         <script>
-            function toggleField(radioName, fieldId, show) {
-                const wrapper = document.getElementById(fieldId + '_wrapper');
-                wrapper.style.display = show ? 'block' : 'none';
-                if (!show) {
-                    document.getElementById(fieldId).value = '';
+            // Validation Script for Required Radio Buttons Only
+            function validateHealthForm() {
+                let isValid = true;
+                let firstInvalid = null;
+
+                const requiredRadioNames = [
+                    "health_required", "pregnant_woman", "maternity_scheme", "child_0_6",
+                    "vaccinated", "nutrition", "dropout_6_18", "education_problem",
+                    "hostel_required", "subh_mangal_marriage"
+                ];
+
+                requiredRadioNames.forEach(name => {
+                    const radios = document.getElementsByName(name);
+                    const selected = Array.from(radios).some(r => r.checked);
+                    const group = radios.length ? radios[0].closest('.form-group') : null;
+                    if (!selected && group) {
+                        isValid = false;
+                        group.style.border = '1px solid red';
+                        if (!firstInvalid) firstInvalid = group;
+                    } else if (group) {
+                        group.style.border = '';
+                    }
+                });
+
+                if (!isValid) {
+                    Swal.fire({
+                        icon: "warning",
+                        title: "कृपया सर्व आवश्यक माहिती भरा!",
+                        confirmButtonText: "ठीक आहे",
+                        confirmButtonColor: "#3498db"
+                    });
+
+                    if (firstInvalid && firstInvalid.scrollIntoView) {
+                        firstInvalid.scrollIntoView({
+                            behavior: "smooth",
+                            block: "center"
+                        });
+                    }
+
+                    return false;
                 }
+                return true;
             }
 
-            function toggleDropoutDetails(show) {
-                const section = document.getElementById('dropoutDetailsSection');
-                const input = section.querySelector('input[name="dropout_details"]');
-                section.style.display = show ? 'flex' : 'none';
-                if (!show) {
-                    input.value = '';
+            document.querySelector('form').addEventListener('submit', function(e) {
+                if (!validateHealthForm()) {
+                    e.preventDefault();
                 }
-            }
-
-            function toggleFinancialDetails(show) {
-                const section = document.getElementById('financialDetailsSection');
-                const input = section.querySelector('input[name="financial_details"]');
-                section.style.display = show ? 'flex' : 'none';
-                if (!show) {
-                    input.value = '';
-                }
-            }
-
-            function toggleHostelDetails(show) {
-                const section = document.getElementById('hostelDetailsSection');
-                const input = section.querySelector('input[name="mjp_health_scheme"]');
-                section.style.display = show ? 'flex' : 'none';
-                if (!show) {
-                    input.value = '';
-                }
-            }
+            });
         </script>
-
         <script>
             function toggleField(radioName, fieldId, show) {
                 const wrapper = document.getElementById(fieldId + '_wrapper');
