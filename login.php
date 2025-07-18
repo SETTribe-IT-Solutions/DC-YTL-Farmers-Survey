@@ -206,8 +206,7 @@ error_reporting(0);
 
                         <!--begin::Description-->
                         <p class="d-none d-lg-block fw-semibold text-white" style="font-size: 28px;">
-                            No Objection Certificate
-                            <br />Management System
+                            शेतक-यांच्‍या आर्थिक सामाजिक व कौटुंबिक सुरक्षिततेबाबतची पाहणी
                         </p>
                         <!--end::Description-->
                     </div>
