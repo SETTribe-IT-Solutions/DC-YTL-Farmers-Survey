@@ -202,7 +202,11 @@
             backdrop-filter: blur(20px);
             border-top: 1px solid rgba(255,255,255,0.1);
             position: relative;
+
+            /* overflow: hidden; */
+
             overflow: hidden;
+
         }
 
         .navbar::before {
@@ -510,6 +514,33 @@
             margin-bottom: 1rem;
         }
 
+
+  /* Dropdown */
+    .dropdown-menu {
+      /* display: none; */
+      position: relative;
+      background-color: #014421;
+      top: 38px;
+      left: 0;
+      min-width: 180px;
+      z-index: 100;
+    }
+
+    .dropdown-menu li {
+      border-bottom: 1px solid #0a5a30;
+    }
+
+    .dropdown-item {
+      padding: 10px 15px;
+      display: block;
+      color: white;
+      text-decoration: none;
+    }
+
+    .dropdown-item:hover {
+      background-color: #02613a;
+    }
+
         
     </style>
 </head>
@@ -526,6 +557,10 @@
             <!-- Left Logo -->
             <div class="logo-left">
                 <div class="logo">
+                    <img src="assets/images/Emblem_of_India.png" alt="Emblem of India" />
+                </div>
+            </div>
+
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/512px-Emblem_of_India.svg.png"
                                     alt="Emblem of India" />
                 </div>
@@ -697,6 +732,7 @@
             <!-- Right Logo -->
             <div class="logo-right">
                 <div class="logo">
+                    <img src="assets/images/Seal_of_Maharashtra.png" alt="Maharashtra Government Logo" />
                     <img src="assets/media/logos/Seal_of_Maharashtra.png"
                                     alt="Maharashtra Government Logo" />
                 </div>
@@ -717,6 +753,14 @@
                     <li class="nav-item"><a href="#" class="nav-link">New Survey</a></li>
                     <li class="nav-item"><a href="#" class="nav-link">My Surveys</a></li>
                     <li class="nav-item"><a href="#" class="nav-link">Reports</a></li>
+                    <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="toggleDropdown(event)">Forms ▾</a>
+                    <ul class="dropdown-menu" id="formsDropdown">
+                        <li><a href="form1.php" class="dropdown-item">Social Participation</a></li>
+                        <li><a href="form2.php" class="dropdown-item">Widow Support</a></li>
+                        <li><a href="form3.php" class="dropdown-item">Suicide Family Form</a></li>
+                    </ul>
+                    </li>
                     <li class="nav-item"><a href="#" class="nav-link">Guidelines</a></li>
                     <li class="nav-item"><a href="#" class="nav-link">Support</a></li>
                     <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
@@ -774,5 +818,27 @@
             });
         });
     </script>
+
+      <script>
+    function toggleMenu() {
+      const nav = document.getElementById("navMenu");
+      nav.classList.toggle("active");
+    }
+
+    function toggleDropdown(event) {
+      event.preventDefault();
+      event.stopPropagation();
+      const dropdown = document.getElementById("formsDropdown");
+      dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    }
+
+    // Close dropdown on outside click
+    document.addEventListener("click", function () {
+      const dropdown = document.getElementById("formsDropdown");
+      if (dropdown) dropdown.style.display = "none";
+    });
+  </script>
+
+
 </body>
 </html>

@@ -24,7 +24,7 @@
       padding: 0 15px;
     }
 
-    .header {
+    .header1 {
       background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
       color: white;
       text-align: center;
@@ -34,13 +34,13 @@
       margin-bottom: 30px;
     }
 
-    .header h1 {
+    .header1 h1 {
       font-size: 2.2rem;
       margin-bottom: 10px;
       font-weight: 800;
     }
 
-    .header p {
+    .header1 p {
       font-size: 1.1rem;
       opacity: 0.9;
     }
@@ -128,7 +128,7 @@
 
     .info-box {
       background-color: #e3f2fd;
-      border-left: 4px solid #3498db;
+      /* border-left: 4px solid #3498db; */
       padding: 15px;
       border-radius: 0 8px 8px 0;
       margin: 20px 0;
@@ -163,7 +163,7 @@
     }
 
     @media (max-width: 768px) {
-      .header h1 {
+      .header1 h1 {
         font-size: 1.8rem;
       }
       
@@ -193,17 +193,17 @@
   </style>
 </head>
 <body>
-
+<?php include 'include/header.php'; ?>
 <div class="container-fluid">
-  <div class="header">
+  <!-- <div class="header1">
     <h1><i class="fas fa-users me-3"></i>कुटुंबिक माहिती फॉर्म</h1>
     <p>कृपया आपल्या कुटुंबाची सविस्तर माहिती भरा</p>
-  </div>
+  </div> -->
   
   <div class="main-container">
-    <div class="info-box">
+    <!-- <div class="info-box">
       <i class="fas fa-info-circle me-2"></i>ही माहिती गोपनीय राखली जाईल आणि केवळ सरकारी योजनांसाठी वापरली जाईल
-    </div>
+    </div> -->
     
     <form id="familyForm" novalidate>
       <!-- Hidden field for survey ID -->
@@ -211,8 +211,8 @@
       
       <!-- इतर कुटुंबिक माहिती Section -->
       <div class="sub-section">
-        <h4 class="section-title">
-          <i class="fas fa-info-circle info-icon"></i>1. इतर कुटुंबिक माहिती
+        <h4 class="section-title">1. इतर कुटुंबिक माहिती
+          <!-- <i class="fas fa-info-circle info-icon"></i> -->
         </h4>
         
         <div class="double-column">
@@ -432,8 +432,8 @@
 
       <!-- घरसुखी सुविधा विषयक माहिती Section -->
       <div class="sub-section">
-        <h4 class="section-title">
-          <i class="fas fa-home info-icon"></i>२. घरसुखी सुविधा विषयक माहिती
+        <h4 class="section-title">2. घरसुखी सुविधा विषयक माहिती
+          <!-- <i class="fas fa-home info-icon"></i>  -->
         </h4>
         
         <div class="double-column">
@@ -639,14 +639,39 @@
       </div>
         
       <!-- Submit Button -->
-      <div class="text-center">
-        <button type="submit" class="btn btn-submit">
-          <i class="fas fa-paper-plane me-2"></i>सबमिट करा
-        </button>
-      </div>
+      <!-- Include SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<div class="text-center">
+  <button type="button" class="btn btn-submit" name="register" onclick="confirmSubmit()">
+    सबमिट करा
+  </button>
+</div>
+
+<script>
+  function confirmSubmit() {
+    Swal.fire({
+      title: 'तुम्हाला खात्री आहे का?',
+      text: "फॉर्म सबमिट केल्यावर पुढील पानावर जाल.",
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'हो, पुढे जा',
+      cancelButtonText: 'रद्द करा',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Redirect after confirmation
+        window.location.href = 'social_participation.php';
+      }
+    });
+  }
+</script>
+
     </form>
   </div>
 </div>
+
+<?php include 'include/footer.php'; ?>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>

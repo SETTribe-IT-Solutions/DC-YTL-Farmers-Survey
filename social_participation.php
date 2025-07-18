@@ -13,20 +13,20 @@
       --box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
     
-    body {
+    /* body {
       background-color: #f8f9fa;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       padding: 20px;
       color: #333;
       line-height: 1.6;
     }
-    
+     */
     .container-fluid {
       margin: 0 auto;
       padding: 0 15px;
     }
 
-    .header {
+    .header1 {
       background: var(--primary-gradient);
       color: white;
       text-align: center;
@@ -36,9 +36,11 @@
       margin-bottom: 30px;
       position: relative;
       overflow: hidden;
+      margin-top: 0.5%;
+
     }
     
-    .header::before {
+    .header1::before {
       content: "";
       position: absolute;
       top: -50%;
@@ -49,7 +51,7 @@
       transform: rotate(30deg);
     }
 
-    .header h1 {
+    .header1 h1 {
       font-size: 2.2rem;
       margin-bottom: 10px;
       font-weight: 800;
@@ -57,7 +59,7 @@
       z-index: 2;
     }
 
-    .header p {
+    .header1 p {
       font-size: 1.1rem;
       opacity: 0.9;
       position: relative;
@@ -227,7 +229,7 @@
     }
 
     @media (max-width: 768px) {
-      .header h1 {
+      .header1 h1 {
         font-size: 1.8rem;
       }
       
@@ -242,12 +244,13 @@
   </style>
 </head>
 <body>
+  <?php include('include/header.php'); ?>
 
 <div class="container-fluid">
-  <div class="header">
+  <!-- <div class="header1">
     <h1><i class="fas fa-hands-helping me-3"></i>सामाजिक सहभाग माहिती फॉर्म</h1>
     <p>कृपया आपल्या सामाजिक सहभागाविषयी माहिती भरा</p>
-  </div>
+  </div> -->
   
   <div class="main-container">
     <h4 class="section-title">
@@ -267,7 +270,7 @@
           <label class="form-check-label" for="org_yes">होय</label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="gram_panchayat_member" id="org_no" value="0">
+          <input class="form-check-input" type="radio" name="gram_panchayat_member" id="org_no" value="0" >
           <label class="form-check-label" for="org_no">नाही</label>
         </div>
         
@@ -375,6 +378,8 @@
     </form>
   </div>
 </div>
+
+<?php include 'include/footer.php'; ?>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
