@@ -555,6 +555,314 @@
   </tbody>
 </table>
 </div>
+<!--section8-->
+<h5>भाग ३ कौटुंबिक उपजिविके विषयक माहीती</h5>
+<h5>7. शेतजमीन विषयक माहिती </h5>
+
+<div class="table-responsive">
+  <table border="1" cellpadding="8" style="border-collapse: collapse; width: 100%;">
+    <thead style="background-color: #f2f2f2;">
+      <tr>
+        <th>अर्जदाराचे नाव</th>
+        <th>1. शेतजमीन (एकूण)</th>
+        <th>2. कोरडवाहू / जिरायत शेतजमीन</th>
+        <th>3. हंगामी बागायत शेतजमीन</th>
+        <th>4. बागायत शेतजमीन</th>
+        <th>5. शेतजमीन (एकर/गुंठा)</th>
+        <th>6. कोरडवाहू (एकर/गुंठा)</th>
+        <th>7. हंगामी बागायत (एकर/गुंठा)</th>
+        <th>8. बागायती (एकर/गुंठा)</th>
+        <th>9. बागायतीसाठी पाणी स्रोत</th>
+        <th>10. शेतामध्ये वीज जोडणी आहे का?</th>
+        <th>11. पाण्याच्या मोटारींची संख्या</th>
+        <th>12. वीज बिल थकीत आहे का?</th>
+        <th>थकीत असल्यास तपशील (रक्कम / तारीख)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>रामु पाटील</td>
+        <td>1 एकर ते 2 एकर</td>
+        <td>1 एकर पेक्षा कमी</td>
+        <td>2 एकर ते 4 एकर</td>
+        <td>5 एकर पेक्षा जास्त</td>
+        <td>3 एकर 20 गुंठा</td>
+        <td>1 एकर 10 गुंठा</td>
+        <td>1 एकर</td>
+        <td>1 एकर 10 गुंठा</td>
+        <td>विहीर, बोर</td>
+        <td>होय</td>
+        <td>2</td>
+        <td>नाही</td>
+        <td>--</td>
+      </tr>
+      <tr>
+        <td>सीता गावंडे</td>
+        <td>2 एकर ते 4 एकर</td>
+        <td>1 एकर ते 2 एकर</td>
+        <td>1 एकर</td>
+        <td>4 एकर ते 5 एकर</td>
+        <td>5 एकर</td>
+        <td>2 एकर</td>
+        <td>1.5 एकर</td>
+        <td>1.5 एकर</td>
+        <td>कालवा</td>
+        <td>नाही</td>
+        <td>1</td>
+        <td>होय</td>
+        <td>₹2,500 (जानेवारी 2024 पासून)</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!--section9-->
+<h5>भाग ८: मागील एक वर्षातील पिक व उत्पादन (डेमो – स्तंभशीर शीर्षके)</h5>
+
+<div class="table-responsive">
+  <table border="1" cellpadding="8" style="border-collapse: collapse; width: 100%;">
+    <thead style="background-color: #f2f2f2;">
+      <tr>
+        <th>अर्जदाराचे नाव</th>
+        <th>खरिप पिके-1</th>
+        <th>खरिप पिके-2</th>
+        <th>खरिप पिके-3</th>
+        <th>खरिप पिके-4</th>
+        <th>खरिप इतर</th>
+        <th>रब्बी पिके-1</th>
+        <th>रब्बी पिके-2</th>
+        <th>रब्बी पिके-3</th>
+        <th>रब्बी पिके-4</th>
+        <th>रब्बी इतर</th>
+        <th>उन्हाळी पिके-1</th>
+        <th>उन्हाळी पिके-2</th>
+        <th>उन्हाळी इतर</th>
+        <th>फळबाग</th>
+        <th>चारा पिके</th>
+        <th>बांधावरील झाडे</th>
+        <th>एकूण उत्पादन ₹</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>रामु पाटील</td>
+        <td>सोयाबीन</td>
+        <td>मका</td>
+        <td></td>
+        <td>उडीद</td>
+        <td>तूर</td>
+        <td>गहू</td>
+        <td>हरभरा</td>
+        <td></td>
+        <td>मोहरी</td>
+        <td></td>
+        <td>भुईमूग</td>
+        <td>सूर्यफूल</td>
+        <td></td>
+        <td>आंबा</td>
+        <td>नापियर</td>
+        <td>कडुनिंब</td>
+        <td>₹1,50,000</td>
+      </tr>
+      <tr>
+        <td>सीता गावंडे</td>
+        <td>शेवंगं</td>
+        <td>भुईमूग</td>
+        <td>सोयाबीन</td>
+        <td></td>
+        <td></td>
+        <td>गहू</td>
+        <td>हरभरा</td>
+        <td>मका</td>
+        <td></td>
+        <td>गवार</td>
+        <td>सूर्यफूल</td>
+        <td></td>
+        <td>भेंडी</td>
+        <td>संत्रा</td>
+        <td>ज्वारी</td>
+        <td>बाभळी</td>
+        <td>₹1,20,000</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!--section10-->
+<h5 class="mb-3 text-center">९ कृषी योजना विषयक</h5>
+
+<div class="table-responsive">
+  <table border="1" cellpadding="8" style="border-collapse: collapse; width: 100%; text-align: center;">
+    <thead style="background-color: #f0f0f0;">
+      <tr>
+        <th>1. पाण्याचे स्त्रोत व सिंचन सुविधा उपलब्ध आहे का?<br><small>(पाईप लाईन / ठिबक / तुषार)</small></th>
+        <th>2. कोरडवाहू असल्यास विहीरीची आवश्यकता आहे का? (मनरेगा)</th>
+        <th>3. शेततळ्याची आवश्यकता आहे का?</th>
+        <th>4. कृषी योजनेचा लाभ घेतला आहे का?<br><small>(योजनेचे नाव / लाभ)</small></th>
+        <th>5. प्रशिक्षण / प्रात्यक्षिक / सेंद्रिय शेती मध्ये सहभाग?</th>
+        <th>6. पिक विमा योजनेचा लाभ घेतला आहे का?<br><small>(पिके / प्राप्त रक्कम)</small></th>
+        <th>7. शेतीसंबंधी मदतीची आवश्यकता आहे का?<br><small>(तपशील)</small></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>होय <br> पाईप लाईन</td>
+        <td>नाही</td>
+        <td>होय</td>
+        <td>होय <br> ट्रॅक्टर अनुदान</td>
+        <td>होय</td>
+        <td>होय <br> सोयाबीन <br> ₹12000</td>
+        <td>होय <br> सिंचन पंप आवश्यक</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!--section11-->
+<h5 class="mb-3 text-center">१०. पशुधन विषयक बाबी</h5>
+
+<div class="table-responsive">
+  <table border="1" cellpadding="8" style="border-collapse: collapse; width: 100%; text-align: center;">
+    <thead style="background-color: #f0f0f0;">
+      <tr>
+        <th>देशी गाय आहे का?</th>
+        <th>देशी गाय संख्‍या</th>
+        <th>संकरीत गाय आहे का?</th>
+        <th>संकरीत गाय संख्‍या</th>
+        <th>बैल आहेत का?</th>
+        <th>बैल संख्‍या</th>
+        <th>म्‍हैस आहे का?</th>
+        <th>म्‍हैस संख्‍या</th>
+        <th>शेळी आहे का?</th>
+        <th>शेळी संख्‍या</th>
+        <th>मेंढी आहे का?</th>
+        <th>मेंढी संख्‍या</th>
+        <th>कोंबडी आहे का?</th>
+        <th>कोंबडी संख्‍या</th>
+        <th>वर्षभर हिरवा चारा आहे का?</th>
+        <th>वैरण विकास योजनेचा लाभ घेतला आहे का?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>होय</td>
+        <td>3</td>
+        <td>होय</td>
+        <td>2</td>
+        <td>नाही</td>
+        <td>0</td>
+        <td>होय</td>
+        <td>1</td>
+        <td>होय</td>
+        <td>5</td>
+        <td>नाही</td>
+        <td>0</td>
+        <td>होय</td>
+        <td>10</td>
+        <td>होय</td>
+        <td>नाही</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!--section12-->
+<h5 class="mb-3 text-center">११ ते १३: स्थलांतर, नैसर्गिक आपत्ती व उत्पन्न स्त्रोत</h5>
+
+<div class="table-responsive">
+  <table border="1" cellpadding="8" style="border-collapse: collapse; width: 100%; text-align: center;">
+    <thead style="background-color: #f0f0f0;">
+      <tr>
+        <!-- 11. स्थलांतर -->
+        <th>कोणी स्थलांतर करतो आहे का?</th>
+        <th>स्थलांतर तपशील</th>
+
+        <!-- 12. नैसर्गिक आपत्ती -->
+        <th>आपत्तीमुळे नुकसान झाले का?</th>
+        <th>नुकसान तपशील</th>
+        <th>भरपाई मिळाली का?</th>
+        <th>न मिळाल्यास कारण</th>
+
+        <!-- 13. उत्पन्नाचे स्रोत -->
+        <th>शेती उत्पन्न (₹)</th>
+        <th>शेती टक्केवारी</th>
+        <th>पशुधन उत्पन्न (₹)</th>
+        <th>पशुधन टक्केवारी</th>
+        <th>मजुरी उत्पन्न (₹)</th>
+        <th>मजुरी टक्केवारी</th>
+        <th>कौशल्य कामे उत्पन्न (₹)</th>
+        <th>कौशल्य टक्केवारी</th>
+        <th>वेतन उत्पन्न (₹)</th>
+        <th>वेतन टक्केवारी</th>
+        <th>इतर उत्पन्न (₹)</th>
+        <th>इतर टक्केवारी</th>
+        <th>एकूण उत्पन्न (₹)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <!-- 11 -->
+        <td>होय</td>
+        <td>2 सदस्य कामासाठी शहरात गेले</td>
+
+        <!-- 12 -->
+        <td>होय</td>
+        <td>शेतीमध्ये पाणी भरले</td>
+        <td>नाही</td>
+        <td>सरकारी मदत मिळाली नाही</td>
+
+        <!-- 13 -->
+        <td>50000</td>
+        <td>40%</td>
+        <td>30000</td>
+        <td>20%</td>
+        <td>20000</td>
+        <td>15%</td>
+        <td>15000</td>
+        <td>10%</td>
+        <td>10000</td>
+        <td>8%</td>
+        <td>5000</td>
+        <td>7%</td>
+        <td>130000</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!--section12-->
+<h5 class="mb-3 text-center">माहिती देणारा / घेणारा / तपासणी अधिकारी तपशील</h5>
+
+<form class="p-3 border rounded" style="max-width: 800px; margin: auto;">
+  <!-- माहिती देणारा -->
+  <div class="mb-3">
+    <label for="giverName" class="form-label">माहीती देणा-याचे पुर्ण नाव व स्‍वाक्षरी:</label>
+    <input type="text" class="form-control" id="giverName" placeholder="नाव व स्वाक्षरी लिहा">
+  </div>
+  <div class="mb-3">
+    <label for="giverMobile" class="form-label">मोबाईल नंबर:</label>
+    <input type="text" class="form-control" id="giverMobile" placeholder="मोबाईल नंबर लिहा">
+  </div>
+
+  <!-- माहिती घेणारा -->
+  <div class="mb-3">
+    <label for="receiverName" class="form-label">माहीती घेणा-याचे पुर्ण नाव व पदनाम:</label>
+    <input type="text" class="form-control" id="receiverName" placeholder="नाव व पदनाम लिहा">
+  </div>
+  <div class="mb-3">
+    <label for="receiverMobile" class="form-label">मोबाईल नंबर:</label>
+    <input type="text" class="form-control" id="receiverMobile" placeholder="मोबाईल नंबर लिहा">
+  </div>
+  <div class="mb-3">
+    <label for="receiverSign" class="form-label">माहीती घेणा-याची स्‍वाक्षरी:</label>
+    <input type="text" class="form-control" id="receiverSign" placeholder="स्वाक्षरी लिहा">
+  </div>
+
+  <!-- तपासणी अधिकारी -->
+  <div class="mb-3">
+    <label for="officerDetails" class="form-label">तपासणी करणा-या अधिकारी यांचे पुर्ण नाव, पदनाम व स्‍वाक्षरी:</label>
+    <textarea class="form-control" id="officerDetails" rows="3" placeholder="नाव, पदनाम व स्वाक्षरी लिहा"></textarea>
+  </div>
+
+  
+</form>
+
 
 </form>
   </div>
