@@ -24,9 +24,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $farmer_name = $_POST['farmer_name'];
     $suicide_date = $_POST['suicide_date'];
     $suicide_type = $_POST['suicide_type'];
+    $suicide_type_other = $_POST['suicide_type_other'];
     $suicide_reason = $_POST['suicide_reason'];
     $birth_date = $_POST['birth_date'] ?: null;
-    $age = intval($_POST['age']);
     $gender = $_POST['gender'];
     $aadhar_number = $_POST['aadhar_number'];
     $bank_account = $_POST['bank_account'];
@@ -35,6 +35,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $taluka = $_POST['taluka'];
     $district = 'यवतमाळ'; // Fixed value
     $informant_name = $_POST['informant_name'];
+    
+    // Calculate age from birth date
+    $age = 0; // Default value if birth date is missing
+    if (!empty($birth_date)) {
+        $birth = new DateTime($birth_date);
+        $suicide = new DateTime($suicide_date);
+        $interval = $birth->diff($suicide);
+        $age = $interval->y; // Get years difference
+    }
     
     // Convert radio button values to 1/0
     $family_migration = ($_POST['family_migration'] == 'होय') ? 1 : 0;
@@ -48,22 +57,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $family_head_education = $_POST['family_head_education'];
     $family_head_occupation = $_POST['family_head_occupation'];
+    $education_other = $_POST['education_other'];
+    $occupation_other = $_POST['occupation_other'];
 
     // Prepare SQL statement
     $stmt = $conn->prepare("INSERT INTO farmer_survey (
-        survey_id, survey_date, farmer_name, suicide_date, suicide_type, suicide_reason,
+        survey_id, survey_date, farmer_name, suicide_date, suicide_type, suicide_type_other, suicide_reason,
         birth_date, age, gender, aadhar_number, bank_account, ifsc_code, village,
         taluka, district, informant_name, family_migration, migration_since,
-        government_subsidy, subsidy_details, family_head_education,
+        government_subsidy, subsidy_details, family_head_education,education_other,occupation_other,
         family_head_occupation, land_mortgage, mortgage_details
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-    // Bind parameters - note the change to integers for boolean fields
-    $stmt->bind_param("sssssssissssssssiissssss",
-        $survey_id, $survey_date, $farmer_name, $suicide_date, $suicide_type, $suicide_reason,
+    // Corrected type string (27 characters)
+    $stmt->bind_param("ssssssssissssssssisisssssis",
+        $survey_id, $survey_date, $farmer_name, $suicide_date, $suicide_type, $suicide_type_other, $suicide_reason,
         $birth_date, $age, $gender, $aadhar_number, $bank_account, $ifsc_code, $village,
         $taluka, $district, $informant_name, $family_migration, $migration_since,
-        $government_subsidy, $subsidy_details, $family_head_education,
+        $government_subsidy, $subsidy_details, $family_head_education, $education_other, $occupation_other,
         $family_head_occupation, $land_mortgage, $mortgage_details
     );
 

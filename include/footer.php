@@ -1,23 +1,37 @@
-<div id="kt_app_footer"
-    class="app-footer align-items-center justify-content-center justify-content-md-between flex-column flex-md-row py-3 py-lg-6">
-    <!--begin::Copyright-->
-    <div class="text-dark order-2 order-md-1">
-        <span class="text-muted fw-semibold me-1">2023&copy;</span>
-        <a href="https://keenthemes.com" target="_blank" class="text-gray-800 text-hover-primary">Keenthemes</a>
+<!-- Google Fonts - Tiro Devanagari Marathi -->
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Marathi&display=swap" rel="stylesheet">
+    
+<style>
+       .footer .copyright {
+    text-align: center;
+    padding-top: 10px;
+    color: white;
+    font-family: 'Tiro Devanagari Marathi';
+}
+  .footer {
+    background: black;
+    padding: 0 0 5px;
+    font-size: 12px;
+    font-family: 'Tiro Devanagari Marathi';
+}
+.footer .credits {
+    padding-top: 1px;
+    text-align: center;
+    font-size: 10px;
+    color: white;
+    font-family: 'Tiro Devanagari Marathi';
+}
+  </style>
+  
+  
+  <footer id="footer" class="footer">
+    <div class="container">
+      <div class="copyright">
+      This site is owned by <strong><span>जिल्हाधिकारी कार्यालय, यवतमाळ </span></strong>       </div>
+      <div class="credits">
+     
+       Developed & Maintained By <a class="text-primary" href="https://settribe.com/" target="_blank">SETTribe</a>
+      </div>
     </div>
-    <!--end::Copyright-->
-    <!--begin::Menu-->
-    <ul class="menu menu-gray-600 menu-hover-primary fw-semibold order-1">
-        <li class="menu-item">
-            <a href="https://keenthemes.com" target="_blank" class="menu-link px-2">About</a>
-        </li>
-        <li class="menu-item">
-            <a href="https://devs.keenthemes.com" target="_blank" class="menu-link px-2">Support</a>
-        </li>
-        <li class="menu-item">
-            <a href="https://keenthemes.com/products/oswald-html-pro" target="_blank"
-                class="menu-link px-2">Purchase</a>
-        </li>
-    </ul>
-    <!--end::Menu-->
-</div>
+
+  </footer><!-- End Footer -->

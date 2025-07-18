@@ -62,7 +62,7 @@ $stmt->bind_param(
 if ($stmt->execute()) {
     echo "<script>
         alert('माहिती यशस्वीरित्या साठवली गेली आहे!');
-        window.location.href='your_form_page.html'; // change if needed
+        window.location.href='social_participation.php'; // change if needed
     </script>";
 } else {
     echo "<script>

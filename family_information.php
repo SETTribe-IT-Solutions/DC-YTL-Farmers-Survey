@@ -12,7 +12,7 @@
       padding: 0 15px;
     }
 
-    .header {
+    /* .header {
       background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
       color: white;
       text-align: center;
@@ -31,7 +31,7 @@
     .header p {
       font-size: 1.1rem;
       opacity: 0.9;
-    }
+    } */
 
     .main-container {
       background: white;
@@ -197,9 +197,9 @@
     }
 
     @media (max-width: 768px) {
-      .header h1 {
+      /* .header h1 {
         font-size: 1.8rem;
-      }
+      } */
       
       .main-container {
         padding: 20px;
@@ -213,16 +213,17 @@
   </style>
 </head>
 <body>
+  <?php include 'include/header.php'; ?>
 
 <div class="container-fluid">
-  <div class="header">
+  <!-- <div class="header">
     <h1><i class="fas fa-users me-3"></i>कुटुंबिक माहिती फॉर्म</h1>
     <p>कृपया आपल्या कुटुंबाची सविस्तर माहिती भरा</p>
-  </div>
+  </div> -->
   
   <div class="main-container">
-    <h4 class="section-title">
-      <i class="fas fa-users info-icon"></i>शेतकरी कुटुंबातील सदस्य
+    <h4 class="section-title">शेतकरी कुटुंबातील सदस्य
+      <!-- <i class="fas fa-users info-icon"></i> -->
     </h4>
     
     <form id="familyForm" action="family_information_db.php" method="POST" novalidate>
@@ -236,14 +237,38 @@
         </button>
       </div>
         
-      <div class="text-center">
-        <button type="submit" class="btn btn-submit" name="register">
-          <i class="fas fa-paper-plane me-2"></i>सबमिट करा
-        </button>
-      </div>
+      <!-- Include SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<div class="text-center">
+  <button type="button" class="btn btn-submit" name="register" onclick="confirmSubmit()">
+    सबमिट करा
+  </button>
+</div>
+
+<script>
+  function confirmSubmit() {
+    Swal.fire({
+      title: 'तुम्हाला खात्री आहे का?',
+      text: "फॉर्म सबमिट केल्यावर पुढील पानावर जाल.",
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'हो, पुढे जा',
+      cancelButtonText: 'रद्द करा',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Redirect after confirmation
+        window.location.href = 'household_facilities.php';
+      }
+    });
+  }
+</script>
+
     </form>
   </div>
 </div>
+<?php include 'include/footer.php'; ?>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
