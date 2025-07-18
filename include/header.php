@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,7 +24,7 @@
             padding: 0rem 1rem;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
         }
 
         /* Animated background effect */
@@ -34,14 +35,21 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle at 30% 70%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            background: radial-gradient(circle at 30% 70%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
             animation: backgroundFloat 8s ease-in-out infinite;
             z-index: 1;
         }
 
         @keyframes backgroundFloat {
-            0%, 100% { transform: rotate(0deg) scale(1); }
-            50% { transform: rotate(180deg) scale(1.1); }
+
+            0%,
+            100% {
+                transform: rotate(0deg) scale(1);
+            }
+
+            50% {
+                transform: rotate(180deg) scale(1.1);
+            }
         }
 
         .header-container {
@@ -54,7 +62,8 @@
             z-index: 2;
         }
 
-        .logo-left, .logo-right {
+        .logo-left,
+        .logo-right {
             flex: 0 0 auto;
             animation: logoSlideIn 1s ease-out;
         }
@@ -72,6 +81,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -86,7 +96,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
@@ -99,7 +109,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, transparent, rgba(45,143,79,0.1), transparent);
+            background: linear-gradient(45deg, transparent, rgba(45, 143, 79, 0.1), transparent);
             transform: translateX(-100%);
             transition: transform 0.6s ease;
         }
@@ -110,7 +120,7 @@
 
         .logo:hover {
             transform: scale(1.1) rotate(5deg);
-            box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
         }
 
         .logo svg {
@@ -135,6 +145,7 @@
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -145,7 +156,7 @@
             font-size: 2.8rem;
             font-weight: 800;
             margin-bottom: 0.5rem;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
             background: linear-gradient(45deg, #ffffff, #e8f5e8, #ffffff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -155,8 +166,15 @@
         }
 
         @keyframes titleShine {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
         }
 
         .subtitle-hindi {
@@ -164,13 +182,20 @@
             font-weight: 600;
             margin-bottom: 0.3rem;
             color: #e8f5e8;
-            text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
             animation: subtitlePulse 2s ease-in-out infinite;
         }
 
         @keyframes subtitlePulse {
-            0%, 100% { opacity: 0.9; }
-            50% { opacity: 1; }
+
+            0%,
+            100% {
+                opacity: 0.9;
+            }
+
+            50% {
+                opacity: 1;
+            }
         }
 
         .subtitle-english {
@@ -178,7 +203,7 @@
             font-weight: 500;
             color: #d4edda;
             letter-spacing: 0.5px;
-            text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
         }
 
         /* Floating particles */
@@ -186,21 +211,28 @@
             position: absolute;
             width: 4px;
             height: 4px;
-            background: rgba(255,255,255,0.3);
+            background: rgba(255, 255, 255, 0.3);
             border-radius: 50%;
             animation: particleFloat 6s infinite ease-in-out;
         }
 
         @keyframes particleFloat {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+            }
         }
 
         /* Navbar */
         .navbar {
-            background: rgba(0,0,0,0.2);
+            background: rgba(0, 0, 0, 0.2);
             backdrop-filter: blur(20px);
-            border-top: 1px solid rgba(255,255,255,0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
 
             /* overflow: hidden; */
@@ -216,13 +248,18 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
             animation: navShimmer 4s infinite;
         }
 
         @keyframes navShimmer {
-            0% { left: -100%; }
-            100% { left: 100%; }
+            0% {
+                left: -100%;
+            }
+
+            100% {
+                left: 100%;
+            }
         }
 
         .nav-container {
@@ -268,7 +305,7 @@
             left: 0;
             width: 0;
             height: 100%;
-            background: linear-gradient(45deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
             transition: width 0.3s ease;
             z-index: -1;
         }
@@ -296,15 +333,15 @@
 
         .nav-link:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
             color: #ffd700;
         }
 
         /* Mobile Menu */
         .mobile-menu-toggle {
             display: none;
-            background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
-            border: 2px solid rgba(255,255,255,0.2);
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            border: 2px solid rgba(255, 255, 255, 0.2);
             color: white;
             cursor: pointer;
             padding: 0.6rem;
@@ -317,7 +354,7 @@
         }
 
         .mobile-menu-toggle:hover {
-            background: linear-gradient(45deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
             transform: scale(1.05);
         }
 
@@ -354,7 +391,8 @@
                 gap: 1.5rem;
             }
 
-            .logo-left, .logo-right {
+            .logo-left,
+            .logo-right {
                 order: 1;
             }
 
@@ -399,7 +437,7 @@
                 backdrop-filter: blur(20px);
                 flex-direction: column;
                 gap: 0;
-                box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
                 animation: mobileSlide 0.3s ease-out;
             }
 
@@ -408,6 +446,7 @@
                     opacity: 0;
                     transform: translateY(-20px);
                 }
+
                 to {
                     opacity: 1;
                     transform: translateY(0);
@@ -422,7 +461,7 @@
                 width: 100%;
                 text-align: center;
                 padding: 1rem;
-                border-bottom: 1px solid rgba(255,255,255,0.1);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
                 border-radius: 0;
             }
 
@@ -481,7 +520,7 @@
             margin: 2rem auto;
             padding: 2rem;
             border-radius: 16px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             max-width: 1000px;
             animation: contentFadeIn 1s ease-out 1s both;
         }
@@ -491,6 +530,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -515,35 +555,34 @@
         }
 
 
-  /* Dropdown */
-    .dropdown-menu {
-      /* display: none; */
-      position: relative;
-      background-color: #014421;
-      top: 38px;
-      left: 0;
-      min-width: 180px;
-      z-index: 100;
-    }
+        /* Dropdown */
+        .dropdown-menu {
+            /* display: none; */
+            position: relative;
+            background-color: #014421;
+            top: 38px;
+            left: 0;
+            min-width: 180px;
+            z-index: 100;
+        }
 
-    .dropdown-menu li {
-      border-bottom: 1px solid #0a5a30;
-    }
+        .dropdown-menu li {
+            border-bottom: 1px solid #0a5a30;
+        }
 
-    .dropdown-item {
-      padding: 10px 15px;
-      display: block;
-      color: white;
-      text-decoration: none;
-    }
+        .dropdown-item {
+            padding: 10px 15px;
+            display: block;
+            color: white;
+            text-decoration: none;
+        }
 
-    .dropdown-item:hover {
-      background-color: #02613a;
-    }
-
-        
+        .dropdown-item:hover {
+            background-color: #02613a;
+        }
     </style>
 </head>
+
 <body>
     <header class="header">
         <!-- Floating particles -->
@@ -561,17 +600,17 @@
                 </div>
             </div>
 
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/512px-Emblem_of_India.svg.png"
-                                    alt="Emblem of India" />
-                </div>
-            </div>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/512px-Emblem_of_India.svg.png"
+                alt="Emblem of India" />
+        </div>
+        </div>
 
 
-            <!-- Title Section -->
-            <div class="title-section">
-                <h1 class="main-title">Farmers Survey Portal</h1>
-                <p class="subtitle-hindi">Collector Office, Yavatmal</p>
-                <p class="subtitle-english">Government of Maharashtra</p>
+        <!-- Title Section -->
+        <div class="title-section">
+            <h1 class="main-title">Farmers Survey Portal</h1>
+            <p class="subtitle-hindi">Collector Office, Yavatmal</p>
+            <p class="subtitle-english">Government of Maharashtra</p>
 
             <!--end::Logo and search-->
             <!--begin::Navbar-->
@@ -733,8 +772,7 @@
             <div class="logo-right">
                 <div class="logo">
                     <img src="assets/images/Seal_of_Maharashtra.png" alt="Maharashtra Government Logo" />
-                    <img src="assets/media/logos/Seal_of_Maharashtra.png"
-                                    alt="Maharashtra Government Logo" />
+                    <img src="assets/media/logos/Seal_of_Maharashtra.png" alt="Maharashtra Government Logo" />
                 </div>
             </div>
         </div>
@@ -747,19 +785,19 @@
                     <span class="hamburger"></span>
                     <span class="hamburger"></span>
                 </button>
-                
+
                 <ul class="nav-menu" id="navMenu">
                     <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
                     <li class="nav-item"><a href="#" class="nav-link">New Survey</a></li>
                     <li class="nav-item"><a href="#" class="nav-link">My Surveys</a></li>
                     <li class="nav-item"><a href="#" class="nav-link">Reports</a></li>
                     <li class="nav-item">
-                    <a href="#" class="nav-link" onclick="toggleDropdown(event)">Forms ▾</a>
-                    <ul class="dropdown-menu" id="formsDropdown">
-                        <li><a href="form1.php" class="dropdown-item">Social Participation</a></li>
-                        <li><a href="form2.php" class="dropdown-item">Widow Support</a></li>
-                        <li><a href="form3.php" class="dropdown-item">Suicide Family Form</a></li>
-                    </ul>
+                        <a href="#" class="nav-link" onclick="toggleDropdown(event)">Forms ▾</a>
+                        <ul class="dropdown-menu" id="formsDropdown">
+                            <li><a href="form1.php" class="dropdown-item">Social Participation</a></li>
+                            <li><a href="form2.php" class="dropdown-item">Widow Support</a></li>
+                            <li><a href="form3.php" class="dropdown-item">Suicide Family Form</a></li>
+                        </ul>
                     </li>
                     <li class="nav-item"><a href="#" class="nav-link">Guidelines</a></li>
                     <li class="nav-item"><a href="#" class="nav-link">Support</a></li>
@@ -769,22 +807,22 @@
         </nav>
     </header>
 
-    
+
 
     <script>
         // Mobile menu toggle
         function toggleMobileMenu(event) {
-        event.stopPropagation();  // ✅ Prevents propagation to document click handler
-        const navMenu = document.getElementById('navMenu');
-        const toggle = document.querySelector('.mobile-menu-toggle');
+            event.stopPropagation();  // ✅ Prevents propagation to document click handler
+            const navMenu = document.getElementById('navMenu');
+            const toggle = document.querySelector('.mobile-menu-toggle');
 
-        navMenu.classList.toggle('active');
-        toggle.classList.toggle('active');
-    }
+            navMenu.classList.toggle('active');
+            toggle.classList.toggle('active');
+        }
 
 
         // Close mobile menu when clicking on a nav link
-       document.querySelectorAll('.nav-link').forEach(link => {
+        document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', () => {
                 const navMenu = document.getElementById('navMenu');
                 const toggle = document.querySelector('.mobile-menu-toggle');
@@ -798,7 +836,7 @@
         document.addEventListener('click', (e) => {
             const navMenu = document.getElementById('navMenu');
             const toggle = document.querySelector('.mobile-menu-toggle');
-            
+
             if (!toggle.contains(e.target) && !navMenu.contains(e.target)) {
                 navMenu.classList.remove('active');
                 toggle.classList.remove('active');
@@ -819,26 +857,23 @@
         });
     </script>
 
-      <script>
-    function toggleMenu() {
-      const nav = document.getElementById("navMenu");
-      nav.classList.toggle("active");
-    }
+    <script>
+        function toggleMenu() {
+            const nav = document.getElementById("navMenu");
+            nav.classList.toggle("active");
+        }
 
-    function toggleDropdown(event) {
-      event.preventDefault();
-      event.stopPropagation();
-      const dropdown = document.getElementById("formsDropdown");
-      dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
-    }
+        function toggleDropdown(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            const dropdown = document.getElementById("formsDropdown");
+            dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+        }
 
-    // Close dropdown on outside click
-    document.addEventListener("click", function () {
-      const dropdown = document.getElementById("formsDropdown");
-      if (dropdown) dropdown.style.display = "none";
-    });
-  </script>
-
-
-</body>
+        // Close dropdown on outside click
+        document.addEventListener("click", function () {
+            const dropdown = document.getElementById("formsDropdown");
+            if (dropdown) dropdown.style.display = "none";
+        });
+    </script></body>
 </html>
