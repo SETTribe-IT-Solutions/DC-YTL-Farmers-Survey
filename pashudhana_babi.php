@@ -466,6 +466,5 @@ document.getElementById('livestockForm').addEventListener('submit', function(e) 
 });
 </script>
 
-
 </body>
 </html>
