@@ -52,7 +52,7 @@ font-weight:bold;
 </div>
 
 
- <form id="livestockForm" method="POST">
+ <form  id="testForm" method="POST">
 
     <!-- Repeat this block for each row -->
     
@@ -463,39 +463,35 @@ font-weight:bold;
       <button type="reset" class="btn btn-danger px-4">रद्द करा</button>
     </div>
   </form>
-      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- ✅ SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<!-- ✅ SweetAlert script -->
+<!-- JavaScript -->
 <script>
-  document.getElementById("livestockForm").addEventListener("submit", function (e) {
-    e.preventDefault(); // stop form submission
+  document.getElementById('myForm').addEventListener('submit', function (e) {
+    e.preventDefault(); // ✅ Prevent form from submitting
 
-    const form = this;
-    const requiredFields = form.querySelectorAll("input[required], select[required]");
-    let emptyFound = false;
+    const name = document.getElementById('name').value.trim();
+    const address = document.getElementById('address').value.trim();
 
-    requiredFields.forEach(field => {
-      if (!field.value.trim()) {
-        field.classList.add("is-invalid");
-        emptyFound = true;
-      } else {
-        field.classList.remove("is-invalid");
-      }
-    });
-
-    if (emptyFound) {
+    if (!name || !address) {
+      // ✅ Show error alert if fields are empty
       Swal.fire({
         icon: 'error',
-        title: 'चूक!',
-        text: 'कृपया सर्व आवश्यक माहिती भरा.',
-        confirmButtonText: 'ठीक आहे'
+        title: 'कृपया सर्व आवश्यक माहिती भरा',
+        confirmButtonText: 'ठीक आहे',
       });
     } else {
+      // ✅ If valid, show success and redirect
       Swal.fire({
         icon: 'success',
-        title: 'सबमिट यशस्वी!',
-        text: 'सर्व माहिती भरली गेली आहे.',
-        confirmButtonText: 'ठीक आहे'
+        title: 'फॉर्म यशस्वीरित्या सबमिट झाला!',
+        confirmButtonText: 'पुढे जा'
       }).then(() => {
-        form.submit(); // actually submit form after success alert
+        window.location.href = "krushi_yojana.php"; // ✅ Change to your next page
       });
     }
   });

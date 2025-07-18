@@ -39,7 +39,7 @@ font-weight:bold;
 <body>
 
   <div class="container">
- <form  action="krushi_yojana_db.php" method="POST">
+ <form id="krushiForm"   method="POST">
   <div class="header">
     <h4>कृषी योजना विषयक</h4>
   </div>
@@ -152,6 +152,56 @@ font-weight:bold;
     <button type="reset" class="btn btn-danger px-4">रद्द करा</button>
 </div>
 </form>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+document.getElementById("krushiForm").addEventListener("submit", function (e) {
+  e.preventDefault(); // prevent default form submission
+
+  const form = e.target;
+  let isValid = true;
+  let missing = [];
+
+  // Required radio groups
+  const requiredRadioGroups = [
+    "water_source", "well_need", "farm_pond", 
+    "scheme_benefit", "training", "crop_insurance", "farming_help"
+  ];
+
+  requiredRadioGroups.forEach(name => {
+    const checked = form.querySelector(`input[name="${name}"]:checked`);
+    if (!checked) {
+      missing.push(name);
+      isValid = false;
+    }
+  });
+
+  if (!isValid) {
+    Swal.fire({
+      icon: 'warning',
+      title: 'कृपया सर्व आवश्यक माहिती भरा!',
+      text: 'फॉर्म सबमिट करण्यासाठी सर्व प्रश्नांची उत्तरे द्या.',
+      confirmButtonText: 'ठीक आहे'
+    });
+  } else {
+    // SweetAlert success and then redirect
+    Swal.fire({
+      icon: 'success',
+      title: 'फॉर्म सबमिट झाला!',
+      text: 'तुमची माहिती यशस्वीरित्या सबमिट करण्यात आली आहे.',
+      confirmButtonText: 'पुढे जा'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Option 1: Redirect to another page (GET)
+        window.location.href = "pashudhana_babi.php";
+
+        // Option 2: If you want to actually POST form data:
+        // form.submit();
+      }
+    });
+  }
+});
+</script>
 
 </body>
 </html>
