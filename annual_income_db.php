@@ -58,7 +58,7 @@ $conn->close();
         confirmButtonText: 'ठीक आहे'
     }).then((result) => {
         if (result.isConfirmed) {
-            window.location.href = 'annual_income.php';
+             window.location.href = 'inquiry_verification_info.php';
         }
     });
 </script>
