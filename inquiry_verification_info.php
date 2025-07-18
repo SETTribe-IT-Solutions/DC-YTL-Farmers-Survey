@@ -330,118 +330,177 @@
             include('include/header.php');
             ?>
             <div class="container-fluid">
-
+                <!-- <div class="header">
+            <h1><i class="fas fa-rupee-sign info-icon me-3"></i>उत्‍पन्‍नाचे स्‍त्रोत (वार्षिक )</h1>
+        </div> -->
 
                 <div class="main-container">
-                    <h4 class="section-title" style="color: #2c3e50; margin-bottom: 20px;">
-                        <i class="fas fa-truck-moving info-icon"></i> स्‍थलांतर विषयक बाबी
-                    </h4>
 
-
-                    <form id="familyForm" action="migration_survey_form_db.php" method="POST" class="needs-validation"
-                        novalidate>
-                        <!-- शेतकरी कुटुंबातील सदस्य Section -->
+                    <form id="familyForm" action="inquiry_verification_info_db.php" method="POST"
+                        enctype="multipart/form-data" novalidate>
                         <div class="sub-section">
-                            <!-- सदस्य क्रमांक 1 -->
-                            <div class="form-section">
-                                <div class="double-column">
-                                    <div class="mobile-column">
-                                        <!-- Row 1 -->
-                                        <div class="row g-3">
-                                            <!-- Radio Button Group -->
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="form-label required">कुटुंबातील सदस्यांपैकी
-                                                        सद्यस्थितीत
-                                                        कोणीतरी रोजगारीसाठी स्थलांतर करीत आहे काय?</label>
-                                                    <div>
-                                                        <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="radio"
-                                                                name="current_migration" id="mr_yes" value="1" required>
-                                                            <label class="form-check-label" for="mr_yes">होय</label>
-                                                        </div>
-                                                        <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="radio"
-                                                                name="current_migration" id="mr_no" value="0" required>
-                                                            <label class="form-check-label" for="mr_no">नाही</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="invalid-feedback">
-                                                        कृपया एक पर्याय निवडा.
-                                                    </div>
-                                                </div>
-                                            </div>
+                            <h4 class="section-title mt-5" style="color: #2c3e50; margin-bottom: 20px;">
+                                <i class="fas fa-user info-icon"></i>माहिती व तपासणी संबंधी माहिती
+                            </h4>
+                            <div class="row g-3">
+                                <!-- माहिती देणाऱ्याचे पूर्ण नाव व स्वाक्षरी -->
+                                <div class="col-md-6">
+                                    <label class="form-label">माहीती देणा-याचे पुर्ण नाव व स्‍वाक्षरी</label>
+                                    <input type="text" name="info_provider_name_signature" class="form-control"
+                                        placeholder="उदा. रमेश पाटील - स्वाक्षरी" required>
+                                    <div class="invalid-feedback">कृपया माहिती देणाऱ्याचे नाव व स्वाक्षरी भरा</div>
+                                </div>
 
-                                            <!-- Textarea -->
-                                            <div class="col-md-6" id="migration_details_wrapper" style="display: none;">
-                                                <div class="form-group">
-                                                    <label for="migration_details">असल्यास तपशील -</label>
-                                                    <textarea id="migration_details" name="migration_details" rows="3"
-                                                        class="form-control" placeholder="तपशील येथे लिहा"></textarea>
-                                                </div>
-                                            </div>
+                                <!-- माहिती देणाऱ्याचा मोबाईल नंबर -->
+                                <div class="col-md-6">
+                                    <label class="form-label">मोबाईल नंबर (माहिती देणाऱ्याचा)</label>
+                                    <input type="tel" name="info_provider_mobile" class="form-control"
+                                        placeholder="उदा. 9876543210" pattern="[0-9]{10}" required>
+                                    <div class="invalid-feedback">वैध मोबाईल नंबर टाका (10 अंक)</div>
+                                </div>
 
-                                        </div>
-                                    </div>
+                                <!-- माहिती घेणाऱ्याचे पूर्ण नाव व पदनाम -->
+                                <div class="col-md-6">
+                                    <label class="form-label">माहीती घेणा-याचे पुर्ण नाव व पदनाम</label>
+                                    <input type="text" name="info_recipient_name_designation" class="form-control"
+                                        placeholder="उदा. योगेश काळे - ग्रामसेवक" required>
+                                    <div class="invalid-feedback">कृपया माहिती घेणाऱ्याचे नाव व पदनाम भरा</div>
+                                </div>
+
+                                <!-- माहिती घेणाऱ्याचा मोबाईल नंबर -->
+                                <div class="col-md-6">
+                                    <label class="form-label">मोबाईल नंबर (माहिती घेणाऱ्याचा)</label>
+                                    <input type="tel" name="info_recipient_mobile" class="form-control"
+                                        placeholder="उदा. 9876543210" pattern="[0-9]{10}" required>
+                                    <div class="invalid-feedback">वैध मोबाईल नंबर टाका (10 अंक)</div>
+                                </div>
+
+                                <!-- माहिती घेणाऱ्याची स्वाक्षरी -->
+                                <div class="col-md-6">
+                                    <label class="form-label">माहीती घेणा-याची स्‍वाक्षरी</label>
+                                    <input type="file" name="info_recipient_signature" class="form-control"
+                                        accept="image/*" required>
+                                    <div class="invalid-feedback">कृपया स्वाक्षरी अपलोड करा</div>
+                                </div>
+
+                                <!-- तपासणी करणाऱ्याची स्वाक्षरी -->
+                                <div class="col-md-6">
+                                    <label class="form-label">तपासणी करणा-या अधिकारी यांचे पुर्ण नाव व पदनाम व
+                                        स्‍वाक्षरी</label>
+                                    <input type="file" name="verifier_name_designation_signature" class="form-control"
+                                        accept="image/*" required>
+                                    <div class="invalid-feedback">कृपया तपासणी अधिकारी यांची स्वाक्षरी अपलोड करा</div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Submit Button -->
-                        <div class="text-center mt-3">
+                        <div class="text-center mt-4">
                             <button type="submit" class="btn btn-submit">
                                 <i class="fas fa-paper-plane me-2"></i>सबमिट करा
                             </button>
                         </div>
                     </form>
 
+                    <!-- JavaScript for Bootstrap Validation -->
+                    <script>
+                        // Bootstrap 5 custom validation
+                        (function () {
+                            'use strict';
+                            const form = document.getElementById('familyForm');
+                            form.addEventListener('submit', function (event) {
+                                if (!form.checkValidity()) {
+                                    event.preventDefault();
+                                    event.stopPropagation();
+                                }
+                                form.classList.add('was-validated');
+                            }, false);
+                        })();
+                    </script>
+
+
+                    <script>
+                        document.getElementById("familyForm").addEventListener("submit", function (e) {
+                            let form = e.target;
+                            let valid = true;
+
+                            // सर्व इनपुट्सची चुकांची अवस्था clear करा
+                            form.querySelectorAll('.form-control').forEach(input => {
+                                input.classList.remove('is-invalid');
+                            });
+
+                            // इनपुटसाठी फंक्शन तयार करा
+                            const showError = (inputName, message) => {
+                                const input = form[inputName];
+                                const feedback = input.nextElementSibling;
+                                input.classList.add('is-invalid');
+                                if (feedback && feedback.classList.contains('invalid-feedback')) {
+                                    feedback.textContent = message;
+                                }
+                            };
+
+                            // Income fields validate
+                            const incomeFields = [
+                                { name: "income_farming", label: "शेतीपासूनचे उत्पन्न" },
+                                { name: "income_livestock", label: "पशुपालन उत्पन्न" },
+                                { name: "income_labour", label: "मजुरी उत्पन्न" },
+                                { name: "income_skill", label: "कौशल्य उत्पन्न" },
+                                { name: "income_salary", label: "वेतन उत्पन्न" },
+                                { name: "income_other", label: "इतर उत्पन्न" },
+                                { name: "income_total", label: "एकूण उत्पन्न" },
+
+                            ];
+
+                            incomeFields.forEach(field => {
+                                const value = form[field.name].value.trim();
+                                if (value === "" || isNaN(value) || Number(value) < 0) {
+                                    valid = false;
+                                    showError(field.name, `"${field.label}" योग्य रक्कम भरावी`);
+                                }
+                            });
+
+                            // Mobile validation
+                            const mobileFields = [
+                                { name: "info_provider_mobile", label: "माहिती देणाऱ्याचा मोबाईल नंबर" },
+                                { name: "info_recipient_mobile", label: "माहिती घेणाऱ्याचा मोबाईल नंबर" },
+                            ];
+
+                            mobileFields.forEach(field => {
+                                const value = form[field.name].value.trim();
+                                if (!/^\d{10}$/.test(value)) {
+                                    valid = false;
+                                    showError(field.name, `"${field.label}" योग्य 10 अंकी नंबर असावा`);
+                                }
+                            });
+
+                            // Text fields
+                            const textFields = [
+                                { name: "info_provider_name_signature", label: "माहिती देणाऱ्याचे नाव व स्वाक्षरी" },
+                                { name: "info_recipient_name_designation", label: "माहिती घेणाऱ्याचे नाव व पदनाम" },
+                                { name: "info_recipient_signature", label: "माहिती घेणाऱ्याची स्वाक्षरी" },
+                                { name: "verifier_name_designation_signature", label: "तपासणी अधिकाऱ्याचे नाव व स्वाक्षरी" }
+                            ];
+
+                            textFields.forEach(field => {
+                                const value = form[field.name].value.trim();
+                                if (value === "") {
+                                    valid = false;
+                                    showError(field.name, `"${field.label}" भरावे`);
+                                }
+                            });
+
+                            if (!valid) {
+                                e.preventDefault(); // Submit थांबवा
+                            }
+                        });
+                    </script>
+
+
                 </div>
+                <?php
+                include('include/footer.php')
+                    ?>
             </div>
-            <?php
-            include('include/footer.php')
-                ?>
-            <script>
-                document.addEventListener('DOMContentLoaded', function () {
-                    const yesRadio = document.getElementById('mr_yes');
-                    const noRadio = document.getElementById('mr_no');
-                    const detailsWrapper = document.getElementById('migration_details_wrapper');
-
-                    function toggleDetails() {
-                        if (yesRadio.checked) {
-                            detailsWrapper.style.display = 'block';
-                        } else {
-                            detailsWrapper.style.display = 'none';
-                            document.getElementById('migration_details').value = ''; // Clear value if hidden
-                        }
-                    }
-
-                    // Run once on page load
-                    toggleDetails();
-
-                    // Add listeners
-                    yesRadio.addEventListener('change', toggleDetails);
-                    noRadio.addEventListener('change', toggleDetails);
-                });
-            </script>
-
-
-            <script>
-                // Bootstrap validation
-                (() => {
-                    'use strict';
-
-                    const form = document.querySelector('#familyForm');
-
-                    form.addEventListener('submit', (event) => {
-                        if (!form.checkValidity()) {
-                            event.preventDefault();
-                            event.stopPropagation();
-                        }
-
-                        form.classList.add('was-validated');
-                    }, false);
-                })();
-            </script>
 
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
             <script>
@@ -529,17 +588,18 @@
                             if (firstError) {
                                 firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
                             }
-                        } else {
-                            e.preventDefault(); // Prevent default to show SweetAlert first
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'यशस्वी',
-                                text: 'फॉर्म यशस्वीरित्या सबमिट केला गेला आहे!',
-                                confirmButtonText: 'ठीक आहे'
-                            }).then(() => {
-                                form.submit(); // Submit after SweetAlert confirmation
-                            });
                         }
+                        // } else {
+                        //     e.preventDefault(); // Prevent default to show SweetAlert first
+                        //     Swal.fire({
+                        //         icon: 'success',
+                        //         title: 'यशस्वी',
+                        //         text: 'फॉर्म यशस्वीरित्या सबमिट केला गेला आहे!',
+                        //         confirmButtonText: 'ठीक आहे'
+                        //     }).then(() => {
+                        //         form.submit(); // Submit after SweetAlert confirmation
+                        //     });
+                        // }
                     });
 
                     // Initialize conditional fields

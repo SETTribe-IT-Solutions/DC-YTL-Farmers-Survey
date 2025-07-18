@@ -342,178 +342,129 @@
 
 
 
-					<form id="familyForm" action="annual_income_db.php" method="POST" enctype="multipart/form-data">
-						<!-- <input type="hidden" name="survey_id" value="<?php echo $survey_id; ?>"> -->
-
-
-
-						<!-- उत्पन्नाचे स्रोत (वार्षिक) -->
+					<form id="familyForm" action="annual_income_db.php" method="POST" enctype="multipart/form-data"
+						novalidate>
 						<div class="sub-section">
 							<h5 class="member-title"><i class="fas fa-rupee-sign info-icon"></i>उत्पन्नाचे स्रोत
-								(वार्षिक)
-							</h5>
-
+								(वार्षिक)</h5>
 							<div class="row g-3">
-								<!-- Repeat for each income source -->
+								<!-- Repeat for each income source with required + validation -->
+								<!-- शेतीपासून -->
 								<div class="col-md-6">
 									<label class="form-label">1. शेतीपासून</label>
 									<input type="number" name="income_farming" class="form-control"
-										placeholder="वार्षिक उत्पन्न (₹)">
-									<div class="invalid-feedback"></div>
-
+										placeholder="वार्षिक उत्पन्न (₹)" required>
+									<div class="invalid-feedback">कृपया उत्पन्न भरा</div>
 								</div>
 								<div class="col-md-6">
 									<label class="form-label">टक्केवारी / Remarks</label>
 									<input type="text" name="remarks_farming" class="form-control"
 										placeholder="उदा. 50%">
-									<div class="invalid-feedback"></div>
+									
 								</div>
 
+								<!-- पशुपालनापासून -->
 								<div class="col-md-6">
 									<label class="form-label">2. पशुपालनापासून</label>
 									<input type="number" name="income_livestock" class="form-control"
-										placeholder="वार्षिक उत्पन्न (₹)">
-									<div class="invalid-feedback"></div>
+										placeholder="वार्षिक उत्पन्न (₹)" required>
+									<div class="invalid-feedback">कृपया उत्पन्न भरा</div>
 								</div>
 								<div class="col-md-6">
 									<label class="form-label">टक्केवारी / Remarks</label>
 									<input type="text" name="remarks_livestock" class="form-control"
 										placeholder="उदा. 20%">
-									<div class="invalid-feedback"></div>
+									
 								</div>
 
+								<!-- मजुरी -->
 								<div class="col-md-6">
 									<label class="form-label">3. मजुरी</label>
 									<input type="number" name="income_labour" class="form-control"
-										placeholder="वार्षिक उत्पन्न (₹)">
-									<div class="invalid-feedback"></div>
+										placeholder="वार्षिक उत्पन्न (₹)" required>
+									<div class="invalid-feedback">कृपया उत्पन्न भरा</div>
 								</div>
 								<div class="col-md-6">
 									<label class="form-label">टक्केवारी / Remarks</label>
-									<input type="text" name="remarks_labour" class="form-control"
-										placeholder="उदा. 10%">
-									<div class="invalid-feedback"></div>
+									<input type="text" name="remarks_labour" class="form-control" placeholder="उदा. 10%"
+										>
+									
 								</div>
 
+								<!-- कौशल्य आधारित -->
 								<div class="col-md-6">
 									<label class="form-label">4. कौशल्य आधारित कामे</label>
 									<input type="number" name="income_skill" class="form-control"
-										placeholder="वार्षिक उत्पन्न (₹)">
-									<div class="invalid-feedback"></div>
+										placeholder="वार्षिक उत्पन्न (₹)" required>
+									<div class="invalid-feedback">कृपया उत्पन्न भरा</div>
 								</div>
 								<div class="col-md-6">
 									<label class="form-label">टक्केवारी / Remarks</label>
-									<input type="text" name="remarks_skill" class="form-control" placeholder="उदा. 5%">
-									<div class="invalid-feedback"></div>
+									<input type="text" name="remarks_skill" class="form-control" placeholder="उदा. 5%"
+										>
+									
 								</div>
 
+								<!-- वेतन -->
 								<div class="col-md-6">
 									<label class="form-label">5. शासकीय / खासगी वेतन</label>
 									<input type="number" name="income_salary" class="form-control"
-										placeholder="वार्षिक उत्पन्न (₹)">
-									<div class="invalid-feedback"></div>
+										placeholder="वार्षिक उत्पन्न (₹)" required>
+									<div class="invalid-feedback">कृपया उत्पन्न भरा</div>
 								</div>
 								<div class="col-md-6">
 									<label class="form-label">टक्केवारी / Remarks</label>
-									<input type="text" name="remarks_salary" class="form-control" placeholder="उदा. 5%">
-									<div class="invalid-feedback"></div>
+									<input type="text" name="remarks_salary" class="form-control" placeholder="उदा. 5%"
+										>
+								
 								</div>
 
+								<!-- इतर -->
 								<div class="col-md-6">
 									<label class="form-label">6. इतर (भाडे इ.)</label>
 									<input type="number" name="income_other" class="form-control"
-										placeholder="वार्षिक उत्पन्न (₹)">
-									<div class="invalid-feedback"></div>
+										placeholder="वार्षिक उत्पन्न (₹)" required>
+									<div class="invalid-feedback">कृपया उत्पन्न भरा</div>
 								</div>
 								<div class="col-md-6">
 									<label class="form-label">टक्केवारी / Remarks</label>
-									<input type="text" name="remarks_other" class="form-control" placeholder="उदा. 10%">
-									<div class="invalid-feedback"></div>
+									<input type="text" name="remarks_other" class="form-control" placeholder="उदा. 10%"
+										>
+									
 								</div>
 
+								<!-- एकूण -->
 								<div class="col-md-6">
 									<label class="form-label">7. एकूण उत्पन्न</label>
 									<input type="number" name="income_total" class="form-control"
-										placeholder="एकूण वार्षिक उत्पन्न (₹)">
-									<div class="invalid-feedback"></div>
+										placeholder="एकूण वार्षिक उत्पन्न (₹)" required>
+									<div class="invalid-feedback">कृपया एकूण उत्पन्न भरा</div>
 								</div>
-							</div>
-							<!-- </div> -->
-							<!-- ... existing income fields ... -->
-
-							<!-- नवीन माहिती संबंधित फील्ड्स -->
-							<!-- <div class="sub-section mt-4"> -->
-							<!-- <h5 class="member-title mt-4"><i class="fas fa-user info-icon"></i> माहिती व तपासणी संबंधी माहिती -->
-							<!-- </h5> -->
-							<h4 class="section-title mt-5" style="color: #2c3e50; margin-bottom: 20px;">
-								<i class="fas fa-user info-icon"></i>माहिती व तपासणी संबंधी माहिती
-							</h4>
-							<div class="row g-3">
-								<!-- माहिती देणाऱ्याचे पूर्ण नाव व स्वाक्षरी -->
-								<div class="col-md-6">
-									<label class="form-label">माहीती देणा-याचे पुर्ण नाव व स्‍वाक्षरी</label>
-									<input type="text" name="info_provider_name_signature" class="form-control"
-										placeholder="उदा. रमेश पाटील - स्वाक्षरी">
-									<div class="invalid-feedback"></div>
-								</div>
-
-								<!-- माहिती देणाऱ्याचा मोबाईल नंबर -->
-								<div class="col-md-6">
-									<label class="form-label">मोबाईल नंबर (माहिती देणाऱ्याचा)</label>
-									<input type="tel" name="info_provider_mobile" class="form-control"
-										placeholder="उदा. 9876543210">
-									<div class="invalid-feedback"></div>
-								</div>
-
-								<!-- माहिती घेणाऱ्याचे पूर्ण नाव व पदनाम -->
-								<div class="col-md-6">
-									<label class="form-label">माहीती घेणा-याचे पुर्ण नाव व पदनाम</label>
-									<input type="text" name="info_recipient_name_designation" class="form-control"
-										placeholder="उदा. योगेश काळे - ग्रामसेवक">
-									<div class="invalid-feedback"></div>
-								</div>
-
-								<!-- माहिती घेणाऱ्याचा मोबाईल नंबर -->
-								<div class="col-md-6">
-									<label class="form-label">मोबाईल नंबर (माहिती घेणाऱ्याचा)</label>
-									<input type="tel" name="info_recipient_mobile" class="form-control"
-										placeholder="उदा. 9876543210">
-									<div class="invalid-feedback"></div>
-								</div>
-
-								<!-- माहिती घेणाऱ्याची स्वाक्षरी -->
-								<!-- माहिती घेणाऱ्याची स्‍वाक्षरी -->
-								<div class="col-md-6">
-									<label class="form-label">माहीती घेणा-याची स्‍वाक्षरी</label>
-									<input type="file" name="info_recipient_signature" class="form-control"
-										accept="image/*">
-									<div class="invalid-feedback"></div>
-								</div>
-
-								<!-- तपासणी करणाऱ्याचे पूर्ण नाव, पदनाम व स्‍वाक्षरी -->
-								<div class="col-md-6">
-									<label class="form-label">तपासणी करणा-या अधिकारी यांचे पुर्ण नाव व पदनाम व
-										स्‍वाक्षरी</label>
-									<input type="file" name="verifier_name_designation_signature" class="form-control"
-										accept="image/*">
-									<div class="invalid-feedback"></div>
-								</div>
-
 							</div>
 						</div>
 
-
-
-						<!-- Submit Button -->
-						<div class="text-center">
+						<div class="text-center mt-4">
 							<button type="submit" class="btn btn-submit">
 								<i class="fas fa-paper-plane me-2"></i>सबमिट करा
 							</button>
 						</div>
 					</form>
-					<?php
-					include('include/footer.php')
-						?>
+
+					<!-- JavaScript for Bootstrap Validation -->
+					<script>
+						(function () {
+							'use strict';
+							const form = document.getElementById('familyForm');
+							form.addEventListener('submit', function (event) {
+								if (!form.checkValidity()) {
+									event.preventDefault();
+									event.stopPropagation();
+								}
+								form.classList.add('was-validated');
+							}, false);
+						})();
+					</script>
+
 					<script>
 						document.getElementById("familyForm").addEventListener("submit", function (e) {
 							let form = e.target;
@@ -593,7 +544,9 @@
 
 				</div>
 			</div>
-
+			<?php
+			include('include/footer.php')
+				?>
 			<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 			<script>
 				document.addEventListener('DOMContentLoaded', function () {
