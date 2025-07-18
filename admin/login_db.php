@@ -5,7 +5,7 @@ ini_set('display_startup_errors', 0);
 error_reporting(0);
 if (isset($_REQUEST['logIn'])) {
     include('../include/conn.php');
-    include('../include/sweetAlert.php');
+    include('../    include/sweetAlert.php');
     $username = $_POST['username'];
     $password = $_POST['password'];
 
