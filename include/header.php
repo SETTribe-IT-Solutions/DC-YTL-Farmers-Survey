@@ -1,31 +1,543 @@
-<div id="kt_app_header" class="app-header">
-    <!--begin::Header primary-->
-    <div class="app-header-primary" data-kt-sticky="true" data-kt-sticky-name="app-header-primary-sticky"
-        data-kt-sticky-offset="{default: 'false', lg: '300px'}">
-        <!--begin::Header primary container-->
-        <div class="app-container container-xxl d-flex align-items-stretch justify-content-between">
-            <!--begin::Logo and search-->
-            <div class="d-flex flex-grow-1 flex-lg-grow-0">
-                <!--begin::Logo wrapper-->
-                <div class="d-flex align-items-center" id="kt_app_header_logo_wrapper">
-                    <!--begin::Header toggle-->
-                    <button class="d-lg-none btn btn-icon btn-color-white btn-active-color-primary ms-n4 me-sm-2"
-                        id="kt_app_header_menu_toggle">
-                        <i class="ki-duotone ki-abstract-14 fs-1">
-                            <span class="path1"></span>
-                            <span class="path2"></span>
-                        </i>
-                    </button>
-                    <!--end::Header toggle-->
-                    <!--begin::Logo-->
-                    <a href="../dist/index.html" class="d-flex align-items-center mb-1 mb-lg-0 pt-lg-1">
-                        <img alt="Logo" src="assets/media/logos/default-small.svg" class="d-block d-sm-none" />
-                        <img alt="Logo" src="assets/media/logos/default.svg" class="d-none d-sm-block" />
-                    </a>
-                    <!--end::Logo-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmers Survey Portal - Government of Maharashtra</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            min-height: 100vh;
+        } */
+
+        .header {
+            background: linear-gradient(135deg, #16a085 0%, #2d8f4f 50%, #1e5f3b 100%);
+            color: white;
+            padding: 0rem 1rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+        }
+
+        /* Animated background effect */
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 70%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            animation: backgroundFloat 8s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        @keyframes backgroundFloat {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.1); }
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo-left, .logo-right {
+            flex: 0 0 auto;
+            animation: logoSlideIn 1s ease-out;
+        }
+
+        .logo-left {
+            animation-delay: 0.2s;
+        }
+
+        .logo-right {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes logoSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(45,143,79,0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .logo:hover::before {
+            transform: translateX(100%);
+        }
+
+        .logo:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+        }
+
+        .logo svg {
+            width: 55px;
+            height: 55px;
+            transition: transform 0.4s ease;
+        }
+
+        .logo:hover svg {
+            transform: scale(1.1) rotate(-5deg);
+        }
+
+        .title-section {
+            flex: 1;
+            text-align: center;
+            padding: 0 2rem;
+            animation: titleFadeIn 1.2s ease-out 0.6s both;
+        }
+
+        @keyframes titleFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .main-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            background: linear-gradient(45deg, #ffffff, #e8f5e8, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% 200%;
+            animation: titleShine 3s ease-in-out infinite;
+        }
+
+        @keyframes titleShine {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .subtitle-hindi {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            color: #e8f5e8;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+            animation: subtitlePulse 2s ease-in-out infinite;
+        }
+
+        @keyframes subtitlePulse {
+            0%, 100% { opacity: 0.9; }
+            50% { opacity: 1; }
+        }
+
+        .subtitle-english {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #d4edda;
+            letter-spacing: 0.5px;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+        }
+
+        /* Floating particles */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 50%;
+            animation: particleFloat 6s infinite ease-in-out;
+        }
+
+        @keyframes particleFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        /* Navbar */
+        .navbar {
+            background: rgba(0,0,0,0.2);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .navbar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: navShimmer 4s infinite;
+        }
+
+        @keyframes navShimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 1rem 1.5rem;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
+            transition: width 0.3s ease;
+            z-index: -1;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ffd700, #ffed4a);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .nav-link:hover::before {
+            width: 100%;
+        }
+
+        .nav-link:hover::after {
+            width: 80%;
+        }
+
+        .nav-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            color: #ffd700;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            border: 2px solid rgba(255,255,255,0.2);
+            color: white;
+            cursor: pointer;
+            padding: 0.6rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            /* position: absolute; */
+            top: 1rem;
+            right: 1rem;
+            z-index: 1000;
+        }
+
+        .mobile-menu-toggle:hover {
+            background: linear-gradient(45deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
+            transform: scale(1.05);
+        }
+
+        .hamburger {
+            display: block;
+            width: 22px;
+            height: 3px;
+            background: white;
+            margin: 4px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        .mobile-menu-toggle.active .hamburger:nth-child(1) {
+            transform: rotate(-45deg) translate(-4px, 5px);
+        }
+
+        .mobile-menu-toggle.active .hamburger:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active .hamburger:nth-child(3) {
+            transform: rotate(45deg) translate(-4px, -5px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header {
+                padding: 1.5rem 1rem;
+            }
+
+            .header-container {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .logo-left, .logo-right {
+                order: 1;
+            }
+
+            .title-section {
+                order: 2;
+                padding: 0;
+            }
+
+            .logo {
+                width: 65px;
+                height: 65px;
+            }
+
+            .logo svg {
+                width: 45px;
+                height: 45px;
+            }
+
+            .main-title {
+                font-size: 2rem;
+            }
+
+            .subtitle-hindi {
+                font-size: 1.3rem;
+            }
+
+            .subtitle-english {
+                font-size: 1rem;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(45, 143, 79, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                gap: 0;
+                box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+                animation: mobileSlide 0.3s ease-out;
+            }
+
+            @keyframes mobileSlide {
+                from {
+                    opacity: 0;
+                    transform: translateY(-20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-link {
+                width: 100%;
+                text-align: center;
+                padding: 1rem;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+                border-radius: 0;
+            }
+
+            .nav-container {
+                padding: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-title {
+                font-size: 1.6rem;
+            }
+
+            .subtitle-hindi {
+                font-size: 1.1rem;
+            }
+
+            .subtitle-english {
+                font-size: 0.9rem;
+            }
+
+            .logo {
+                width: 55px;
+                height: 55px;
+            }
+
+            .logo svg {
+                width: 38px;
+                height: 38px;
+            }
+
+            .header-container {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .title-section {
+                order: 0;
+                flex: 1;
+                padding: 0 1rem;
+            }
+
+            .logo-left {
+                order: -1;
+            }
+
+            .logo-right {
+                order: 1;
+            }
+        }
+
+        /* Demo content */
+        .content-section {
+            background: white;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            max-width: 1000px;
+            animation: contentFadeIn 1s ease-out 1s both;
+        }
+
+        @keyframes contentFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        h2 {
+            color: #2d3748;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        p {
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <header class="header">
+        <!-- Floating particles -->
+        <div class="particle" style="top: 10%; left: 15%; animation-delay: 0s;"></div>
+        <div class="particle" style="top: 30%; right: 20%; animation-delay: 1s;"></div>
+        <div class="particle" style="bottom: 40%; left: 10%; animation-delay: 2s;"></div>
+        <div class="particle" style="bottom: 20%; right: 15%; animation-delay: 3s;"></div>
+        <div class="particle" style="top: 50%; left: 50%; animation-delay: 4s;"></div>
+
+        <div class="header-container">
+            <!-- Left Logo -->
+            <div class="logo-left">
+                <div class="logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/512px-Emblem_of_India.svg.png"
+                                    alt="Emblem of India" />
                 </div>
-                <!--end::Logo wrapper-->
             </div>
+
+
+            <!-- Title Section -->
+            <div class="title-section">
+                <h1 class="main-title">Farmers Survey Portal</h1>
+                <p class="subtitle-hindi">Collector Office, Yavatmal</p>
+                <p class="subtitle-english">Government of Maharashtra</p>
+
             <!--end::Logo and search-->
             <!--begin::Navbar-->
             <div class="app-navbar">
@@ -179,2498 +691,88 @@
                 <!--end::Primary button-->
                 <!--begin::Header menu toggle-->
                 <!--end::Header menu toggle-->
+
             </div>
-            <!--end::Navbar-->
-        </div>
-        <!--end::Header primary container-->
-    </div>
-    <!--end::Header primary-->
-    <!--begin::Header secondary-->
-    <div class="app-header-secondary">
-        <!--begin::Header secondary container-->
-        <div class="app-container container-xxl d-flex align-items-stretch">
-            <!--begin::Menu wrapper-->
-            <div class="app-header-menu app-header-mobile-drawer align-items-stretch flex-grow-1" data-kt-drawer="true"
-                data-kt-drawer-name="app-header-menu" data-kt-drawer-activate="{default: true, lg: false}"
-                data-kt-drawer-overlay="true" data-kt-drawer-width="250px" data-kt-drawer-direction="start"
-                data-kt-drawer-toggle="#kt_app_header_menu_toggle" data-kt-swapper="true"
-                data-kt-swapper-mode="{default: 'append', lg: 'prepend'}"
-                data-kt-swapper-parent="{default: '#kt_app_body', lg: '#kt_app_header_wrapper'}">
-                <!--begin::Menu-->
-                <div class="menu menu-rounded menu-active-bg menu-state-primary menu-column menu-lg-row menu-title-gray-700 menu-icon-gray-500 menu-arrow-gray-500 menu-bullet-gray-500 my-5 my-lg-0 align-items-stretch fw-semibold px-2 px-lg-0"
-                    id="kt_app_header_menu" data-kt-menu="true">
-                    <!--begin:Menu item-->
-                    <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start"
-                        class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
-                        <!--begin:Menu link-->
-                        <span class="menu-link">
-                            <span class="menu-title">Dashboards</span>
-                            <span class="menu-arrow d-lg-none"></span>
-                        </span>
-                        <!--end:Menu link-->
-                        <!--begin:Menu sub-->
-                        <div class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown p-0 w-100 w-lg-600px">
-                            <!--begin:Dashboards menu-->
-                            <div class="menu-state-bg menu-extended overflow-hidden overflow-lg-visible py-6"
-                                data-kt-menu-dismiss="true">
-                                <!--begin:Row-->
-                                <div class="row px-5">
-                                    <!--begin:Col-->
-                                    <div class="col-lg-6 py-1">
-                                        <!--begin:Menu item-->
-                                        <div class="menu-item p-0 m-0">
-                                            <!--begin:Menu link-->
-                                            <a href="../dist/index.html" class="menu-link active">
-                                                <span
-                                                    class="menu-custom-icon d-flex flex-center flex-shrink-0 rounded w-40px h-40px me-3">
-                                                    <i class="ki-duotone ki-basket text-primary fs-1">
-                                                        <span class="path1"></span>
-                                                        <span class="path2"></span>
-                                                        <span class="path3"></span>
-                                                        <span class="path4"></span>
-                                                    </i>
-                                                </span>
-                                                <span class="d-flex flex-column">
-                                                    <span
-                                                        class="d-flex align-items-center fs-6 fw-semibold text-gray-800">Default</span>
-                                                    <span class="fs-7 fw-semibold text-muted">Reports &
-                                                        statistics</span>
-                                                </span>
-                                            </a>
-                                            <!--end:Menu link-->
-                                        </div>
-                                        <!--end:Menu item-->
-                                    </div>
-                                    <!--end:Col-->
-                                    <!--begin:Col-->
-                                    <div class="col-lg-6 py-1">
-                                        <!--begin:Menu item-->
-                                        <div class="menu-item p-0 m-0">
-                                            <!--begin:Menu link-->
-                                            <a href="#" class="menu-link">
-                                                <span
-                                                    class="menu-custom-icon d-flex flex-center flex-shrink-0 rounded w-40px h-40px me-3">
-                                                    <i class="ki-duotone ki-abstract-44 text-info fs-1">
-                                                        <span class="path1"></span>
-                                                        <span class="path2"></span>
-                                                    </i>
-                                                </span>
-                                                <span class="d-flex flex-column">
-                                                    <span
-                                                        class="d-flex align-items-center fs-6 fw-semibold text-gray-800">Projects
-                                                        <span
-                                                            class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                            data-bs-toggle="tooltip"
-                                                            title="Upgrade to Pro to get this">Pro</span></span>
-                                                    <span class="fs-7 fw-semibold text-muted">Tasts, graphs
-                                                        & charts</span>
-                                                </span>
-                                            </a>
-                                            <!--end:Menu link-->
-                                        </div>
-                                        <!--end:Menu item-->
-                                    </div>
-                                    <!--end:Col-->
-                                    <!--begin:Col-->
-                                    <div class="col-lg-6 py-1">
-                                        <!--begin:Menu item-->
-                                        <div class="menu-item p-0 m-0">
-                                            <!--begin:Menu link-->
-                                            <a href="#" class="menu-link">
-                                                <span
-                                                    class="menu-custom-icon d-flex flex-center flex-shrink-0 rounded w-40px h-40px me-3">
-                                                    <i class="ki-duotone ki-element-11 text-danger fs-1">
-                                                        <span class="path1"></span>
-                                                        <span class="path2"></span>
-                                                        <span class="path3"></span>
-                                                        <span class="path4"></span>
-                                                    </i>
-                                                </span>
-                                                <span class="d-flex flex-column">
-                                                    <span
-                                                        class="d-flex align-items-center fs-6 fw-semibold text-gray-800">eCommerce
-                                                        <span
-                                                            class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                            data-bs-toggle="tooltip"
-                                                            title="Upgrade to Pro to get this">Pro</span></span>
-                                                    <span class="fs-7 fw-semibold text-muted">Sales
-                                                        reports</span>
-                                                </span>
-                                            </a>
-                                            <!--end:Menu link-->
-                                        </div>
-                                        <!--end:Menu item-->
-                                    </div>
-                                    <!--end:Col-->
-                                    <!--begin:Col-->
-                                    <div class="col-lg-6 py-1">
-                                        <!--begin:Menu item-->
-                                        <div class="menu-item p-0 m-0">
-                                            <!--begin:Menu link-->
-                                            <a href="#" class="menu-link">
-                                                <span
-                                                    class="menu-custom-icon d-flex flex-center flex-shrink-0 rounded w-40px h-40px me-3">
-                                                    <i class="ki-duotone ki-chart-simple text-dark fs-1">
-                                                        <span class="path1"></span>
-                                                        <span class="path2"></span>
-                                                        <span class="path3"></span>
-                                                        <span class="path4"></span>
-                                                    </i>
-                                                </span>
-                                                <span class="d-flex flex-column">
-                                                    <span
-                                                        class="d-flex align-items-center fs-6 fw-semibold text-gray-800">Marketing
-                                                        <span
-                                                            class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                            data-bs-toggle="tooltip"
-                                                            title="Upgrade to Pro to get this">Pro</span></span>
-                                                    <span class="fs-7 fw-semibold text-muted">Campaings &
-                                                        conversions</span>
-                                                </span>
-                                            </a>
-                                            <!--end:Menu link-->
-                                        </div>
-                                        <!--end:Menu item-->
-                                    </div>
-                                    <!--end:Col-->
-                                    <!--begin:Col-->
-                                    <div class="col-lg-6 py-1">
-                                        <!--begin:Menu item-->
-                                        <div class="menu-item p-0 m-0">
-                                            <!--begin:Menu link-->
-                                            <a href="#" class="menu-link">
-                                                <span
-                                                    class="menu-custom-icon d-flex flex-center flex-shrink-0 rounded w-40px h-40px me-3">
-                                                    <i class="ki-duotone ki-abstract-39 text-success fs-1">
-                                                        <span class="path1"></span>
-                                                        <span class="path2"></span>
-                                                    </i>
-                                                </span>
-                                                <span class="d-flex flex-column">
-                                                    <span
-                                                        class="d-flex align-items-center fs-6 fw-semibold text-gray-800">Social
-                                                        <span
-                                                            class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                            data-bs-toggle="tooltip"
-                                                            title="Upgrade to Pro to get this">Pro</span></span>
-                                                    <span class="fs-7 fw-semibold text-muted">Feeds &
-                                                        Activities</span>
-                                                </span>
-                                            </a>
-                                            <!--end:Menu link-->
-                                        </div>
-                                        <!--end:Menu item-->
-                                    </div>
-                                    <!--end:Col-->
-                                    <!--begin:Col-->
-                                    <div class="col-lg-6 py-1">
-                                        <!--begin:Menu item-->
-                                        <div class="menu-item p-0 m-0">
-                                            <!--begin:Menu link-->
-                                            <a href="#" class="menu-link">
-                                                <span
-                                                    class="menu-custom-icon d-flex flex-center flex-shrink-0 rounded w-40px h-40px me-3">
-                                                    <i class="ki-duotone ki-switch text-warning fs-1">
-                                                        <span class="path1"></span>
-                                                        <span class="path2"></span>
-                                                    </i>
-                                                </span>
-                                                <span class="d-flex flex-column">
-                                                    <span
-                                                        class="d-flex align-items-center fs-6 fw-semibold text-gray-800">Bidding
-                                                        <span
-                                                            class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                            data-bs-toggle="tooltip"
-                                                            title="Upgrade to Pro to get this">Pro</span></span>
-                                                    <span class="fs-7 fw-semibold text-muted">Deals & stock
-                                                        exchange</span>
-                                                </span>
-                                            </a>
-                                            <!--end:Menu link-->
-                                        </div>
-                                        <!--end:Menu item-->
-                                    </div>
-                                    <!--end:Col-->
-                                    <!--begin:Col-->
-                                    <div class="col-lg-6 py-1">
-                                        <!--begin:Menu item-->
-                                        <div class="menu-item p-0 m-0">
-                                            <!--begin:Menu link-->
-                                            <a href="#" class="menu-link">
-                                                <span
-                                                    class="menu-custom-icon d-flex flex-center flex-shrink-0 rounded w-40px h-40px me-3">
-                                                    <i class="ki-duotone ki-color-swatch text-success fs-1">
-                                                        <span class="path1"></span>
-                                                        <span class="path2"></span>
-                                                        <span class="path3"></span>
-                                                        <span class="path4"></span>
-                                                        <span class="path5"></span>
-                                                        <span class="path6"></span>
-                                                        <span class="path7"></span>
-                                                        <span class="path8"></span>
-                                                        <span class="path9"></span>
-                                                        <span class="path10"></span>
-                                                        <span class="path11"></span>
-                                                        <span class="path12"></span>
-                                                        <span class="path13"></span>
-                                                        <span class="path14"></span>
-                                                        <span class="path15"></span>
-                                                        <span class="path16"></span>
-                                                        <span class="path17"></span>
-                                                        <span class="path18"></span>
-                                                        <span class="path19"></span>
-                                                        <span class="path20"></span>
-                                                        <span class="path21"></span>
-                                                    </i>
-                                                </span>
-                                                <span class="d-flex flex-column">
-                                                    <span
-                                                        class="d-flex align-items-center fs-6 fw-semibold text-gray-800">Online
-                                                        Courses
-                                                        <span
-                                                            class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                            data-bs-toggle="tooltip"
-                                                            title="Upgrade to Pro to get this">Pro</span></span>
-                                                    <span class="fs-7 fw-semibold text-muted">Student
-                                                        progress</span>
-                                                </span>
-                                            </a>
-                                            <!--end:Menu link-->
-                                        </div>
-                                        <!--end:Menu item-->
-                                    </div>
-                                    <!--end:Col-->
-                                    <!--begin:Col-->
-                                    <div class="col-lg-6 py-1">
-                                        <!--begin:Menu item-->
-                                        <div class="menu-item p-0 m-0">
-                                            <!--begin:Menu link-->
-                                            <a href="#" class="menu-link">
-                                                <span
-                                                    class="menu-custom-icon d-flex flex-center flex-shrink-0 rounded w-40px h-40px me-3">
-                                                    <i class="ki-duotone ki-truck text-info fs-1">
-                                                        <span class="path1"></span>
-                                                        <span class="path2"></span>
-                                                        <span class="path3"></span>
-                                                        <span class="path4"></span>
-                                                        <span class="path5"></span>
-                                                    </i>
-                                                </span>
-                                                <span class="d-flex flex-column">
-                                                    <span
-                                                        class="d-flex align-items-center fs-6 fw-semibold text-gray-800">Logistics
-                                                        <span
-                                                            class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                            data-bs-toggle="tooltip"
-                                                            title="Upgrade to Pro to get this">Pro</span></span>
-                                                    <span class="fs-7 fw-semibold text-muted">Shipments and
-                                                        delivery</span>
-                                                </span>
-                                            </a>
-                                            <!--end:Menu link-->
-                                        </div>
-                                        <!--end:Menu item-->
-                                    </div>
-                                    <!--end:Col-->
-                                </div>
-                                <!--end:Row-->
-                            </div>
-                            <!--end:Dashboards menu-->
-                        </div>
-                        <!--end:Menu sub-->
-                    </div>
-                    <!--end:Menu item-->
-                    <!--begin:Menu item-->
-                    <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start"
-                        class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
-                        <!--begin:Menu link-->
-                        <span class="menu-link">
-                            <span class="menu-title">Account</span>
-                            <span class="menu-arrow d-lg-none"></span>
-                        </span>
-                        <!--end:Menu link-->
-                        <!--begin:Menu sub-->
-                        <div
-                            class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown px-lg-2 py-lg-4 w-lg-200px">
-                            <!--begin:Menu item-->
-                            <div class="menu-item">
-                                <!--begin:Menu link-->
-                                <a class="menu-link" href="../dist/account/overview.html">
-                                    <span class="menu-bullet">
-                                        <span class="bullet bullet-dot"></span>
-                                    </span>
-                                    <span class="menu-title">Overview</span>
-                                </a>
-                                <!--end:Menu link-->
-                            </div>
-                            <!--end:Menu item-->
-                            <!--begin:Menu item-->
-                            <div class="menu-item">
-                                <!--begin:Menu link-->
-                                <a class="menu-link" href="../dist/account/settings.html">
-                                    <span class="menu-bullet">
-                                        <span class="bullet bullet-dot"></span>
-                                    </span>
-                                    <span class="menu-title">Settings</span>
-                                </a>
-                                <!--end:Menu link-->
-                            </div>
-                            <!--end:Menu item-->
-                            <!--begin:Menu item-->
-                            <div class="menu-item">
-                                <!--begin:Menu link-->
-                                <a class="menu-link" href="#" data-kt-page="pro">
-                                    <span class="menu-bullet">
-                                        <span class="bullet bullet-dot"></span>
-                                    </span>
-                                    <span class="menu-title">Security
-                                        <span class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                            data-bs-toggle="tooltip"
-                                            title="Upgrade to Pro to get this">Pro</span></span>
-                                </a>
-                                <!--end:Menu link-->
-                            </div>
-                            <!--end:Menu item-->
-                            <!--begin:Menu item-->
-                            <div class="menu-item">
-                                <!--begin:Menu link-->
-                                <a class="menu-link" href="#" data-kt-page="pro">
-                                    <span class="menu-bullet">
-                                        <span class="bullet bullet-dot"></span>
-                                    </span>
-                                    <span class="menu-title">Activity
-                                        <span class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                            data-bs-toggle="tooltip"
-                                            title="Upgrade to Pro to get this">Pro</span></span>
-                                </a>
-                                <!--end:Menu link-->
-                            </div>
-                            <!--end:Menu item-->
-                            <!--begin:Menu item-->
-                            <div class="menu-item">
-                                <!--begin:Menu link-->
-                                <a class="menu-link" href="#" data-kt-page="pro">
-                                    <span class="menu-bullet">
-                                        <span class="bullet bullet-dot"></span>
-                                    </span>
-                                    <span class="menu-title">Billing
-                                        <span class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                            data-bs-toggle="tooltip"
-                                            title="Upgrade to Pro to get this">Pro</span></span>
-                                </a>
-                                <!--end:Menu link-->
-                            </div>
-                            <!--end:Menu item-->
-                            <!--begin:Menu item-->
-                            <div class="menu-item">
-                                <!--begin:Menu link-->
-                                <a class="menu-link" href="#" data-kt-page="pro">
-                                    <span class="menu-bullet">
-                                        <span class="bullet bullet-dot"></span>
-                                    </span>
-                                    <span class="menu-title">Statements
-                                        <span class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                            data-bs-toggle="tooltip"
-                                            title="Upgrade to Pro to get this">Pro</span></span>
-                                </a>
-                                <!--end:Menu link-->
-                            </div>
-                            <!--end:Menu item-->
-                            <!--begin:Menu item-->
-                            <div class="menu-item">
-                                <!--begin:Menu link-->
-                                <a class="menu-link" href="#" data-kt-page="pro">
-                                    <span class="menu-bullet">
-                                        <span class="bullet bullet-dot"></span>
-                                    </span>
-                                    <span class="menu-title">Referrals
-                                        <span class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                            data-bs-toggle="tooltip"
-                                            title="Upgrade to Pro to get this">Pro</span></span>
-                                </a>
-                                <!--end:Menu link-->
-                            </div>
-                            <!--end:Menu item-->
-                            <!--begin:Menu item-->
-                            <div class="menu-item">
-                                <!--begin:Menu link-->
-                                <a class="menu-link" href="#" data-kt-page="pro">
-                                    <span class="menu-bullet">
-                                        <span class="bullet bullet-dot"></span>
-                                    </span>
-                                    <span class="menu-title">API Keys
-                                        <span class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                            data-bs-toggle="tooltip"
-                                            title="Upgrade to Pro to get this">Pro</span></span>
-                                </a>
-                                <!--end:Menu link-->
-                            </div>
-                            <!--end:Menu item-->
-                            <!--begin:Menu item-->
-                            <div class="menu-item">
-                                <!--begin:Menu link-->
-                                <a class="menu-link" href="#" data-kt-page="pro">
-                                    <span class="menu-bullet">
-                                        <span class="bullet bullet-dot"></span>
-                                    </span>
-                                    <span class="menu-title">Logs
-                                        <span class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                            data-bs-toggle="tooltip"
-                                            title="Upgrade to Pro to get this">Pro</span></span>
-                                </a>
-                                <!--end:Menu link-->
-                            </div>
-                            <!--end:Menu item-->
-                        </div>
-                        <!--end:Menu sub-->
-                    </div>
-                    <!--end:Menu item-->
-                    <!--begin:Menu item-->
-                    <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start"
-                        class="menu-item menu-lg-down-accordion me-0 me-lg-2">
-                        <!--begin:Menu link-->
-                        <span class="menu-link">
-                            <span class="menu-title">Pages</span>
-                            <span class="menu-arrow d-lg-none"></span>
-                        </span>
-                        <!--end:Menu link-->
-                        <!--begin:Menu sub-->
-                        <div
-                            class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown px-lg-2 py-lg-4 w-lg-200px">
-                            <!--begin:Menu item-->
-                            <div class="menu-item">
-                                <!--begin:Menu link-->
-                                <a class="menu-link" href="../dist/pages/about.html">
-                                    <span class="menu-bullet">
-                                        <span class="bullet bullet-dot"></span>
-                                    </span>
-                                    <span class="menu-title">About</span>
-                                </a>
-                                <!--end:Menu link-->
-                            </div>
-                            <!--end:Menu item-->
-                            <!--begin:Menu item-->
-                            <div class="menu-item">
-                                <!--begin:Menu link-->
-                                <a class="menu-link" href="../dist/pages/team.html">
-                                    <span class="menu-bullet">
-                                        <span class="bullet bullet-dot"></span>
-                                    </span>
-                                    <span class="menu-title">Our Team</span>
-                                </a>
-                                <!--end:Menu link-->
-                            </div>
-                            <!--end:Menu item-->
-                            <!--begin:Menu item-->
-                            <div class="menu-item">
-                                <!--begin:Menu link-->
-                                <a class="menu-link" href="../dist/pages/faq.html">
-                                    <span class="menu-bullet">
-                                        <span class="bullet bullet-dot"></span>
-                                    </span>
-                                    <span class="menu-title">FAQ</span>
-                                </a>
-                                <!--end:Menu link-->
-                            </div>
-                            <!--end:Menu item-->
-                            <!--begin:Menu item-->
-                            <div class="menu-item">
-                                <!--begin:Menu link-->
-                                <a class="menu-link" href="../dist/pages/contact.html">
-                                    <span class="menu-bullet">
-                                        <span class="bullet bullet-dot"></span>
-                                    </span>
-                                    <span class="menu-title">Contact Us</span>
-                                </a>
-                                <!--end:Menu link-->
-                            </div>
-                            <!--end:Menu item-->
-                            <!--begin:Menu item-->
-                            <div class="menu-item">
-                                <!--begin:Menu link-->
-                                <a class="menu-link" href="../dist/pages/pricing.html">
-                                    <span class="menu-bullet">
-                                        <span class="bullet bullet-dot"></span>
-                                    </span>
-                                    <span class="menu-title">Pricing</span>
-                                </a>
-                                <!--end:Menu link-->
-                            </div>
-                            <!--end:Menu item-->
-                            <!--begin:Menu item-->
-                            <div class="menu-item">
-                                <!--begin:Menu link-->
-                                <a class="menu-link" href="../dist/pages/licenses.html">
-                                    <span class="menu-bullet">
-                                        <span class="bullet bullet-dot"></span>
-                                    </span>
-                                    <span class="menu-title">Licenses</span>
-                                </a>
-                                <!--end:Menu link-->
-                            </div>
-                            <!--end:Menu item-->
-                            <!--begin:Menu item-->
-                            <div class="menu-item">
-                                <!--begin:Menu link-->
-                                <a class="menu-link" href="../dist/pages/sitemap.html">
-                                    <span class="menu-bullet">
-                                        <span class="bullet bullet-dot"></span>
-                                    </span>
-                                    <span class="menu-title">Sitemap</span>
-                                </a>
-                                <!--end:Menu link-->
-                            </div>
-                            <!--end:Menu item-->
-                        </div>
-                        <!--end:Menu sub-->
-                    </div>
-                    <!--end:Menu item-->
-                    <!--begin:Menu item-->
-                    <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start"
-                        class="menu-item menu-lg-down-accordion me-lg-1">
-                        <!--begin:Menu link-->
-                        <span class="menu-link">
-                            <span class="menu-title">Authentication</span>
-                            <span class="menu-arrow d-lg-none"></span>
-                        </span>
-                        <!--end:Menu link-->
-                        <!--begin:Menu sub-->
-                        <div class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown p-0 w-lg-700px">
-                            <!--begin:Pages menu-->
-                            <div class="menu-state-bg p-4 p-lg-8">
-                                <!--begin:Row-->
-                                <div class="row">
-                                    <!--begin:Col-->
-                                    <div class="col-lg-4 mb-6 mb-lg-0">
-                                        <!--begin:Menu section-->
-                                        <div class="mb-0">
-                                            <!--begin:Menu heading-->
-                                            <h4 class="fs-6 fs-lg-4 fw-bold mb-3 ms-4">Login</h4>
-                                            <!--end:Menu heading-->
-                                            <!--begin:Menu item-->
-                                            <div class="menu-item p-0 m-0">
-                                                <!--begin:Menu link-->
-                                                <a href="../dist/authentication/sign-in/basic.html" class="menu-link">
-                                                    <span class="menu-title">Sign In Basic</span>
-                                                </a>
-                                                <!--end:Menu link-->
-                                            </div>
-                                            <!--end:Menu item-->
-                                            <!--begin:Menu item-->
-                                            <div class="menu-item p-0 m-0">
-                                                <!--begin:Menu link-->
-                                                <a href="../dist/authentication/sign-up/basic.html" class="menu-link">
-                                                    <span class="menu-title">Sign Up Basic</span>
-                                                </a>
-                                                <!--end:Menu link-->
-                                            </div>
-                                            <!--end:Menu item-->
-                                            <!--begin:Menu item-->
-                                            <div class="menu-item p-0 m-0">
-                                                <!--begin:Menu link-->
-                                                <a href="#" class="menu-link">
-                                                    <span class="menu-title">Sign Up Multi-steps
-                                                        <span
-                                                            class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                            data-bs-toggle="tooltip"
-                                                            title="Upgrade to Pro to get this">Pro</span></span>
-                                                </a>
-                                                <!--end:Menu link-->
-                                            </div>
-                                            <!--end:Menu item-->
-                                            <!--begin:Menu item-->
-                                            <div class="menu-item p-0 m-0">
-                                                <!--begin:Menu link-->
-                                                <a href="../dist/authentication/sign-in/password-reset.html"
-                                                    class="menu-link">
-                                                    <span class="menu-title">Password Reset</span>
-                                                </a>
-                                                <!--end:Menu link-->
-                                            </div>
-                                            <!--end:Menu item-->
-                                            <!--begin:Menu item-->
-                                            <div class="menu-item p-0 m-0">
-                                                <!--begin:Menu link-->
-                                                <a href="../dist/authentication/sign-in/new-password.html"
-                                                    class="menu-link">
-                                                    <span class="menu-title">New Password</span>
-                                                </a>
-                                                <!--end:Menu link-->
-                                            </div>
-                                            <!--end:Menu item-->
-                                            <!--begin:Menu item-->
-                                            <div class="menu-item p-0 m-0">
-                                                <!--begin:Menu link-->
-                                                <a href="#" class="menu-link">
-                                                    <span class="menu-title">Free Trial
-                                                        <span
-                                                            class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                            data-bs-toggle="tooltip"
-                                                            title="Upgrade to Pro to get this">Pro</span></span>
-                                                </a>
-                                                <!--end:Menu link-->
-                                            </div>
-                                            <!--end:Menu item-->
-                                        </div>
-                                        <!--end:Menu section-->
-                                    </div>
-                                    <!--end:Col-->
-                                    <!--begin:Col-->
-                                    <div class="col-lg-4 mb-6 mb-lg-0">
-                                        <!--begin:Menu section-->
-                                        <div class="mb-0">
-                                            <!--begin:Menu heading-->
-                                            <h4 class="fs-6 fs-lg-4 fw-bold mb-3 ms-4">General</h4>
-                                            <!--end:Menu heading-->
-                                            <!--begin:Menu item-->
-                                            <div class="menu-item p-0 m-0">
-                                                <!--begin:Menu link-->
-                                                <a href="#" class="menu-link">
-                                                    <span class="menu-title">Coming Soon
-                                                        <span
-                                                            class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                            data-bs-toggle="tooltip"
-                                                            title="Upgrade to Pro to get this">Pro</span></span>
-                                                </a>
-                                                <!--end:Menu link-->
-                                            </div>
-                                            <!--end:Menu item-->
-                                            <!--begin:Menu item-->
-                                            <div class="menu-item p-0 m-0">
-                                                <!--begin:Menu link-->
-                                                <a href="#" class="menu-link">
-                                                    <span class="menu-title">Welcome Message
-                                                        <span
-                                                            class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                            data-bs-toggle="tooltip"
-                                                            title="Upgrade to Pro to get this">Pro</span></span>
-                                                </a>
-                                                <!--end:Menu link-->
-                                            </div>
-                                            <!--end:Menu item-->
-                                            <!--begin:Menu item-->
-                                            <div class="menu-item p-0 m-0">
-                                                <!--begin:Menu link-->
-                                                <a href="#" class="menu-link">
-                                                    <span class="menu-title">Verify Email
-                                                        <span
-                                                            class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                            data-bs-toggle="tooltip"
-                                                            title="Upgrade to Pro to get this">Pro</span></span>
-                                                </a>
-                                                <!--end:Menu link-->
-                                            </div>
-                                            <!--end:Menu item-->
-                                            <!--begin:Menu item-->
-                                            <div class="menu-item p-0 m-0">
-                                                <!--begin:Menu link-->
-                                                <a href="#" class="menu-link">
-                                                    <span class="menu-title">Password&nbsp;Confirmation
-                                                        <span
-                                                            class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                            data-bs-toggle="tooltip"
-                                                            title="Upgrade to Pro to get this">Pro</span></span>
-                                                </a>
-                                                <!--end:Menu link-->
-                                            </div>
-                                            <!--end:Menu item-->
-                                            <!--begin:Menu item-->
-                                            <div class="menu-item p-0 m-0">
-                                                <!--begin:Menu link-->
-                                                <a href="#" class="menu-link">
-                                                    <span class="menu-title">Account Deactivation
-                                                        <span
-                                                            class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                            data-bs-toggle="tooltip"
-                                                            title="Upgrade to Pro to get this">Pro</span></span>
-                                                </a>
-                                                <!--end:Menu link-->
-                                            </div>
-                                            <!--end:Menu item-->
-                                            <!--begin:Menu item-->
-                                            <div class="menu-item p-0 m-0">
-                                                <!--begin:Menu link-->
-                                                <a href="#" class="menu-link">
-                                                    <span class="menu-title">Error 404
-                                                        <span
-                                                            class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                            data-bs-toggle="tooltip"
-                                                            title="Upgrade to Pro to get this">Pro</span></span>
-                                                </a>
-                                                <!--end:Menu link-->
-                                            </div>
-                                            <!--end:Menu item-->
-                                            <!--begin:Menu item-->
-                                            <div class="menu-item p-0 m-0">
-                                                <!--begin:Menu link-->
-                                                <a href="#" class="menu-link">
-                                                    <span class="menu-title">Error 500
-                                                        <span
-                                                            class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                            data-bs-toggle="tooltip"
-                                                            title="Upgrade to Pro to get this">Pro</span></span>
-                                                </a>
-                                                <!--end:Menu link-->
-                                            </div>
-                                            <!--end:Menu item-->
-                                        </div>
-                                        <!--end:Menu section-->
-                                    </div>
-                                    <!--end:Col-->
-                                    <!--begin:Col-->
-                                    <div class="col-lg-4 mb-6 mb-lg-0">
-                                        <!--begin:Menu section-->
-                                        <div class="mb-0">
-                                            <!--begin:Menu heading-->
-                                            <h4 class="fs-6 fs-lg-4 fw-bold mb-3 ms-4">Email Templates</h4>
-                                            <!--end:Menu heading-->
-                                            <!--begin:Menu item-->
-                                            <div class="menu-item p-0 m-0">
-                                                <!--begin:Menu link-->
-                                                <a href="#" class="menu-link">
-                                                    <span class="menu-title">Verify Email
-                                                        <span
-                                                            class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                            data-bs-toggle="tooltip"
-                                                            title="Upgrade to Pro to get this">Pro</span></span>
-                                                </a>
-                                                <!--end:Menu link-->
-                                            </div>
-                                            <!--end:Menu item-->
-                                            <!--begin:Menu item-->
-                                            <div class="menu-item p-0 m-0">
-                                                <!--begin:Menu link-->
-                                                <a href="#" class="menu-link">
-                                                    <span class="menu-title">Account Invitation
-                                                        <span
-                                                            class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                            data-bs-toggle="tooltip"
-                                                            title="Upgrade to Pro to get this">Pro</span></span>
-                                                </a>
-                                                <!--end:Menu link-->
-                                            </div>
-                                            <!--end:Menu item-->
-                                            <!--begin:Menu item-->
-                                            <div class="menu-item p-0 m-0">
-                                                <!--begin:Menu link-->
-                                                <a href="#" class="menu-link">
-                                                    <span class="menu-title">Password Reset
-                                                        <span
-                                                            class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                            data-bs-toggle="tooltip"
-                                                            title="Upgrade to Pro to get this">Pro</span></span>
-                                                </a>
-                                                <!--end:Menu link-->
-                                            </div>
-                                            <!--end:Menu item-->
-                                            <!--begin:Menu item-->
-                                            <div class="menu-item p-0 m-0">
-                                                <!--begin:Menu link-->
-                                                <a href="#" class="menu-link">
-                                                    <span class="menu-title">Password Changed
-                                                        <span
-                                                            class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                            data-bs-toggle="tooltip"
-                                                            title="Upgrade to Pro to get this">Pro</span></span>
-                                                </a>
-                                                <!--end:Menu link-->
-                                            </div>
-                                            <!--end:Menu item-->
-                                        </div>
-                                        <!--end:Menu section-->
-                                    </div>
-                                    <!--end:Col-->
-                                </div>
-                                <!--end:Row-->
-                            </div>
-                            <!--end:Pages menu-->
-                        </div>
-                        <!--end:Menu sub-->
-                    </div>
-                    <!--end:Menu item-->
-                    <!--begin:Menu item-->
-                    <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start"
-                        class="menu-item menu-lg-down-accordion menu-sub-lg-down-indention me-0 me-lg-2">
-                        <!--begin:Menu link-->
-                        <span class="menu-link">
-                            <span class="menu-title">Apps</span>
-                            <span class="menu-arrow d-lg-none"></span>
-                        </span>
-                        <!--end:Menu link-->
-                        <!--begin:Menu sub-->
-                        <div
-                            class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown px-lg-2 py-lg-4 w-lg-250px">
-                            <!--begin:Menu item-->
-                            <div data-kt-menu-trigger="{default:'click', lg: 'hover'}"
-                                data-kt-menu-placement="right-start" class="menu-item menu-lg-down-accordion">
-                                <!--begin:Menu link-->
-                                <span class="menu-link">
-                                    <span class="menu-icon">
-                                        <i class="ki-duotone ki-rocket fs-2">
-                                            <span class="path1"></span>
-                                            <span class="path2"></span>
-                                        </i>
-                                    </span>
-                                    <span class="menu-title">Projects</span>
-                                    <span class="menu-arrow"></span>
-                                </span>
-                                <!--end:Menu link-->
-                                <!--begin:Menu sub-->
-                                <div
-                                    class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-active-bg px-lg-2 py-lg-4 w-lg-225px">
-                                    <!--begin:Menu item-->
-                                    <div class="menu-item">
-                                        <!--begin:Menu link-->
-                                        <a class="menu-link" href="../dist/apps/projects/list.html">
-                                            <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
-                                            </span>
-                                            <span class="menu-title">My Projects</span>
-                                        </a>
-                                        <!--end:Menu link-->
-                                    </div>
-                                    <!--end:Menu item-->
-                                    <!--begin:Menu item-->
-                                    <div class="menu-item">
-                                        <!--begin:Menu link-->
-                                        <a class="menu-link" href="#" data-kt-page="pro">
-                                            <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
-                                            </span>
-                                            <span class="menu-title">View Project
-                                                <span
-                                                    class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                    data-bs-toggle="tooltip"
-                                                    title="Upgrade to Pro to get this">Pro</span></span>
-                                        </a>
-                                        <!--end:Menu link-->
-                                    </div>
-                                    <!--end:Menu item-->
-                                    <!--begin:Menu item-->
-                                    <div class="menu-item">
-                                        <!--begin:Menu link-->
-                                        <a class="menu-link" href="#" data-kt-page="pro">
-                                            <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
-                                            </span>
-                                            <span class="menu-title">Targets
-                                                <span
-                                                    class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                    data-bs-toggle="tooltip"
-                                                    title="Upgrade to Pro to get this">Pro</span></span>
-                                        </a>
-                                        <!--end:Menu link-->
-                                    </div>
-                                    <!--end:Menu item-->
-                                    <!--begin:Menu item-->
-                                    <div class="menu-item">
-                                        <!--begin:Menu link-->
-                                        <a class="menu-link" href="#" data-kt-page="pro">
-                                            <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
-                                            </span>
-                                            <span class="menu-title">Budget
-                                                <span
-                                                    class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                    data-bs-toggle="tooltip"
-                                                    title="Upgrade to Pro to get this">Pro</span></span>
-                                        </a>
-                                        <!--end:Menu link-->
-                                    </div>
-                                    <!--end:Menu item-->
-                                    <!--begin:Menu item-->
-                                    <div class="menu-item">
-                                        <!--begin:Menu link-->
-                                        <a class="menu-link" href="#" data-kt-page="pro">
-                                            <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
-                                            </span>
-                                            <span class="menu-title">Users
-                                                <span
-                                                    class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                    data-bs-toggle="tooltip"
-                                                    title="Upgrade to Pro to get this">Pro</span></span>
-                                        </a>
-                                        <!--end:Menu link-->
-                                    </div>
-                                    <!--end:Menu item-->
-                                    <!--begin:Menu item-->
-                                    <div class="menu-item">
-                                        <!--begin:Menu link-->
-                                        <a class="menu-link" href="#" data-kt-page="pro">
-                                            <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
-                                            </span>
-                                            <span class="menu-title">Files
-                                                <span
-                                                    class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                    data-bs-toggle="tooltip"
-                                                    title="Upgrade to Pro to get this">Pro</span></span>
-                                        </a>
-                                        <!--end:Menu link-->
-                                    </div>
-                                    <!--end:Menu item-->
-                                    <!--begin:Menu item-->
-                                    <div class="menu-item">
-                                        <!--begin:Menu link-->
-                                        <a class="menu-link" href="#" data-kt-page="pro">
-                                            <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
-                                            </span>
-                                            <span class="menu-title">Activity
-                                                <span
-                                                    class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                    data-bs-toggle="tooltip"
-                                                    title="Upgrade to Pro to get this">Pro</span></span>
-                                        </a>
-                                        <!--end:Menu link-->
-                                    </div>
-                                    <!--end:Menu item-->
-                                    <!--begin:Menu item-->
-                                    <div class="menu-item">
-                                        <!--begin:Menu link-->
-                                        <a class="menu-link" href="#" data-kt-page="pro">
-                                            <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
-                                            </span>
-                                            <span class="menu-title">Settings
-                                                <span
-                                                    class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                    data-bs-toggle="tooltip"
-                                                    title="Upgrade to Pro to get this">Pro</span></span>
-                                        </a>
-                                        <!--end:Menu link-->
-                                    </div>
-                                    <!--end:Menu item-->
-                                </div>
-                                <!--end:Menu sub-->
-                            </div>
-                            <!--end:Menu item-->
-                            <!--begin:Menu item-->
-                            <div data-kt-menu-trigger="{default:'click', lg: 'hover'}"
-                                data-kt-menu-placement="right-start" class="menu-item menu-lg-down-accordion">
-                                <!--begin:Menu link-->
-                                <span class="menu-link">
-                                    <span class="menu-icon">
-                                        <i class="ki-duotone ki-handcart fs-2"></i>
-                                    </span>
-                                    <span class="menu-title">eCommerce</span>
-                                    <span class="menu-arrow"></span>
-                                </span>
-                                <!--end:Menu link-->
-                                <!--begin:Menu sub-->
-                                <div
-                                    class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-active-bg px-lg-2 py-lg-4 w-lg-225px">
-                                    <!--begin:Menu item-->
-                                    <div data-kt-menu-trigger="{default:'click', lg: 'hover'}"
-                                        data-kt-menu-placement="right-start" class="menu-item menu-lg-down-accordion">
-                                        <!--begin:Menu link-->
-                                        <span class="menu-link">
-                                            <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
-                                            </span>
-                                            <span class="menu-title">Catalog</span>
-                                            <span class="menu-arrow"></span>
-                                        </span>
-                                        <!--end:Menu link-->
-                                        <!--begin:Menu sub-->
-                                        <div
-                                            class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-active-bg px-lg-2 py-lg-4 w-lg-225px">
-                                            <!--begin:Menu item-->
-                                            <div class="menu-item">
-                                                <!--begin:Menu link-->
-                                                <a class="menu-link"
-                                                    href="../dist/apps/ecommerce/catalog/products.html">
-                                                    <span class="menu-bullet">
-                                                        <span class="bullet bullet-dot"></span>
-                                                    </span>
-                                                    <span class="menu-title">Products</span>
-                                                </a>
-                                                <!--end:Menu link-->
-                                            </div>
-                                            <!--end:Menu item-->
-                                            <!--begin:Menu item-->
-                                            <div class="menu-item">
-                                                <!--begin:Menu link-->
-                                                <a class="menu-link" href="#" data-kt-page="pro">
-                                                    <span class="menu-bullet">
-                                                        <span class="bullet bullet-dot"></span>
-                                                    </span>
-                                                    <span class="menu-title">Categories
-                                                        <span
-                                                            class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                            data-bs-toggle="tooltip"
-                                                            title="Upgrade to Pro to get this">Pro</span></span>
-                                                </a>
-                                                <!--end:Menu link-->
-                                            </div>
-                                            <!--end:Menu item-->
-                                            <!--begin:Menu item-->
-                                            <div class="menu-item">
-                                                <!--begin:Menu link-->
-                                                <a class="menu-link" href="#" data-kt-page="pro">
-                                                    <span class="menu-bullet">
-                                                        <span class="bullet bullet-dot"></span>
-                                                    </span>
-                                                    <span class="menu-title">Add Product
-                                                        <span
-                                                            class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                            data-bs-toggle="tooltip"
-                                                            title="Upgrade to Pro to get this">Pro</span></span>
-                                                </a>
-                                                <!--end:Menu link-->
-                                            </div>
-                                            <!--end:Menu item-->
-                                            <!--begin:Menu item-->
-                                            <div class="menu-item">
-                                                <!--begin:Menu link-->
-                                                <a class="menu-link" href="#" data-kt-page="pro">
-                                                    <span class="menu-bullet">
-                                                        <span class="bullet bullet-dot"></span>
-                                                    </span>
-                                                    <span class="menu-title">Edit Product
-                                                        <span
-                                                            class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                            data-bs-toggle="tooltip"
-                                                            title="Upgrade to Pro to get this">Pro</span></span>
-                                                </a>
-                                                <!--end:Menu link-->
-                                            </div>
-                                            <!--end:Menu item-->
-                                            <!--begin:Menu item-->
-                                            <div class="menu-item">
-                                                <!--begin:Menu link-->
-                                                <a class="menu-link" href="#" data-kt-page="pro">
-                                                    <span class="menu-bullet">
-                                                        <span class="bullet bullet-dot"></span>
-                                                    </span>
-                                                    <span class="menu-title">Add Category
-                                                        <span
-                                                            class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                            data-bs-toggle="tooltip"
-                                                            title="Upgrade to Pro to get this">Pro</span></span>
-                                                </a>
-                                                <!--end:Menu link-->
-                                            </div>
-                                            <!--end:Menu item-->
-                                            <!--begin:Menu item-->
-                                            <div class="menu-item">
-                                                <!--begin:Menu link-->
-                                                <a class="menu-link" href="#" data-kt-page="pro">
-                                                    <span class="menu-bullet">
-                                                        <span class="bullet bullet-dot"></span>
-                                                    </span>
-                                                    <span class="menu-title">Edit Category
-                                                        <span
-                                                            class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                            data-bs-toggle="tooltip"
-                                                            title="Upgrade to Pro to get this">Pro</span></span>
-                                                </a>
-                                                <!--end:Menu link-->
-                                            </div>
-                                            <!--end:Menu item-->
-                                        </div>
-                                        <!--end:Menu sub-->
-                                    </div>
-                                    <!--end:Menu item-->
-                                    <!--begin:Menu item-->
-                                    <div data-kt-menu-trigger="click"
-                                        class="menu-item menu-accordion menu-sub-indention">
-                                        <!--begin:Menu link-->
-                                        <span class="menu-link">
-                                            <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
-                                            </span>
-                                            <span class="menu-title">Sales</span>
-                                            <span class="menu-arrow"></span>
-                                        </span>
-                                        <!--end:Menu link-->
-                                        <!--begin:Menu sub-->
-                                        <div class="menu-sub menu-sub-accordion">
-                                            <!--begin:Menu item-->
-                                            <div class="menu-item">
-                                                <!--begin:Menu link-->
-                                                <a class="menu-link" href="#" data-kt-page="pro">
-                                                    <span class="menu-bullet">
-                                                        <span class="bullet bullet-dot"></span>
-                                                    </span>
-                                                    <span class="menu-title">Orders Listing
-                                                        <span
-                                                            class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                            data-bs-toggle="tooltip"
-                                                            title="Upgrade to Pro to get this">Pro</span></span>
-                                                </a>
-                                                <!--end:Menu link-->
-                                            </div>
-                                            <!--end:Menu item-->
-                                            <!--begin:Menu item-->
-                                            <div class="menu-item">
-                                                <!--begin:Menu link-->
-                                                <a class="menu-link" href="#" data-kt-page="pro">
-                                                    <span class="menu-bullet">
-                                                        <span class="bullet bullet-dot"></span>
-                                                    </span>
-                                                    <span class="menu-title">Order Details
-                                                        <span
-                                                            class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                            data-bs-toggle="tooltip"
-                                                            title="Upgrade to Pro to get this">Pro</span></span>
-                                                </a>
-                                                <!--end:Menu link-->
-                                            </div>
-                                            <!--end:Menu item-->
-                                            <!--begin:Menu item-->
-                                            <div class="menu-item">
-                                                <!--begin:Menu link-->
-                                                <a class="menu-link" href="#" data-kt-page="pro">
-                                                    <span class="menu-bullet">
-                                                        <span class="bullet bullet-dot"></span>
-                                                    </span>
-                                                    <span class="menu-title">Add Order
-                                                        <span
-                                                            class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                            data-bs-toggle="tooltip"
-                                                            title="Upgrade to Pro to get this">Pro</span></span>
-                                                </a>
-                                                <!--end:Menu link-->
-                                            </div>
-                                            <!--end:Menu item-->
-                                            <!--begin:Menu item-->
-                                            <div class="menu-item">
-                                                <!--begin:Menu link-->
-                                                <a class="menu-link" href="#" data-kt-page="pro">
-                                                    <span class="menu-bullet">
-                                                        <span class="bullet bullet-dot"></span>
-                                                    </span>
-                                                    <span class="menu-title">Edit Order
-                                                        <span
-                                                            class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                            data-bs-toggle="tooltip"
-                                                            title="Upgrade to Pro to get this">Pro</span></span>
-                                                </a>
-                                                <!--end:Menu link-->
-                                            </div>
-                                            <!--end:Menu item-->
-                                        </div>
-                                        <!--end:Menu sub-->
-                                    </div>
-                                    <!--end:Menu item-->
-                                    <!--begin:Menu item-->
-                                    <div data-kt-menu-trigger="click"
-                                        class="menu-item menu-accordion menu-sub-indention">
-                                        <!--begin:Menu link-->
-                                        <span class="menu-link">
-                                            <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
-                                            </span>
-                                            <span class="menu-title">Customers</span>
-                                            <span class="menu-arrow"></span>
-                                        </span>
-                                        <!--end:Menu link-->
-                                        <!--begin:Menu sub-->
-                                        <div class="menu-sub menu-sub-accordion">
-                                            <!--begin:Menu item-->
-                                            <div class="menu-item">
-                                                <!--begin:Menu link-->
-                                                <a class="menu-link"
-                                                    href="../dist/apps/ecommerce/customers/listing.html">
-                                                    <span class="menu-bullet">
-                                                        <span class="bullet bullet-dot"></span>
-                                                    </span>
-                                                    <span class="menu-title">Customers Listing</span>
-                                                </a>
-                                                <!--end:Menu link-->
-                                            </div>
-                                            <!--end:Menu item-->
-                                            <!--begin:Menu item-->
-                                            <div class="menu-item">
-                                                <!--begin:Menu link-->
-                                                <a class="menu-link" href="#" data-kt-page="pro">
-                                                    <span class="menu-bullet">
-                                                        <span class="bullet bullet-dot"></span>
-                                                    </span>
-                                                    <span class="menu-title">Customers Details
-                                                        <span
-                                                            class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                            data-bs-toggle="tooltip"
-                                                            title="Upgrade to Pro to get this">Pro</span></span>
-                                                </a>
-                                                <!--end:Menu link-->
-                                            </div>
-                                            <!--end:Menu item-->
-                                        </div>
-                                        <!--end:Menu sub-->
-                                    </div>
-                                    <!--end:Menu item-->
-                                    <!--begin:Menu item-->
-                                    <div data-kt-menu-trigger="click"
-                                        class="menu-item menu-accordion menu-sub-indention">
-                                        <!--begin:Menu link-->
-                                        <span class="menu-link">
-                                            <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
-                                            </span>
-                                            <span class="menu-title">Reports</span>
-                                            <span class="menu-arrow"></span>
-                                        </span>
-                                        <!--end:Menu link-->
-                                        <!--begin:Menu sub-->
-                                        <div class="menu-sub menu-sub-accordion">
-                                            <!--begin:Menu item-->
-                                            <div class="menu-item">
-                                                <!--begin:Menu link-->
-                                                <a class="menu-link" href="#" data-kt-page="pro">
-                                                    <span class="menu-bullet">
-                                                        <span class="bullet bullet-dot"></span>
-                                                    </span>
-                                                    <span class="menu-title">Products Viewed
-                                                        <span
-                                                            class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                            data-bs-toggle="tooltip"
-                                                            title="Upgrade to Pro to get this">Pro</span></span>
-                                                </a>
-                                                <!--end:Menu link-->
-                                            </div>
-                                            <!--end:Menu item-->
-                                            <!--begin:Menu item-->
-                                            <div class="menu-item">
-                                                <!--begin:Menu link-->
-                                                <a class="menu-link" href="#" data-kt-page="pro">
-                                                    <span class="menu-bullet">
-                                                        <span class="bullet bullet-dot"></span>
-                                                    </span>
-                                                    <span class="menu-title">Sales
-                                                        <span
-                                                            class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                            data-bs-toggle="tooltip"
-                                                            title="Upgrade to Pro to get this">Pro</span></span>
-                                                </a>
-                                                <!--end:Menu link-->
-                                            </div>
-                                            <!--end:Menu item-->
-                                            <!--begin:Menu item-->
-                                            <div class="menu-item">
-                                                <!--begin:Menu link-->
-                                                <a class="menu-link" href="#" data-kt-page="pro">
-                                                    <span class="menu-bullet">
-                                                        <span class="bullet bullet-dot"></span>
-                                                    </span>
-                                                    <span class="menu-title">Returns
-                                                        <span
-                                                            class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                            data-bs-toggle="tooltip"
-                                                            title="Upgrade to Pro to get this">Pro</span></span>
-                                                </a>
-                                                <!--end:Menu link-->
-                                            </div>
-                                            <!--end:Menu item-->
-                                            <!--begin:Menu item-->
-                                            <div class="menu-item">
-                                                <!--begin:Menu link-->
-                                                <a class="menu-link" href="#" data-kt-page="pro">
-                                                    <span class="menu-bullet">
-                                                        <span class="bullet bullet-dot"></span>
-                                                    </span>
-                                                    <span class="menu-title">Customer Orders
-                                                        <span
-                                                            class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                            data-bs-toggle="tooltip"
-                                                            title="Upgrade to Pro to get this">Pro</span></span>
-                                                </a>
-                                                <!--end:Menu link-->
-                                            </div>
-                                            <!--end:Menu item-->
-                                            <!--begin:Menu item-->
-                                            <div class="menu-item">
-                                                <!--begin:Menu link-->
-                                                <a class="menu-link" href="#" data-kt-page="pro">
-                                                    <span class="menu-bullet">
-                                                        <span class="bullet bullet-dot"></span>
-                                                    </span>
-                                                    <span class="menu-title">Shipping
-                                                        <span
-                                                            class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                            data-bs-toggle="tooltip"
-                                                            title="Upgrade to Pro to get this">Pro</span></span>
-                                                </a>
-                                                <!--end:Menu link-->
-                                            </div>
-                                            <!--end:Menu item-->
-                                        </div>
-                                        <!--end:Menu sub-->
-                                    </div>
-                                    <!--end:Menu item-->
-                                    <!--begin:Menu item-->
-                                    <div class="menu-item">
-                                        <!--begin:Menu link-->
-                                        <a class="menu-link" href="#" data-kt-page="pro">
-                                            <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
-                                            </span>
-                                            <span class="menu-title">Settings
-                                                <span
-                                                    class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                    data-bs-toggle="tooltip"
-                                                    title="Upgrade to Pro to get this">Pro</span></span>
-                                        </a>
-                                        <!--end:Menu link-->
-                                    </div>
-                                    <!--end:Menu item-->
-                                </div>
-                                <!--end:Menu sub-->
-                            </div>
-                            <!--end:Menu item-->
-                            <!--begin:Menu item-->
-                            <div data-kt-menu-trigger="{default:'click', lg: 'hover'}"
-                                data-kt-menu-placement="right-start" class="menu-item menu-lg-down-accordion">
-                                <!--begin:Menu link-->
-                                <span class="menu-link">
-                                    <span class="menu-icon">
-                                        <i class="ki-duotone ki-shield-tick fs-2">
-                                            <span class="path1"></span>
-                                            <span class="path2"></span>
-                                        </i>
-                                    </span>
-                                    <span class="menu-title">User Management</span>
-                                    <span class="menu-arrow"></span>
-                                </span>
-                                <!--end:Menu link-->
-                                <!--begin:Menu sub-->
-                                <div
-                                    class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-active-bg px-lg-2 py-lg-4 w-lg-225px">
-                                    <!--begin:Menu item-->
-                                    <div data-kt-menu-trigger="{default:'click', lg: 'hover'}"
-                                        data-kt-menu-placement="right-start" class="menu-item menu-lg-down-accordion">
-                                        <!--begin:Menu link-->
-                                        <span class="menu-link">
-                                            <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
-                                            </span>
-                                            <span class="menu-title">Users</span>
-                                            <span class="menu-arrow"></span>
-                                        </span>
-                                        <!--end:Menu link-->
-                                        <!--begin:Menu sub-->
-                                        <div
-                                            class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-active-bg px-lg-2 py-lg-4 w-lg-225px">
-                                            <!--begin:Menu item-->
-                                            <div class="menu-item">
-                                                <!--begin:Menu link-->
-                                                <a class="menu-link"
-                                                    href="../dist/apps/user-management/users/list.html">
-                                                    <span class="menu-bullet">
-                                                        <span class="bullet bullet-dot"></span>
-                                                    </span>
-                                                    <span class="menu-title">Users List</span>
-                                                </a>
-                                                <!--end:Menu link-->
-                                            </div>
-                                            <!--end:Menu item-->
-                                            <!--begin:Menu item-->
-                                            <div class="menu-item">
-                                                <!--begin:Menu link-->
-                                                <a class="menu-link" href="#" data-kt-page="pro">
-                                                    <span class="menu-bullet">
-                                                        <span class="bullet bullet-dot"></span>
-                                                    </span>
-                                                    <span class="menu-title">View User
-                                                        <span
-                                                            class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                            data-bs-toggle="tooltip"
-                                                            title="Upgrade to Pro to get this">Pro</span></span>
-                                                </a>
-                                                <!--end:Menu link-->
-                                            </div>
-                                            <!--end:Menu item-->
-                                        </div>
-                                        <!--end:Menu sub-->
-                                    </div>
-                                    <!--end:Menu item-->
-                                    <!--begin:Menu item-->
-                                    <div data-kt-menu-trigger="{default:'click', lg: 'hover'}"
-                                        data-kt-menu-placement="right-start" class="menu-item menu-lg-down-accordion">
-                                        <!--begin:Menu link-->
-                                        <span class="menu-link">
-                                            <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
-                                            </span>
-                                            <span class="menu-title">Roles</span>
-                                            <span class="menu-arrow"></span>
-                                        </span>
-                                        <!--end:Menu link-->
-                                        <!--begin:Menu sub-->
-                                        <div
-                                            class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-active-bg px-lg-2 py-lg-4 w-lg-225px">
-                                            <!--begin:Menu item-->
-                                            <div class="menu-item">
-                                                <!--begin:Menu link-->
-                                                <a class="menu-link" href="#" data-kt-page="pro">
-                                                    <span class="menu-bullet">
-                                                        <span class="bullet bullet-dot"></span>
-                                                    </span>
-                                                    <span class="menu-title">Roles List
-                                                        <span
-                                                            class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                            data-bs-toggle="tooltip"
-                                                            title="Upgrade to Pro to get this">Pro</span></span>
-                                                </a>
-                                                <!--end:Menu link-->
-                                            </div>
-                                            <!--end:Menu item-->
-                                            <!--begin:Menu item-->
-                                            <div class="menu-item">
-                                                <!--begin:Menu link-->
-                                                <a class="menu-link" href="#" data-kt-page="pro">
-                                                    <span class="menu-bullet">
-                                                        <span class="bullet bullet-dot"></span>
-                                                    </span>
-                                                    <span class="menu-title">View Roles
-                                                        <span
-                                                            class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                            data-bs-toggle="tooltip"
-                                                            title="Upgrade to Pro to get this">Pro</span></span>
-                                                </a>
-                                                <!--end:Menu link-->
-                                            </div>
-                                            <!--end:Menu item-->
-                                        </div>
-                                        <!--end:Menu sub-->
-                                    </div>
-                                    <!--end:Menu item-->
-                                    <!--begin:Menu item-->
-                                    <div class="menu-item">
-                                        <!--begin:Menu link-->
-                                        <a class="menu-link" href="#" data-kt-page="pro">
-                                            <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
-                                            </span>
-                                            <span class="menu-title">Permissions
-                                                <span
-                                                    class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                    data-bs-toggle="tooltip"
-                                                    title="Upgrade to Pro to get this">Pro</span></span>
-                                        </a>
-                                        <!--end:Menu link-->
-                                    </div>
-                                    <!--end:Menu item-->
-                                </div>
-                                <!--end:Menu sub-->
-                            </div>
-                            <!--end:Menu item-->
-                            <!--begin:Menu item-->
-                            <div data-kt-menu-trigger="{default:'click', lg: 'hover'}"
-                                data-kt-menu-placement="right-start" class="menu-item menu-lg-down-accordion">
-                                <!--begin:Menu link-->
-                                <span class="menu-link">
-                                    <span class="menu-icon">
-                                        <i class="ki-duotone ki-file-added fs-2">
-                                            <span class="path1"></span>
-                                            <span class="path2"></span>
-                                        </i>
-                                    </span>
-                                    <span class="menu-title">File Manager</span>
-                                    <span class="menu-arrow"></span>
-                                </span>
-                                <!--end:Menu link-->
-                                <!--begin:Menu sub-->
-                                <div
-                                    class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-active-bg px-lg-2 py-lg-4 w-lg-225px">
-                                    <!--begin:Menu item-->
-                                    <div class="menu-item">
-                                        <!--begin:Menu link-->
-                                        <a class="menu-link" href="#" data-kt-page="pro">
-                                            <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
-                                            </span>
-                                            <span class="menu-title">Folders
-                                                <span
-                                                    class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                    data-bs-toggle="tooltip"
-                                                    title="Upgrade to Pro to get this">Pro</span></span>
-                                        </a>
-                                        <!--end:Menu link-->
-                                    </div>
-                                    <!--end:Menu item-->
-                                    <!--begin:Menu item-->
-                                    <div class="menu-item">
-                                        <!--begin:Menu link-->
-                                        <a class="menu-link" href="#" data-kt-page="pro">
-                                            <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
-                                            </span>
-                                            <span class="menu-title">Files
-                                                <span
-                                                    class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                    data-bs-toggle="tooltip"
-                                                    title="Upgrade to Pro to get this">Pro</span></span>
-                                        </a>
-                                        <!--end:Menu link-->
-                                    </div>
-                                    <!--end:Menu item-->
-                                    <!--begin:Menu item-->
-                                    <div class="menu-item">
-                                        <!--begin:Menu link-->
-                                        <a class="menu-link" href="#" data-kt-page="pro">
-                                            <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
-                                            </span>
-                                            <span class="menu-title">Blank Directory
-                                                <span
-                                                    class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                    data-bs-toggle="tooltip"
-                                                    title="Upgrade to Pro to get this">Pro</span></span>
-                                        </a>
-                                        <!--end:Menu link-->
-                                    </div>
-                                    <!--end:Menu item-->
-                                    <!--begin:Menu item-->
-                                    <div class="menu-item">
-                                        <!--begin:Menu link-->
-                                        <a class="menu-link" href="#" data-kt-page="pro">
-                                            <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
-                                            </span>
-                                            <span class="menu-title">Settings
-                                                <span
-                                                    class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                    data-bs-toggle="tooltip"
-                                                    title="Upgrade to Pro to get this">Pro</span></span>
-                                        </a>
-                                        <!--end:Menu link-->
-                                    </div>
-                                    <!--end:Menu item-->
-                                </div>
-                                <!--end:Menu sub-->
-                            </div>
-                            <!--end:Menu item-->
-                            <!--begin:Menu item-->
-                            <div data-kt-menu-trigger="{default:'click', lg: 'hover'}"
-                                data-kt-menu-placement="right-start" class="menu-item menu-lg-down-accordion">
-                                <!--begin:Menu link-->
-                                <span class="menu-link">
-                                    <span class="menu-icon">
-                                        <i class="ki-duotone ki-message-text-2 fs-2">
-                                            <span class="path1"></span>
-                                            <span class="path2"></span>
-                                            <span class="path3"></span>
-                                        </i>
-                                    </span>
-                                    <span class="menu-title">Chat</span>
-                                    <span class="menu-arrow"></span>
-                                </span>
-                                <!--end:Menu link-->
-                                <!--begin:Menu sub-->
-                                <div
-                                    class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-active-bg px-lg-2 py-lg-4 w-lg-225px">
-                                    <!--begin:Menu item-->
-                                    <div class="menu-item">
-                                        <!--begin:Menu link-->
-                                        <a class="menu-link" href="#" data-kt-page="pro">
-                                            <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
-                                            </span>
-                                            <span class="menu-title">Private Chat
-                                                <span
-                                                    class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                    data-bs-toggle="tooltip"
-                                                    title="Upgrade to Pro to get this">Pro</span></span>
-                                        </a>
-                                        <!--end:Menu link-->
-                                    </div>
-                                    <!--end:Menu item-->
-                                    <!--begin:Menu item-->
-                                    <div class="menu-item">
-                                        <!--begin:Menu link-->
-                                        <a class="menu-link" href="#" data-kt-page="pro">
-                                            <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
-                                            </span>
-                                            <span class="menu-title">Group Chat
-                                                <span
-                                                    class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                    data-bs-toggle="tooltip"
-                                                    title="Upgrade to Pro to get this">Pro</span></span>
-                                        </a>
-                                        <!--end:Menu link-->
-                                    </div>
-                                    <!--end:Menu item-->
-                                    <!--begin:Menu item-->
-                                    <div class="menu-item">
-                                        <!--begin:Menu link-->
-                                        <a class="menu-link" href="#" data-kt-page="pro">
-                                            <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
-                                            </span>
-                                            <span class="menu-title">Drawer Chat
-                                                <span
-                                                    class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                                    data-bs-toggle="tooltip"
-                                                    title="Upgrade to Pro to get this">Pro</span></span>
-                                        </a>
-                                        <!--end:Menu link-->
-                                    </div>
-                                    <!--end:Menu item-->
-                                </div>
-                                <!--end:Menu sub-->
-                            </div>
-                            <!--end:Menu item-->
-                            <!--begin:Menu item-->
-                            <div class="menu-item">
-                                <!--begin:Menu link-->
-                                <a class="menu-link" href="#" data-kt-page="pro">
-                                    <span class="menu-icon">
-                                        <i class="ki-duotone ki-calendar-8 fs-2">
-                                            <span class="path1"></span>
-                                            <span class="path2"></span>
-                                            <span class="path3"></span>
-                                            <span class="path4"></span>
-                                            <span class="path5"></span>
-                                            <span class="path6"></span>
-                                        </i>
-                                    </span>
-                                    <span class="menu-title">Calendar
-                                        <span class="badge badge-pro badge-light-danger fw-semibold fs-8 px-2 py-1 ms-1"
-                                            data-bs-toggle="tooltip"
-                                            title="Upgrade to Pro to get this">Pro</span></span>
-                                </a>
-                                <!--end:Menu link-->
-                            </div>
-                            <!--end:Menu item-->
-                        </div>
-                        <!--end:Menu sub-->
-                    </div>
-                    <!--end:Menu item-->
-                    <!--begin:Menu item-->
-                    <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start"
-                        class="menu-item menu-lg-down-accordion menu-sub-lg-down-indention me-0 me-lg-2">
-                        <!--begin:Menu link-->
-                        <span class="menu-link">
-                            <span class="menu-title">Help</span>
-                            <span class="menu-arrow d-lg-none"></span>
-                        </span>
-                        <!--end:Menu link-->
-                        <!--begin:Menu sub-->
-                        <div
-                            class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown px-lg-2 py-lg-4 w-lg-200px">
-                            <!--begin:Menu item-->
-                            <div class="menu-item">
-                                <!--begin:Menu link-->
-                                <a class="menu-link"
-                                    href="https://preview.keenthemes.com/html/oswald-html-pro/docs/base/utilities"
-                                    target="_blank"
-                                    title="Check out over 200 in-house components, plugins and ready for use solutions"
-                                    data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click"
-                                    data-bs-placement="right">
-                                    <span class="menu-icon">
-                                        <i class="ki-duotone ki-element-8 fs-1">
-                                            <span class="path1"></span>
-                                            <span class="path2"></span>
-                                        </i>
-                                    </span>
-                                    <span class="menu-title">Components</span>
-                                </a>
-                                <!--end:Menu link-->
-                            </div>
-                            <!--end:Menu item-->
-                            <!--begin:Menu item-->
-                            <div class="menu-item">
-                                <!--begin:Menu link-->
-                                <a class="menu-link" href="https://preview.keenthemes.com/html/oswald-html-pro/docs"
-                                    target="_blank" title="Check out the complete documentation"
-                                    data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click"
-                                    data-bs-placement="right">
-                                    <span class="menu-icon">
-                                        <i class="ki-duotone ki-abstract-26 fs-2">
-                                            <span class="path1"></span>
-                                            <span class="path2"></span>
-                                        </i>
-                                    </span>
-                                    <span class="menu-title">Documentation</span>
-                                </a>
-                                <!--end:Menu link-->
-                            </div>
-                            <!--end:Menu item-->
-                            <!--begin:Menu item-->
-                            <div class="menu-item">
-                                <!--begin:Menu link-->
-                                <a class="menu-link"
-                                    href="https://preview.keenthemes.com/oswald-html-free/layout-builder.html"
-                                    title="Build your layout and export HTML for server side integration"
-                                    data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click"
-                                    data-bs-placement="right">
-                                    <span class="menu-icon">
-                                        <i class="ki-duotone ki-switch fs-2">
-                                            <span class="path1"></span>
-                                            <span class="path2"></span>
-                                        </i>
-                                    </span>
-                                    <span class="menu-title">Layout Builder</span>
-                                </a>
-                                <!--end:Menu link-->
-                            </div>
-                            <!--end:Menu item-->
-                            <!--begin:Menu item-->
-                            <div class="menu-item">
-                                <!--begin:Menu link-->
-                                <a class="menu-link"
-                                    href="https://preview.keenthemes.com/html/oswald-html-pro/docs/getting-started/changelog"
-                                    target="_blank">
-                                    <span class="menu-icon">
-                                        <i class="ki-duotone ki-code fs-2">
-                                            <span class="path1"></span>
-                                            <span class="path2"></span>
-                                            <span class="path3"></span>
-                                            <span class="path4"></span>
-                                        </i>
-                                    </span>
-                                    <span class="menu-title">Changelog</span>
-                                </a>
-                                <!--end:Menu link-->
-                            </div>
-                            <!--end:Menu item-->
-                        </div>
-                        <!--end:Menu sub-->
-                    </div>
-                    <!--end:Menu item-->
+
+            <!-- Right Logo -->
+            <div class="logo-right">
+                <div class="logo">
+                    <img src="assets/media/logos/Seal_of_Maharashtra.png"
+                                    alt="Maharashtra Government Logo" />
                 </div>
-                <!--end::Menu-->
             </div>
-            <!--end::Menu wrapper-->
-            <!--begin::Search-->
-            <div class="d-flex align-items-center w-100 w-lg-225px pt-5 pt-lg-0">
-                <!--begin::Search-->
-                <div id="kt_header_search" class="header-search d-flex align-items-center w-100 w-lg-225px"
-                    data-kt-search-keypress="true" data-kt-search-min-length="2" data-kt-search-enter="enter"
-                    data-kt-search-layout="menu" data-kt-search-responsive="" data-kt-menu-trigger="auto"
-                    data-kt-menu-permanent="true" data-kt-menu-placement="bottom-start">
-                    <!--begin::Form(use d-none d-lg-block classes for responsive search)-->
-                    <form data-kt-search-element="form" class="w-100 position-relative mb-5 mb-lg-0" autocomplete="off">
-                        <!--begin::Hidden input(Added to disable form autocomplete)-->
-                        <input type="hidden" />
-                        <!--end::Hidden input-->
-                        <!--begin::Icon-->
-                        <i
-                            class="ki-duotone ki-magnifier search-icon fs-2 text-gray-500 position-absolute top-50 translate-middle-y ms-5">
-                            <span class="path1"></span>
-                            <span class="path2"></span>
-                        </i>
-                        <!--end::Icon-->
-                        <!--begin::Input-->
-                        <input type="text" class="search-input form-control ps-13" name="search" value=""
-                            placeholder="Search..." data-kt-search-element="input" />
-                        <!--end::Input-->
-                        <!--begin::Spinner-->
-                        <span class="search-spinner position-absolute top-50 end-0 translate-middle-y lh-0 d-none me-5"
-                            data-kt-search-element="spinner">
-                            <span class="spinner-border h-15px w-15px align-middle text-gray-400"></span>
-                        </span>
-                        <!--end::Spinner-->
-                        <!--begin::Reset-->
-                        <span
-                            class="search-reset btn btn-flush btn-active-color-primary position-absolute top-50 end-0 translate-middle-y lh-0 d-none me-4"
-                            data-kt-search-element="clear">
-                            <i class="ki-duotone ki-cross fs-2 fs-lg-1 me-0">
-                                <span class="path1"></span>
-                                <span class="path2"></span>
-                            </i>
-                        </span>
-                        <!--end::Reset-->
-                    </form>
-                    <!--end::Form-->
-                    <!--begin::Menu-->
-                    <div data-kt-search-element="content"
-                        class="menu menu-sub menu-sub-dropdown py-7 px-7 overflow-hidden w-300px w-md-350px">
-                        <!--begin::Wrapper-->
-                        <div data-kt-search-element="wrapper">
-                            <!--begin::Recently viewed-->
-                            <div data-kt-search-element="results" class="d-none">
-                                <!--begin::Items-->
-                                <div class="scroll-y mh-200px mh-lg-350px">
-                                    <!--begin::Category title-->
-                                    <h3 class="fs-5 text-muted m-0 pb-5" data-kt-search-element="category-title">Users
-                                    </h3>
-                                    <!--end::Category title-->
-                                    <!--begin::Item-->
-                                    <a href="#" class="d-flex text-dark text-hover-primary align-items-center mb-5">
-                                        <!--begin::Symbol-->
-                                        <div class="symbol symbol-40px me-4">
-                                            <img src="assets/media/avatars/300-6.jpg" alt="" />
-                                        </div>
-                                        <!--end::Symbol-->
-                                        <!--begin::Title-->
-                                        <div class="d-flex flex-column justify-content-start fw-semibold">
-                                            <span class="fs-6 fw-semibold">Karina Clark</span>
-                                            <span class="fs-7 fw-semibold text-muted">Marketing
-                                                Manager</span>
-                                        </div>
-                                        <!--end::Title-->
-                                    </a>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
-                                    <a href="#" class="d-flex text-dark text-hover-primary align-items-center mb-5">
-                                        <!--begin::Symbol-->
-                                        <div class="symbol symbol-40px me-4">
-                                            <img src="assets/media/avatars/300-2.jpg" alt="" />
-                                        </div>
-                                        <!--end::Symbol-->
-                                        <!--begin::Title-->
-                                        <div class="d-flex flex-column justify-content-start fw-semibold">
-                                            <span class="fs-6 fw-semibold">Olivia Bold</span>
-                                            <span class="fs-7 fw-semibold text-muted">Software
-                                                Engineer</span>
-                                        </div>
-                                        <!--end::Title-->
-                                    </a>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
-                                    <a href="#" class="d-flex text-dark text-hover-primary align-items-center mb-5">
-                                        <!--begin::Symbol-->
-                                        <div class="symbol symbol-40px me-4">
-                                            <img src="assets/media/avatars/300-9.jpg" alt="" />
-                                        </div>
-                                        <!--end::Symbol-->
-                                        <!--begin::Title-->
-                                        <div class="d-flex flex-column justify-content-start fw-semibold">
-                                            <span class="fs-6 fw-semibold">Ana Clark</span>
-                                            <span class="fs-7 fw-semibold text-muted">UI/UX Designer</span>
-                                        </div>
-                                        <!--end::Title-->
-                                    </a>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
-                                    <a href="#" class="d-flex text-dark text-hover-primary align-items-center mb-5">
-                                        <!--begin::Symbol-->
-                                        <div class="symbol symbol-40px me-4">
-                                            <img src="assets/media/avatars/300-14.jpg" alt="" />
-                                        </div>
-                                        <!--end::Symbol-->
-                                        <!--begin::Title-->
-                                        <div class="d-flex flex-column justify-content-start fw-semibold">
-                                            <span class="fs-6 fw-semibold">Nick Pitola</span>
-                                            <span class="fs-7 fw-semibold text-muted">Art Director</span>
-                                        </div>
-                                        <!--end::Title-->
-                                    </a>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
-                                    <a href="#" class="d-flex text-dark text-hover-primary align-items-center mb-5">
-                                        <!--begin::Symbol-->
-                                        <div class="symbol symbol-40px me-4">
-                                            <img src="assets/media/avatars/300-11.jpg" alt="" />
-                                        </div>
-                                        <!--end::Symbol-->
-                                        <!--begin::Title-->
-                                        <div class="d-flex flex-column justify-content-start fw-semibold">
-                                            <span class="fs-6 fw-semibold">Edward Kulnic</span>
-                                            <span class="fs-7 fw-semibold text-muted">System
-                                                Administrator</span>
-                                        </div>
-                                        <!--end::Title-->
-                                    </a>
-                                    <!--end::Item-->
-                                    <!--begin::Category title-->
-                                    <h3 class="fs-5 text-muted m-0 pt-5 pb-5" data-kt-search-element="category-title">
-                                        Customers</h3>
-                                    <!--end::Category title-->
-                                    <!--begin::Item-->
-                                    <a href="#" class="d-flex text-dark text-hover-primary align-items-center mb-5">
-                                        <!--begin::Symbol-->
-                                        <div class="symbol symbol-40px me-4">
-                                            <span class="symbol-label bg-light">
-                                                <img class="w-20px h-20px"
-                                                    src="assets/media/svg/brand-logos/volicity-9.svg" alt="" />
-                                            </span>
-                                        </div>
-                                        <!--end::Symbol-->
-                                        <!--begin::Title-->
-                                        <div class="d-flex flex-column justify-content-start fw-semibold">
-                                            <span class="fs-6 fw-semibold">Company Rbranding</span>
-                                            <span class="fs-7 fw-semibold text-muted">UI Design</span>
-                                        </div>
-                                        <!--end::Title-->
-                                    </a>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
-                                    <a href="#" class="d-flex text-dark text-hover-primary align-items-center mb-5">
-                                        <!--begin::Symbol-->
-                                        <div class="symbol symbol-40px me-4">
-                                            <span class="symbol-label bg-light">
-                                                <img class="w-20px h-20px" src="assets/media/svg/brand-logos/tvit.svg"
-                                                    alt="" />
-                                            </span>
-                                        </div>
-                                        <!--end::Symbol-->
-                                        <!--begin::Title-->
-                                        <div class="d-flex flex-column justify-content-start fw-semibold">
-                                            <span class="fs-6 fw-semibold">Company Re-branding</span>
-                                            <span class="fs-7 fw-semibold text-muted">Web Development</span>
-                                        </div>
-                                        <!--end::Title-->
-                                    </a>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
-                                    <a href="#" class="d-flex text-dark text-hover-primary align-items-center mb-5">
-                                        <!--begin::Symbol-->
-                                        <div class="symbol symbol-40px me-4">
-                                            <span class="symbol-label bg-light">
-                                                <img class="w-20px h-20px" src="assets/media/svg/misc/infography.svg"
-                                                    alt="" />
-                                            </span>
-                                        </div>
-                                        <!--end::Symbol-->
-                                        <!--begin::Title-->
-                                        <div class="d-flex flex-column justify-content-start fw-semibold">
-                                            <span class="fs-6 fw-semibold">Business Analytics App</span>
-                                            <span class="fs-7 fw-semibold text-muted">Administration</span>
-                                        </div>
-                                        <!--end::Title-->
-                                    </a>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
-                                    <a href="#" class="d-flex text-dark text-hover-primary align-items-center mb-5">
-                                        <!--begin::Symbol-->
-                                        <div class="symbol symbol-40px me-4">
-                                            <span class="symbol-label bg-light">
-                                                <img class="w-20px h-20px" src="assets/media/svg/brand-logos/leaf.svg"
-                                                    alt="" />
-                                            </span>
-                                        </div>
-                                        <!--end::Symbol-->
-                                        <!--begin::Title-->
-                                        <div class="d-flex flex-column justify-content-start fw-semibold">
-                                            <span class="fs-6 fw-semibold">EcoLeaf App Launch</span>
-                                            <span class="fs-7 fw-semibold text-muted">Marketing</span>
-                                        </div>
-                                        <!--end::Title-->
-                                    </a>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
-                                    <a href="#" class="d-flex text-dark text-hover-primary align-items-center mb-5">
-                                        <!--begin::Symbol-->
-                                        <div class="symbol symbol-40px me-4">
-                                            <span class="symbol-label bg-light">
-                                                <img class="w-20px h-20px" src="assets/media/svg/brand-logos/tower.svg"
-                                                    alt="" />
-                                            </span>
-                                        </div>
-                                        <!--end::Symbol-->
-                                        <!--begin::Title-->
-                                        <div class="d-flex flex-column justify-content-start fw-semibold">
-                                            <span class="fs-6 fw-semibold">Tower Group Website</span>
-                                            <span class="fs-7 fw-semibold text-muted">Google Adwords</span>
-                                        </div>
-                                        <!--end::Title-->
-                                    </a>
-                                    <!--end::Item-->
-                                    <!--begin::Category title-->
-                                    <h3 class="fs-5 text-muted m-0 pt-5 pb-5" data-kt-search-element="category-title">
-                                        Projects</h3>
-                                    <!--end::Category title-->
-                                    <!--begin::Item-->
-                                    <a href="#" class="d-flex text-dark text-hover-primary align-items-center mb-5">
-                                        <!--begin::Symbol-->
-                                        <div class="symbol symbol-40px me-4">
-                                            <span class="symbol-label bg-light">
-                                                <i class="ki-duotone ki-notepad fs-2 text-primary">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                    <span class="path3"></span>
-                                                    <span class="path4"></span>
-                                                    <span class="path5"></span>
-                                                </i>
-                                            </span>
-                                        </div>
-                                        <!--end::Symbol-->
-                                        <!--begin::Title-->
-                                        <div class="d-flex flex-column">
-                                            <span class="fs-6 fw-semibold">Si-Fi Project by AU Themes</span>
-                                            <span class="fs-7 fw-semibold text-muted">#45670</span>
-                                        </div>
-                                        <!--end::Title-->
-                                    </a>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
-                                    <a href="#" class="d-flex text-dark text-hover-primary align-items-center mb-5">
-                                        <!--begin::Symbol-->
-                                        <div class="symbol symbol-40px me-4">
-                                            <span class="symbol-label bg-light">
-                                                <i class="ki-duotone ki-frame fs-2 text-primary">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                    <span class="path3"></span>
-                                                    <span class="path4"></span>
-                                                </i>
-                                            </span>
-                                        </div>
-                                        <!--end::Symbol-->
-                                        <!--begin::Title-->
-                                        <div class="d-flex flex-column">
-                                            <span class="fs-6 fw-semibold">Shopix Mobile App Planning</span>
-                                            <span class="fs-7 fw-semibold text-muted">#45690</span>
-                                        </div>
-                                        <!--end::Title-->
-                                    </a>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
-                                    <a href="#" class="d-flex text-dark text-hover-primary align-items-center mb-5">
-                                        <!--begin::Symbol-->
-                                        <div class="symbol symbol-40px me-4">
-                                            <span class="symbol-label bg-light">
-                                                <i class="ki-duotone ki-message-text-2 fs-2 text-primary">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                    <span class="path3"></span>
-                                                </i>
-                                            </span>
-                                        </div>
-                                        <!--end::Symbol-->
-                                        <!--begin::Title-->
-                                        <div class="d-flex flex-column">
-                                            <span class="fs-6 fw-semibold">Finance Monitoring SAAS
-                                                Discussion</span>
-                                            <span class="fs-7 fw-semibold text-muted">#21090</span>
-                                        </div>
-                                        <!--end::Title-->
-                                    </a>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
-                                    <a href="#" class="d-flex text-dark text-hover-primary align-items-center mb-5">
-                                        <!--begin::Symbol-->
-                                        <div class="symbol symbol-40px me-4">
-                                            <span class="symbol-label bg-light">
-                                                <i class="ki-duotone ki-profile-circle fs-2 text-primary">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                    <span class="path3"></span>
-                                                </i>
-                                            </span>
-                                        </div>
-                                        <!--end::Symbol-->
-                                        <!--begin::Title-->
-                                        <div class="d-flex flex-column">
-                                            <span class="fs-6 fw-semibold">Dashboard Analitics Launch</span>
-                                            <span class="fs-7 fw-semibold text-muted">#34560</span>
-                                        </div>
-                                        <!--end::Title-->
-                                    </a>
-                                    <!--end::Item-->
-                                </div>
-                                <!--end::Items-->
-                            </div>
-                            <!--end::Recently viewed-->
-                            <!--begin::Recently viewed-->
-                            <div class="" data-kt-search-element="main">
-                                <!--begin::Heading-->
-                                <div class="d-flex flex-stack fw-semibold mb-4">
-                                    <!--begin::Label-->
-                                    <span class="text-muted fs-6 me-2">Recently Searched:</span>
-                                    <!--end::Label-->
-                                    <!--begin::Toolbar-->
-                                    <div class="d-flex" data-kt-search-element="toolbar">
-                                        <!--begin::Preferences toggle-->
-                                        <div data-kt-search-element="preferences-show"
-                                            class="btn btn-icon w-20px btn-sm btn-active-color-primary me-2 data-bs-toggle="
-                                            title="Show search preferences">
-                                            <i class="ki-duotone ki-setting-2 fs-2">
-                                                <span class="path1"></span>
-                                                <span class="path2"></span>
-                                            </i>
-                                        </div>
-                                        <!--end::Preferences toggle-->
-                                        <!--begin::Advanced search toggle-->
-                                        <div data-kt-search-element="advanced-options-form-show"
-                                            class="btn btn-icon w-20px btn-sm btn-active-color-primary me-n1"
-                                            data-bs-toggle="tooltip" title="Show more search options">
-                                            <i class="ki-duotone ki-down fs-2"></i>
-                                        </div>
-                                        <!--end::Advanced search toggle-->
-                                    </div>
-                                    <!--end::Toolbar-->
-                                </div>
-                                <!--end::Heading-->
-                                <!--begin::Items-->
-                                <div class="scroll-y mh-200px mh-lg-325px">
-                                    <!--begin::Item-->
-                                    <div class="d-flex align-items-center mb-5">
-                                        <!--begin::Symbol-->
-                                        <div class="symbol symbol-40px me-4">
-                                            <span class="symbol-label bg-light">
-                                                <i class="ki-duotone ki-laptop fs-2 text-primary">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                </i>
-                                            </span>
-                                        </div>
-                                        <!--end::Symbol-->
-                                        <!--begin::Title-->
-                                        <div class="d-flex flex-column">
-                                            <a href="#"
-                                                class="fs-6 text-gray-800 text-hover-primary fw-semibold">BoomApp
-                                                by Keenthemes</a>
-                                            <span class="fs-7 text-muted fw-semibold">#45789</span>
-                                        </div>
-                                        <!--end::Title-->
-                                    </div>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
-                                    <div class="d-flex align-items-center mb-5">
-                                        <!--begin::Symbol-->
-                                        <div class="symbol symbol-40px me-4">
-                                            <span class="symbol-label bg-light">
-                                                <i class="ki-duotone ki-chart-simple fs-2 text-primary">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                    <span class="path3"></span>
-                                                    <span class="path4"></span>
-                                                </i>
-                                            </span>
-                                        </div>
-                                        <!--end::Symbol-->
-                                        <!--begin::Title-->
-                                        <div class="d-flex flex-column">
-                                            <a href="#" class="fs-6 text-gray-800 text-hover-primary fw-semibold">"Kept
-                                                API Project Meeting</a>
-                                            <span class="fs-7 text-muted fw-semibold">#84050</span>
-                                        </div>
-                                        <!--end::Title-->
-                                    </div>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
-                                    <div class="d-flex align-items-center mb-5">
-                                        <!--begin::Symbol-->
-                                        <div class="symbol symbol-40px me-4">
-                                            <span class="symbol-label bg-light">
-                                                <i class="ki-duotone ki-chart fs-2 text-primary">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                </i>
-                                            </span>
-                                        </div>
-                                        <!--end::Symbol-->
-                                        <!--begin::Title-->
-                                        <div class="d-flex flex-column">
-                                            <a href="#" class="fs-6 text-gray-800 text-hover-primary fw-semibold">"KPI
-                                                Monitoring App Launch</a>
-                                            <span class="fs-7 text-muted fw-semibold">#84250</span>
-                                        </div>
-                                        <!--end::Title-->
-                                    </div>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
-                                    <div class="d-flex align-items-center mb-5">
-                                        <!--begin::Symbol-->
-                                        <div class="symbol symbol-40px me-4">
-                                            <span class="symbol-label bg-light">
-                                                <i class="ki-duotone ki-chart-line-down fs-2 text-primary">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                </i>
-                                            </span>
-                                        </div>
-                                        <!--end::Symbol-->
-                                        <!--begin::Title-->
-                                        <div class="d-flex flex-column">
-                                            <a href="#"
-                                                class="fs-6 text-gray-800 text-hover-primary fw-semibold">Project
-                                                Reference FAQ</a>
-                                            <span class="fs-7 text-muted fw-semibold">#67945</span>
-                                        </div>
-                                        <!--end::Title-->
-                                    </div>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
-                                    <div class="d-flex align-items-center mb-5">
-                                        <!--begin::Symbol-->
-                                        <div class="symbol symbol-40px me-4">
-                                            <span class="symbol-label bg-light">
-                                                <i class="ki-duotone ki-sms fs-2 text-primary">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                </i>
-                                            </span>
-                                        </div>
-                                        <!--end::Symbol-->
-                                        <!--begin::Title-->
-                                        <div class="d-flex flex-column">
-                                            <a href="#"
-                                                class="fs-6 text-gray-800 text-hover-primary fw-semibold">"FitPro
-                                                App Development</a>
-                                            <span class="fs-7 text-muted fw-semibold">#84250</span>
-                                        </div>
-                                        <!--end::Title-->
-                                    </div>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
-                                    <div class="d-flex align-items-center mb-5">
-                                        <!--begin::Symbol-->
-                                        <div class="symbol symbol-40px me-4">
-                                            <span class="symbol-label bg-light">
-                                                <i class="ki-duotone ki-bank fs-2 text-primary">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                </i>
-                                            </span>
-                                        </div>
-                                        <!--end::Symbol-->
-                                        <!--begin::Title-->
-                                        <div class="d-flex flex-column">
-                                            <a href="#" class="fs-6 text-gray-800 text-hover-primary fw-semibold">Shopix
-                                                Mobile App</a>
-                                            <span class="fs-7 text-muted fw-semibold">#45690</span>
-                                        </div>
-                                        <!--end::Title-->
-                                    </div>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
-                                    <div class="d-flex align-items-center mb-5">
-                                        <!--begin::Symbol-->
-                                        <div class="symbol symbol-40px me-4">
-                                            <span class="symbol-label bg-light">
-                                                <i class="ki-duotone ki-chart-line-down fs-2 text-primary">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                </i>
-                                            </span>
-                                        </div>
-                                        <!--end::Symbol-->
-                                        <!--begin::Title-->
-                                        <div class="d-flex flex-column">
-                                            <a href="#"
-                                                class="fs-6 text-gray-800 text-hover-primary fw-semibold">"Landing
-                                                UI Design" Launch</a>
-                                            <span class="fs-7 text-muted fw-semibold">#24005</span>
-                                        </div>
-                                        <!--end::Title-->
-                                    </div>
-                                    <!--end::Item-->
-                                </div>
-                                <!--end::Items-->
-                            </div>
-                            <!--end::Recently viewed-->
-                            <!--begin::Empty-->
-                            <div data-kt-search-element="empty" class="text-center d-none">
-                                <!--begin::Icon-->
-                                <div class="pt-10 pb-10">
-                                    <i class="ki-duotone ki-search-list fs-4x opacity-50">
-                                        <span class="path1"></span>
-                                        <span class="path2"></span>
-                                        <span class="path3"></span>
-                                    </i>
-                                </div>
-                                <!--end::Icon-->
-                                <!--begin::Message-->
-                                <div class="pb-15 fw-semibold">
-                                    <h3 class="text-gray-600 fs-5 mb-2">No result found</h3>
-                                    <div class="text-muted fs-7">Please try again with a different query
-                                    </div>
-                                </div>
-                                <!--end::Message-->
-                            </div>
-                            <!--end::Empty-->
-                        </div>
-                        <!--end::Wrapper-->
-                        <!--begin::Preferences-->
-                        <form data-kt-search-element="advanced-options-form" class="pt-1 d-none">
-                            <!--begin::Heading-->
-                            <h3 class="fw-semibold text-dark mb-7">Advanced Search</h3>
-                            <!--end::Heading-->
-                            <!--begin::Input group-->
-                            <div class="mb-5">
-                                <input type="text" class="form-control form-control-sm form-control-solid"
-                                    placeholder="Contains the word" name="query" />
-                            </div>
-                            <!--end::Input group-->
-                            <!--begin::Input group-->
-                            <div class="mb-5">
-                                <!--begin::Radio group-->
-                                <div class="nav-group nav-group-fluid">
-                                    <!--begin::Option-->
-                                    <label>
-                                        <input type="radio" class="btn-check" name="type" value="has"
-                                            checked="checked" />
-                                        <span
-                                            class="btn btn-sm btn-color-muted btn-active btn-active-primary">All</span>
-                                    </label>
-                                    <!--end::Option-->
-                                    <!--begin::Option-->
-                                    <label>
-                                        <input type="radio" class="btn-check" name="type" value="users" />
-                                        <span
-                                            class="btn btn-sm btn-color-muted btn-active btn-active-primary px-4">Users</span>
-                                    </label>
-                                    <!--end::Option-->
-                                    <!--begin::Option-->
-                                    <label>
-                                        <input type="radio" class="btn-check" name="type" value="orders" />
-                                        <span
-                                            class="btn btn-sm btn-color-muted btn-active btn-active-primary px-4">Orders</span>
-                                    </label>
-                                    <!--end::Option-->
-                                    <!--begin::Option-->
-                                    <label>
-                                        <input type="radio" class="btn-check" name="type" value="projects" />
-                                        <span
-                                            class="btn btn-sm btn-color-muted btn-active btn-active-primary px-4">Projects</span>
-                                    </label>
-                                    <!--end::Option-->
-                                </div>
-                                <!--end::Radio group-->
-                            </div>
-                            <!--end::Input group-->
-                            <!--begin::Input group-->
-                            <div class="mb-5">
-                                <input type="text" name="assignedto"
-                                    class="form-control form-control-sm form-control-solid" placeholder="Assigned to"
-                                    value="" />
-                            </div>
-                            <!--end::Input group-->
-                            <!--begin::Input group-->
-                            <div class="mb-5">
-                                <input type="text" name="collaborators"
-                                    class="form-control form-control-sm form-control-solid" placeholder="Collaborators"
-                                    value="" />
-                            </div>
-                            <!--end::Input group-->
-                            <!--begin::Input group-->
-                            <div class="mb-5">
-                                <!--begin::Radio group-->
-                                <div class="nav-group nav-group-fluid">
-                                    <!--begin::Option-->
-                                    <label>
-                                        <input type="radio" class="btn-check" name="attachment" value="has"
-                                            checked="checked" />
-                                        <span class="btn btn-sm btn-color-muted btn-active btn-active-primary">Has
-                                            attachment</span>
-                                    </label>
-                                    <!--end::Option-->
-                                    <!--begin::Option-->
-                                    <label>
-                                        <input type="radio" class="btn-check" name="attachment" value="any" />
-                                        <span
-                                            class="btn btn-sm btn-color-muted btn-active btn-active-primary px-4">Any</span>
-                                    </label>
-                                    <!--end::Option-->
-                                </div>
-                                <!--end::Radio group-->
-                            </div>
-                            <!--end::Input group-->
-                            <!--begin::Input group-->
-                            <div class="mb-5">
-                                <select name="timezone" aria-label="Select a Timezone" data-control="select2"
-                                    data-dropdown-parent="#kt_header_search" data-placeholder="date_period"
-                                    class="form-select form-select-sm form-select-solid">
-                                    <option value="next">Within the next</option>
-                                    <option value="last">Within the last</option>
-                                    <option value="between">Between</option>
-                                    <option value="on">On</option>
-                                </select>
-                            </div>
-                            <!--end::Input group-->
-                            <!--begin::Input group-->
-                            <div class="row mb-8">
-                                <!--begin::Col-->
-                                <div class="col-6">
-                                    <input type="number" name="date_number"
-                                        class="form-control form-control-sm form-control-solid" placeholder="Lenght"
-                                        value="" />
-                                </div>
-                                <!--end::Col-->
-                                <!--begin::Col-->
-                                <div class="col-6">
-                                    <select name="date_typer" aria-label="Select a Timezone" data-control="select2"
-                                        data-dropdown-parent="#kt_header_search" data-placeholder="Period"
-                                        class="form-select form-select-sm form-select-solid">
-                                        <option value="days">Days</option>
-                                        <option value="weeks">Weeks</option>
-                                        <option value="months">Months</option>
-                                        <option value="years">Years</option>
-                                    </select>
-                                </div>
-                                <!--end::Col-->
-                            </div>
-                            <!--end::Input group-->
-                            <!--begin::Actions-->
-                            <div class="d-flex justify-content-end">
-                                <button type="reset" class="btn btn-sm btn-light fw-bold btn-active-light-primary me-2"
-                                    data-kt-search-element="advanced-options-form-cancel">Cancel</button>
-                                <a href="../dist/pages/search/horizontal.html" class="btn btn-sm fw-bold btn-primary"
-                                    data-kt-search-element="advanced-options-form-search">Search</a>
-                            </div>
-                            <!--end::Actions-->
-                        </form>
-                        <!--end::Preferences-->
-                        <!--begin::Preferences-->
-                        <form data-kt-search-element="preferences" class="pt-1 d-none">
-                            <!--begin::Heading-->
-                            <h3 class="fw-semibold text-dark mb-7">Search Preferences</h3>
-                            <!--end::Heading-->
-                            <!--begin::Input group-->
-                            <div class="pb-4 border-bottom">
-                                <label
-                                    class="form-check form-switch form-switch-sm form-check-custom form-check-solid flex-stack">
-                                    <span
-                                        class="form-check-label text-gray-700 fs-6 fw-semibold ms-0 me-2">Projects</span>
-                                    <input class="form-check-input" type="checkbox" value="1" checked="checked" />
-                                </label>
-                            </div>
-                            <!--end::Input group-->
-                            <!--begin::Input group-->
-                            <div class="py-4 border-bottom">
-                                <label
-                                    class="form-check form-switch form-switch-sm form-check-custom form-check-solid flex-stack">
-                                    <span
-                                        class="form-check-label text-gray-700 fs-6 fw-semibold ms-0 me-2">Targets</span>
-                                    <input class="form-check-input" type="checkbox" value="1" checked="checked" />
-                                </label>
-                            </div>
-                            <!--end::Input group-->
-                            <!--begin::Input group-->
-                            <div class="py-4 border-bottom">
-                                <label
-                                    class="form-check form-switch form-switch-sm form-check-custom form-check-solid flex-stack">
-                                    <span class="form-check-label text-gray-700 fs-6 fw-semibold ms-0 me-2">Affiliate
-                                        Programs</span>
-                                    <input class="form-check-input" type="checkbox" value="1" />
-                                </label>
-                            </div>
-                            <!--end::Input group-->
-                            <!--begin::Input group-->
-                            <div class="py-4 border-bottom">
-                                <label
-                                    class="form-check form-switch form-switch-sm form-check-custom form-check-solid flex-stack">
-                                    <span
-                                        class="form-check-label text-gray-700 fs-6 fw-semibold ms-0 me-2">Referrals</span>
-                                    <input class="form-check-input" type="checkbox" value="1" checked="checked" />
-                                </label>
-                            </div>
-                            <!--end::Input group-->
-                            <!--begin::Input group-->
-                            <div class="py-4 border-bottom">
-                                <label
-                                    class="form-check form-switch form-switch-sm form-check-custom form-check-solid flex-stack">
-                                    <span class="form-check-label text-gray-700 fs-6 fw-semibold ms-0 me-2">Users</span>
-                                    <input class="form-check-input" type="checkbox" value="1" />
-                                </label>
-                            </div>
-                            <!--end::Input group-->
-                            <!--begin::Actions-->
-                            <div class="d-flex justify-content-end pt-7">
-                                <button type="reset" class="btn btn-sm btn-light fw-bold btn-active-light-primary me-2"
-                                    data-kt-search-element="preferences-dismiss">Cancel</button>
-                                <button type="submit" class="btn btn-sm fw-bold btn-primary">Save
-                                    Changes</button>
-                            </div>
-                            <!--end::Actions-->
-                        </form>
-                        <!--end::Preferences-->
-                    </div>
-                    <!--end::Menu-->
-                </div>
-                <!--end::Search-->
-            </div>
-            <!--end::Search-->
         </div>
-        <!--end::Header secondary container-->
-    </div>
-    <!--end::Header secondary-->
-</div>
+
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu(event)">
+                    <span class="hamburger"></span>
+                    <span class="hamburger"></span>
+                    <span class="hamburger"></span>
+                </button>
+                
+                <ul class="nav-menu" id="navMenu">
+                    <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">New Survey</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">My Surveys</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Reports</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Guidelines</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Support</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    
+
+    <script>
+        // Mobile menu toggle
+        function toggleMobileMenu(event) {
+        event.stopPropagation();  // ✅ Prevents propagation to document click handler
+        const navMenu = document.getElementById('navMenu');
+        const toggle = document.querySelector('.mobile-menu-toggle');
+
+        navMenu.classList.toggle('active');
+        toggle.classList.toggle('active');
+    }
+
+
+        // Close mobile menu when clicking on a nav link
+       document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                const navMenu = document.getElementById('navMenu');
+                const toggle = document.querySelector('.mobile-menu-toggle');
+                navMenu.classList.remove('active');
+                toggle.classList.remove('active');
+            });
+        });
+
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            const navMenu = document.getElementById('navMenu');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            
+            if (!toggle.contains(e.target) && !navMenu.contains(e.target)) {
+                navMenu.classList.remove('active');
+                toggle.classList.remove('active');
+            }
+        });
+
+        // Add smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

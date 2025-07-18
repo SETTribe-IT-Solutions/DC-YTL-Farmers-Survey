@@ -1,45 +1,86 @@
 <?php
 include('include/conn.php');
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+// Fetch and sanitize inputs
+function getPost($key, $default = '')
+{
+    return isset($_POST[$key]) ? trim($_POST[$key]) : $default;
+}
 
-    // Convert Yes/No to boolean 1/0
-    function yn_to_bool($val) {
-        return strtolower(trim($val)) === 'yes' || $val === 'होय' ? 1 : 0;
-    }
+// Numeric fields
+$total_land_acres = (int) getPost('total_land_acres', 0);
+$total_land_guntha = (int) getPost('total_land_guntha', 0);
 
-    // Step 1: Gather form data
-    $land_total = isset($_POST['land_total']) ? json_encode($_POST['land_total']) : json_encode([]);
-    $water_sources = isset($_POST['source']) ? json_encode($_POST['source']) : json_encode([]);
+$dry_land_acres = (int) getPost('dry_land_acres', 0);
+$dry_land_guntha = (int) getPost('dry_land_guntha', 0);
 
-    $land_total_acre = $_POST['land_total_acre'] ?? '';
-    $land_total_gunta = $_POST['land_total_gunta'] ?? '';
-    $dry_acre = $_POST['dry_acre'] ?? '';
-    $dry_gunta = $_POST['dry_gunta'] ?? '';
-    $seasonal_acre = $_POST['seasonal_acre'] ?? '';
-    $seasonal_gunta = $_POST['seasonal_gunta'] ?? '';
-    $irrigated_acre = $_POST['irrigated_acre'] ?? '';
-    $irrigated_gunta = $_POST['irrigated_gunta'] ?? '';
-    $electricity_connection = yn_to_bool($_POST['electricity_connection'] ?? '');
-    $motor_count = $_POST['motor_count'] ?? 0;
-    $bill_pending = yn_to_bool($_POST['bill_pending'] ?? '');
-    $pending_bill_details = $_POST['pending_bill_details'] ?? '';
+$seasonal_garden_acres = (int) getPost('seasonal_garden_acres', 0);
+$seasonal_garden_guntha = (int) getPost('seasonal_garden_guntha', 0);
 
-    // Step 2: Insert into DB (without survey_id)
-    $sql = "INSERT INTO agricultural_land_info (
-        land_total, land_total_acre, land_total_gunta,
-        dry_acre, dry_gunta, seasonal_acre, seasonal_gunta,
-        irrigated_acre, irrigated_gunta, water_sources,
-        electricity_connection, motor_count, bill_pending, pending_bill_details
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+$garden_acres = (int) getPost('garden_acres', 0);
+$garden_guntha = (int) getPost('garden_guntha', 0);
 
-    $stmt = $conn->prepare($sql);
+$well_irrigated_acres = (int) getPost('well_irrigated_acres', 0);
+$well_irrigated_guntha = (int) getPost('well_irrigated_guntha', 0);
+
+$bore_irrigated_acres = (int) getPost('bore_irrigated_acres', 0);
+$bore_irrigated_guntha = (int) getPost('bore_irrigated_guntha', 0);
+
+$canal_irrigated_acres = (int) getPost('canal_irrigated_acres', 0);
+$canal_irrigated_guntha = (int) getPost('canal_irrigated_guntha', 0);
+
+$other_irrigated_acres = (int) getPost('other_irrigated_acres', 0);
+$other_irrigated_guntha = (int) getPost('other_irrigated_guntha', 0);
+
+// Text fields
+$water_source_garden = getPost('water_source_garden');
+$electricity_connection = getPost('electricity_connection');
+$motor_count = (int) getPost('motor_count', 0);
+$electricity_bill_pending = getPost('electricity_bill_pending');
+$bill_pending_since = getPost('bill_pending_since');
+$bill_pending_amount = getPost('bill_pending_amount');
+
+// SQL Insert
+$sql = "INSERT INTO land_information (
+    total_land_acres, total_land_guntha,
+    dry_land_acres, dry_land_guntha,
+    seasonal_garden_acres, seasonal_garden_guntha,
+    garden_acres, garden_guntha,
+    well_irrigated_acres, well_irrigated_guntha,
+    bore_irrigated_acres, bore_irrigated_guntha,
+    canal_irrigated_acres, canal_irrigated_guntha,
+    other_irrigated_acres, other_irrigated_guntha,
+    water_source_garden, electricity_connection, motor_count,
+    electricity_bill_pending, bill_pending_since, bill_pending_amount
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+$stmt = $conn->prepare($sql);
+
+if ($stmt) {
     $stmt->bind_param(
-        "ssssssssssssss",
-        $land_total, $land_total_acre, $land_total_gunta,
-        $dry_acre, $dry_gunta, $seasonal_acre, $seasonal_gunta,
-        $irrigated_acre, $irrigated_gunta, $water_sources,
-        $electricity_connection, $motor_count, $bill_pending, $pending_bill_details
+        "iiiiiiiiiiiiiiiiississ",
+        $total_land_acres,
+        $total_land_guntha,
+        $dry_land_acres,
+        $dry_land_guntha,
+        $seasonal_garden_acres,
+        $seasonal_garden_guntha,
+        $garden_acres,
+        $garden_guntha,
+        $well_irrigated_acres,
+        $well_irrigated_guntha,
+        $bore_irrigated_acres,
+        $bore_irrigated_guntha,
+        $canal_irrigated_acres,
+        $canal_irrigated_guntha,
+        $other_irrigated_acres,
+        $other_irrigated_guntha,
+        $water_source_garden,
+        $electricity_connection,
+        $motor_count,
+        $electricity_bill_pending,
+        $bill_pending_since,
+        $bill_pending_amount
     );
 
     // ✅ Output HTML with SweetAlert2
@@ -55,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 text: 'तुमची माहिती सेव्ह झाली आहे.',
                 confirmButtonText: 'ठीक आहे'
             }).then(() => {
-                window.location.href = 'Agricultural_land_information.php';
+                window.location.href = 'pik_uptanna.php';
             });
         </script>";
     } else {
@@ -71,8 +112,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     echo '</body></html>';
-
     $stmt->close();
-    $conn->close();
+} else {
+    echo "❌ SQL प्रिपेअर एरर: " . $conn->error;
 }
+
+$conn->close();
 ?>
+.

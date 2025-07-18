@@ -102,7 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 text: 'माहिती यशस्वीरित्या सेव्ह झाली!',
                 confirmButtonText: 'ठीक आहे'
             }).then(() => {
-                window.location.href = 'Welfare_Scheme_Benefit_Information.php';
+                window.location.href = 'Health_Nutrition_and_Related_Information.php';
             });
         </script>";
     } else {
