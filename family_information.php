@@ -216,7 +216,7 @@
         width: 28px;
         height: 28px;
         top: -10px;
-        right: -220px;
+        right: -230px;
       }
 }
 
