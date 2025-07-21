@@ -169,7 +169,7 @@
       /* top: 15px;
       right: 15px; */
       top: 60%;
-      right: -850%;
+      right: -860%;
       background: #e74c3c;
       color: white;
       border: none;
