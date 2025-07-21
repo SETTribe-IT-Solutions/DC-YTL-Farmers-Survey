@@ -34,7 +34,7 @@
       border-radius: 15px 15px 0 0;
       box-shadow: var(--box-shadow);
       margin-bottom: 30px;
-      position: relative;
+      /* position: relative; */
       overflow: hidden;
       margin-top: 0.5%;
 
@@ -55,14 +55,14 @@
       font-size: 2.2rem;
       margin-bottom: 10px;
       font-weight: 800;
-      position: relative;
+      /* position: relative; */
       z-index: 2;
     }
 
     .header1 p {
       font-size: 1.1rem;
       opacity: 0.9;
-      position: relative;
+      /* position: relative; */
       z-index: 2;
       max-width: 700px;
       margin: 0 auto;
@@ -75,7 +75,7 @@
       overflow: hidden;
       padding: 30px;
       margin-bottom: 30px;
-      position: relative;
+      /* position: relative; */
       z-index: 1;
     }
 

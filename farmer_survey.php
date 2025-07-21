@@ -57,7 +57,7 @@ $survey_id = "survey{$currentYear}_" . str_pad($nextNumber, 2, '0', STR_PAD_LEFT
       border-radius: 15px 15px 0 0;
       box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
       margin-bottom: 30px;
-      position: relative;
+      /* position: relative; */
       overflow: hidden;
     }
 
@@ -77,13 +77,13 @@ $survey_id = "survey{$currentYear}_" . str_pad($nextNumber, 2, '0', STR_PAD_LEFT
       margin-bottom: 10px;
       font-weight: 700;
       text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-      position: relative;
+      /* position: relative; */
     }
 
     .header1 p {
       font-size: 1.1rem;
       opacity: 0.9;
-      position: relative;
+      /* position: relative; */
       max-width: 700px;
       margin: 0 auto;
     }
@@ -95,7 +95,7 @@ $survey_id = "survey{$currentYear}_" . str_pad($nextNumber, 2, '0', STR_PAD_LEFT
       overflow: hidden;
       padding: 30px;
       margin-bottom: 30px;
-      position: relative;
+      /* position: relative; */
       z-index: 1;
     }
 

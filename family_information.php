@@ -161,13 +161,15 @@
       margin-bottom: 25px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.08);
       border: 1px solid #e0e6ed;
-      position: relative;
+      /* position: relative; */
     }
     
     .remove-member {
-      position: absolute;
-      top: 15px;
-      right: 15px;
+      position: relative;
+      /* top: 15px;
+      right: 15px; */
+      top: 60%;
+      right: -850%;
       background: #e74c3c;
       color: white;
       border: none;
@@ -189,7 +191,7 @@
     .member-title {
       font-weight: bold;
       margin-bottom: 20px;
-      padding: 8px 15px;
+      padding: 0px 15px;
       background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
       border-radius: 8px;
       color: white;
