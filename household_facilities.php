@@ -52,7 +52,7 @@
       overflow: hidden;
       padding: 30px;
       margin-bottom: 30px;
-      margin-top: -2% !important;
+      /* margin-top: -2% !important; */
     }
 
     .section-title {
@@ -429,8 +429,10 @@
           </div>
         </div>
       </div>
+  </div>
 
       <!-- घरसुखी सुविधा विषयक माहिती Section -->
+       <div class="main-container">
       <div class="sub-section">
         <h4 class="section-title">2. घरसुखी सुविधा विषयक माहिती
           <!-- <i class="fas fa-home info-icon"></i>  -->
@@ -637,6 +639,7 @@
           </div>
         </div>
       </div>
+  </div>
         
       <!-- Submit Button -->
       <!-- Include SweetAlert2 -->

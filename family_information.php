@@ -40,7 +40,7 @@
       overflow: hidden;
       padding: 30px;
       margin-bottom: 30px;
-       margin-top: -2% !important;
+       /* margin-top: -2% !important; */
     }
 
     .section-title {
@@ -211,7 +211,18 @@
         width: 100%;
         padding: 15px;
       }
-    }
+     
+      .remove-member {
+        width: 28px;
+        height: 28px;
+        top: -10px;
+        right: -220px;
+      }
+}
+
+
+
+    
   </style>
 </head>
 <body>
@@ -224,7 +235,7 @@
   </div> -->
   
   <div class="main-container">
-    <h4 class="section-title">शेतकरी कुटुंबातील सदस्य
+    <h4 class="section-title typewriter">शेतकरी कुटुंबातील सदस्य
       <!-- <i class="fas fa-users info-icon"></i> -->
     </h4>
     
@@ -517,5 +528,7 @@
     });
   });
 </script>
+
+
 </body>
 </html>
