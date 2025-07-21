@@ -77,6 +77,7 @@
       margin-bottom: 30px;
       /* position: relative; */
       z-index: 1;
+      margin-top: 1.5% !important;
     }
 
     .section-title {
