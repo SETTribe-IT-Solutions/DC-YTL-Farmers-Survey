@@ -353,7 +353,7 @@ $survey_id = "survey{$currentYear}_" . str_pad($nextNumber, 2, '0', STR_PAD_LEFT
 </head>
 
 <body>
-  <?php include 'include/header.php'; ?>
+  <?php include('include/header.php'); ?>
 
   <div class="container-fluid">
     <!-- <div class="header1">
