@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="mr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,7 +31,7 @@
       text-align: center;
       padding: 25px 0;
       border-radius: 15px 15px 0 0;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       margin-bottom: 30px;
     }
 
@@ -110,8 +111,15 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .validation-error {
@@ -133,11 +141,11 @@
       border-radius: 0 8px 8px 0;
       margin: 20px 0;
     }
-    
+
     .conditional-container {
       padding: 15px;
     }
-    
+
     .double-column {
       display: grid;
       gap: 15px;
@@ -148,14 +156,14 @@
       flex-direction: column;
       gap: 20px;
     }
-    
+
     .form-row {
       display: flex;
       flex-wrap: wrap;
       margin-right: -5px;
       margin-left: -5px;
     }
-    
+
     .form-col {
       padding-left: 5px;
       padding-right: 5px;
@@ -166,16 +174,16 @@
       .header1 h1 {
         font-size: 1.8rem;
       }
-      
+
       .main-container {
         padding: 20px;
       }
-      
+
       .btn-submit {
         width: 100%;
         padding: 15px;
       }
-      
+
       .radio-group {
         flex-direction: column;
         gap: 10px;
@@ -185,259 +193,275 @@
         grid-template-columns: 1fr;
         gap: 20px;
       }
-      
+
       .form-row {
         flex-direction: column;
       }
     }
   </style>
 </head>
+
 <body>
-<?php include 'include/header.php'; ?>
-<div class="container-fluid">
-  <!-- <div class="header1">
+  <?php include 'include/header.php'; ?>
+  <div class="container-fluid">
+    <!-- <div class="header1">
     <h1><i class="fas fa-users me-3"></i>कुटुंबिक माहिती फॉर्म</h1>
     <p>कृपया आपल्या कुटुंबाची सविस्तर माहिती भरा</p>
   </div> -->
-  
-  <div class="main-container">
-    <!-- <div class="info-box">
+
+    <div class="main-container">
+      <!-- <div class="info-box">
       <i class="fas fa-info-circle me-2"></i>ही माहिती गोपनीय राखली जाईल आणि केवळ सरकारी योजनांसाठी वापरली जाईल
     </div> -->
-    
-    <form id="familyForm" novalidate>
-      <!-- Hidden field for survey ID -->
-      <input type="hidden" name="survey_id" value="<?php echo uniqid('survey_'); ?>">
-      
-      <!-- इतर कुटुंबिक माहिती Section -->
-      <div class="sub-section">
-        <h4 class="section-title">1. इतर कुटुंबिक माहिती
-          <!-- <i class="fas fa-info-circle info-icon"></i> -->
-        </h4>
-        
-        <div class="double-column">
-          <div class="mobile-column">
-            <!-- Row 1 -->
-            <div class="form-row">
-              <div class="form-col col-md-6">
-                <div class="form-group">
-                  <label class="form-label required">1. कुटुंबात विवाह योग्य मुली आहेत का?</label>
-                  <div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="marriageable_daughters" id="q1_yes" value="1" required>
-                      <label class="form-check-label" for="q1_yes">होय</label>
+
+      <form id="familyForm" novalidate>
+        <!-- Hidden field for survey ID -->
+        <input type="hidden" name="survey_id" value="<?php echo uniqid('survey_'); ?>">
+
+        <!-- इतर कुटुंबिक माहिती Section -->
+        <div class="sub-section">
+          <h4 class="section-title">1. इतर कुटुंबिक माहिती
+            <!-- <i class="fas fa-info-circle info-icon"></i> -->
+          </h4>
+
+          <div class="double-column">
+            <div class="mobile-column">
+              <!-- Row 1 -->
+              <div class="form-row">
+                <div class="form-col col-md-6">
+                  <div class="form-group">
+                    <label class="form-label required">1. कुटुंबात विवाह योग्य मुली आहेत का?</label>
+                    <div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="marriageable_daughters" id="q1_yes" value="1"
+                          required>
+                        <label class="form-check-label" for="q1_yes">होय</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="marriageable_daughters" id="q1_no" value="0">
+                        <label class="form-check-label" for="q1_no">नाही</label>
+                      </div>
                     </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="marriageable_daughters" id="q1_no" value="0">
-                      <label class="form-check-label" for="q1_no">नाही</label>
-                    </div>
+                    <div class="validation-error">कृपया उत्तर निवडा</div>
                   </div>
-                  <div class="validation-error">कृपया उत्तर निवडा</div>
+                </div>
+
+                <div class="form-col col-md-6">
+                  <div class="form-group">
+                    <label class="form-label required">2. असल्‍यास मुलीच्‍या विवाहासाठी आर्थिक अडचण आहे काय ?</label>
+                    <div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="marriage_financial_difficulty" id="q2_yes"
+                          value="1" required>
+                        <label class="form-check-label" for="q2_yes">होय</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="marriage_financial_difficulty" id="q2_no"
+                          value="0">
+                        <label class="form-check-label" for="q2_no">नाही</label>
+                      </div>
+                    </div>
+                    <div class="validation-error">कृपया उत्तर निवडा</div>
+                  </div>
                 </div>
               </div>
-              
-              <div class="form-col col-md-6">
-                <div class="form-group">
-                  <label class="form-label required">2. असल्‍यास मुलीच्‍या विवाहासाठी आर्थिक अडचण आहे काय ?</label>
-                  <div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="marriage_financial_difficulty" id="q2_yes" value="1" required>
-                      <label class="form-check-label" for="q2_yes">होय</label>
+
+              <!-- Row 2 -->
+              <div class="form-row">
+                <div class="form-col col-md-6">
+                  <div class="form-group">
+                    <label class="form-label required">3. कुटुंबातील व्‍यक्‍तीचा घरात अथवा बाहेर आदर केला जात नाही
+                      का?</label>
+                    <div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="family_respect_issue" id="q3_yes" value="1"
+                          required>
+                        <label class="form-check-label" for="q3_yes">होय</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="family_respect_issue" id="q3_no" value="0">
+                        <label class="form-check-label" for="q3_no">नाही</label>
+                      </div>
                     </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="marriage_financial_difficulty" id="q2_no" value="0">
-                      <label class="form-check-label" for="q2_no">नाही</label>
-                    </div>
+                    <div class="validation-error">कृपया उत्तर निवडा</div>
                   </div>
-                  <div class="validation-error">कृपया उत्तर निवडा</div>
+                </div>
+
+                <div class="form-col col-md-6">
+                  <div class="form-group">
+                    <label class="form-label required">4. कर्जामुळे किंवा इतर कोणत्‍याही कारणामुळे कौटुंबिक कलह निर्माण
+                      होतो का?</label>
+                    <div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="family_conflict" id="q4_yes" value="1"
+                          required>
+                        <label class="form-check-label" for="q4_yes">होय</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="family_conflict" id="q4_no" value="0">
+                        <label class="form-check-label" for="q4_no">नाही</label>
+                      </div>
+                    </div>
+                    <div class="validation-error">कृपया उत्तर निवडा</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Row 3 -->
+              <div class="form-row">
+                <div class="form-col col-md-6">
+                  <div class="form-group">
+                    <label class="form-label required">5. तुम्‍हाला किंवा घरातील इतर कोणत्‍याही व्‍यक्‍तीस व्‍यसन आहे का
+                      ?</label>
+                    <div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="addiction_in_family" id="q5_yes" value="1"
+                          required>
+                        <label class="form-check-label" for="q5_yes">होय</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="addiction_in_family" id="q5_no" value="0">
+                        <label class="form-check-label" for="q5_no">नाही</label>
+                      </div>
+                    </div>
+                    <div class="validation-error">कृपया उत्तर निवडा</div>
+                  </div>
+                </div>
+
+                <div class="form-col col-md-6">
+                  <div class="form-group conditional-field" id="q6-container">
+                    <label class="form-label">6. व्‍यसन असल्‍यास व्‍यसनाचा प्रकार :</label>
+                    <select name="addiction_type" class="form-select">
+                      <option value="" disabled selected>निवडा</option>
+                      <option value="तंबाखू">तंबाखू</option>
+                      <option value="दारू">दारू</option>
+                      <option value="इतर">इतर</option>
+                    </select>
+                  </div>
                 </div>
               </div>
             </div>
-            
-            <!-- Row 2 -->
-            <div class="form-row">
-              <div class="form-col col-md-6">
-                <div class="form-group">
-                  <label class="form-label required">3. कुटुंबातील व्‍यक्‍तीचा घरात अथवा बाहेर आदर केला जात नाही का?</label>
-                  <div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="family_respect_issue" id="q3_yes" value="1" required>
-                      <label class="form-check-label" for="q3_yes">होय</label>
+
+            <div class="mobile-column">
+              <!-- Row 4 -->
+              <div class="form-row">
+                <div class="form-col col-md-6">
+                  <div class="form-group">
+                    <label class="form-label required">7. घरात कोणाला गंभीर / दुर्धर आजार आहे का ?</label>
+                    <div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="serious_illness" id="q7_yes" value="1"
+                          required>
+                        <label class="form-check-label" for="q7_yes">होय</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="serious_illness" id="q7_no" value="0">
+                        <label class="form-check-label" for="q7_no">नाही</label>
+                      </div>
                     </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="family_respect_issue" id="q3_no" value="0">
-                      <label class="form-check-label" for="q3_no">नाही</label>
-                    </div>
+                    <div class="validation-error">कृपया उत्तर निवडा</div>
                   </div>
-                  <div class="validation-error">कृपया उत्तर निवडा</div>
                 </div>
-              </div>
-              
-              <div class="form-col col-md-6">
-                <div class="form-group">
-                  <label class="form-label required">4. कर्जामुळे किंवा इतर कोणत्‍याही कारणामुळे कौटुंबिक कलह निर्माण होतो का?</label>
-                  <div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="family_conflict" id="q4_yes" value="1" required>
-                      <label class="form-check-label" for="q4_yes">होय</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="family_conflict" id="q4_no" value="0">
-                      <label class="form-check-label" for="q4_no">नाही</label>
-                    </div>
+
+                <div class="form-col col-md-6">
+                  <div class="form-group conditional-field" id="q8-container">
+                    <label class="form-label">8. आजार असल्‍यास आजाराचा प्रकार: </label>
+                    <select name="illness_type" class="form-select">
+                      <option value="" disabled selected>निवडा</option>
+                      <option value="शेवटच्या टप्प्यातील कर्करोग">शेवटच्या टप्प्यातील कर्करोग</option>
+                      <option value="फुफ्फुसाचे आजार">फुफ्फुसाचे आजार</option>
+                      <option value="अतिसार">अतिसार</option>
+                      <option value="पोटाचा अल्सर">पोटाचा अल्सर</option>
+                      <option value="पार्किन्स">पार्किन्स</option>
+                      <option value="मज्जातंतु संबंधी आजार">मज्जातंतु संबंधी आजार</option>
+                      <option value="दमा">दमा</option>
+                      <option value="इतर">इतर</option>
+                    </select>
                   </div>
-                  <div class="validation-error">कृपया उत्तर निवडा</div>
                 </div>
               </div>
-            </div>
-            
-            <!-- Row 3 -->
-            <div class="form-row">
-              <div class="form-col col-md-6">
-                <div class="form-group">
-                  <label class="form-label required">5. तुम्‍हाला किंवा घरातील इतर कोणत्‍याही व्‍यक्‍तीस व्‍यसन आहे का  ?</label>
-                  <div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="addiction_in_family" id="q5_yes" value="1" required>
-                      <label class="form-check-label" for="q5_yes">होय</label>
+
+              <!-- Row 5 -->
+              <div class="form-row">
+                <div class="form-col col-md-6">
+                  <div class="form-group">
+                    <label class="form-label required">9. घरात किंवा आई कडील/वडीलाकडील नातेवाईकात कोणी आत्‍महत्‍या केली
+                      आहे का / किंवा आत्‍महत्‍या करण्‍याचा प्रयत्‍न केला आहे काय ?</label>
+                    <div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="suicide_history" id="q9_yes" value="1"
+                          required>
+                        <label class="form-check-label" for="q9_yes">होय</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="suicide_history" id="q9_no" value="0">
+                        <label class="form-check-label" for="q9_no">नाही</label>
+                      </div>
                     </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="addiction_in_family" id="q5_no" value="0">
-                      <label class="form-check-label" for="q5_no">नाही</label>
-                    </div>
+                    <div class="validation-error">कृपया उत्तर निवडा</div>
                   </div>
-                  <div class="validation-error">कृपया उत्तर निवडा</div>
                 </div>
-              </div>
-              
-              <div class="form-col col-md-6">
-                <div class="form-group conditional-field" id="q6-container">
-                  <label class="form-label">6. व्‍यसन असल्‍यास व्‍यसनाचा प्रकार :</label>
-                  <select name="addiction_type" class="form-select">
-                    <option value="" disabled selected>निवडा</option>
-                    <option value="तंबाखू">तंबाखू</option>
-                    <option value="दारू">दारू</option>
-                    <option value="इतर">इतर</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="mobile-column">
-            <!-- Row 4 -->
-            <div class="form-row">
-              <div class="form-col col-md-6">
-                <div class="form-group">
-                  <label class="form-label required">7. घरात कोणाला गंभीर / दुर्धर  आजार आहे का ?</label>
-                  <div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="serious_illness" id="q7_yes" value="1" required>
-                      <label class="form-check-label" for="q7_yes">होय</label>
+
+                <div class="form-col col-md-6">
+                  <div class="form-group">
+                    <label class="form-label required">10. घरात कोणी बेरोजगार आहेत का ?</label>
+                    <div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="unemployment" id="q10_yes" value="1"
+                          required>
+                        <label class="form-check-label" for="q10_yes">होय</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="unemployment" id="q10_no" value="0">
+                        <label class="form-check-label" for="q10_no">नाही</label>
+                      </div>
                     </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="serious_illness" id="q7_no" value="0">
-                      <label class="form-check-label" for="q7_no">नाही</label>
-                    </div>
+                    <div class="validation-error">कृपया उत्तर निवडा</div>
                   </div>
-                  <div class="validation-error">कृपया उत्तर निवडा</div>
                 </div>
               </div>
-              
-              <div class="form-col col-md-6">
-                <div class="form-group conditional-field" id="q8-container">
-                  <label class="form-label">8. आजार असल्‍यास आजाराचा प्रकार: </label>
-                  <select name="illness_type" class="form-select">
-                    <option value="" disabled selected>निवडा</option>
-                    <option value="शेवटच्या टप्प्यातील कर्करोग">शेवटच्या टप्प्यातील कर्करोग</option>
-                    <option value="फुफ्फुसाचे आजार">फुफ्फुसाचे आजार</option>
-                    <option value="अतिसार">अतिसार</option>
-                    <option value="पोटाचा अल्सर">पोटाचा अल्सर</option>
-                    <option value="पार्किन्स">पार्किन्स</option>
-                    <option value="मज्जातंतु संबंधी आजार">मज्जातंतु संबंधी आजार</option>
-                    <option value="दमा">दमा</option>
-                    <option value="इतर">इतर</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Row 5 -->
-            <div class="form-row">
-              <div class="form-col col-md-6">
-                <div class="form-group">
-                  <label class="form-label required">9. घरात किंवा आई कडील/वडीलाकडील नातेवाईकात कोणी आत्‍महत्‍या केली आहे का / किंवा आत्‍महत्‍या करण्‍याचा प्रयत्‍न केला आहे काय ?</label>
-                  <div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="suicide_history" id="q9_yes" value="1" required>
-                      <label class="form-check-label" for="q9_yes">होय</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="suicide_history" id="q9_no" value="0">
-                      <label class="form-check-label" for="q9_no">नाही</label>
-                    </div>
+
+              <!-- Row 6 -->
+              <div class="form-row">
+                <div class="form-col col-md-6">
+                  <div class="form-group">
+                    <label class="form-label">11. बेरोजगार असल्‍यास किती जण आहेत ?</label>
+                    <input type="number" name="unemployed_count" class="form-control" min="0" max="20" placeholder="0">
+                    <div class="validation-error" style="display: none;"></div>
                   </div>
-                  <div class="validation-error">कृपया उत्तर निवडा</div>
                 </div>
-              </div>
-              
-              <div class="form-col col-md-6">
-                <div class="form-group">
-                  <label class="form-label required">10. घरात कोणी बेरोजगार आहेत का  ?</label>
-                  <div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="unemployment" id="q10_yes" value="1" required>
-                      <label class="form-check-label" for="q10_yes">होय</label>
+
+                <div class="form-col col-md-6">
+                  <div class="form-group">
+                    <label class="form-label required">12. नापिकी/नैसर्गिक आपत्‍ती किंवा इतर कारणांमुळे आर्थिक अडचण
+                      निर्माण झाली आहे का ?</label>
+                    <div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="financial_difficulty" id="q12_yes" value="1"
+                          required>
+                        <label class="form-check-label" for="q12_yes">होय</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="financial_difficulty" id="q12_no" value="0">
+                        <label class="form-check-label" for="q12_no">नाही</label>
+                      </div>
                     </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="unemployment" id="q10_no" value="0">
-                      <label class="form-check-label" for="q10_no">नाही</label>
-                    </div>
+                    <div class="validation-error">कृपया उत्तर निवडा</div>
                   </div>
-                  <div class="validation-error">कृपया उत्तर निवडा</div>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Row 6 -->
-            <div class="form-row">
-              <div class="form-col col-md-6">
-                <div class="form-group">
-                  <label class="form-label">11. बेरोजगार असल्‍यास किती जण आहेत ?</label>
-                  <input type="number" name="unemployed_count" class="form-control" min="0" max="20" placeholder="0">
-                  <div class="validation-error" style="display: none;"></div>
-                </div>
-              </div>
-              
-              <div class="form-col col-md-6">
-                <div class="form-group">
-                  <label class="form-label required">12. नापिकी/नैसर्गिक आपत्‍ती किंवा इतर कारणांमुळे आर्थिक अडचण निर्माण झाली आहे का ?</label>
-                  <div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="financial_difficulty" id="q12_yes" value="1" required>
-                      <label class="form-check-label" for="q12_yes">होय</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="financial_difficulty" id="q12_no" value="0">
-                      <label class="form-check-label" for="q12_no">नाही</label>
-                    </div>
-                  </div>
-                  <div class="validation-error">कृपया उत्तर निवडा</div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-  </div>
+    </div>
 
-      <!-- घरसुखी सुविधा विषयक माहिती Section -->
-       <div class="main-container">
+    <!-- घरसुखी सुविधा विषयक माहिती Section -->
+    <div class="main-container">
       <div class="sub-section">
         <h4 class="section-title">2. घरसुखी सुविधा विषयक माहिती
           <!-- <i class="fas fa-home info-icon"></i>  -->
         </h4>
-        
+
         <div class="double-column">
           <div class="mobile-column">
             <!-- Row 1 -->
@@ -458,7 +482,7 @@
                   <div class="validation-error">कृपया उत्तर निवडा</div>
                 </div>
               </div>
-              
+
               <!-- House type fields - shown only if user has own house -->
               <div id="own-house-yes-fields" class="conditional-container">
                 <div class="form-row">
@@ -467,7 +491,8 @@
                       <label class="form-label required">2. स्वतःचे घर असल्‍यास प्रकार ?</label>
                       <div>
                         <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="house_type" id="clean_kachchhe" value="कच्चे">
+                          <input class="form-check-input" type="radio" name="house_type" id="clean_kachchhe"
+                            value="कच्चे">
                           <label class="form-check-label" for="clean_kachchhe">कच्चे</label>
                         </div>
                         <div class="form-check form-check-inline">
@@ -478,17 +503,19 @@
                       <div class="validation-error">कृपया उत्तर निवडा</div>
                     </div>
                   </div>
-                  
+
                   <div class="form-col col-md-6">
                     <div class="form-group">
                       <label class="form-label required">3. स्वतःचे घर असल्‍यास शासकिय योजनेतुन मिळाले आहे काय ?</label>
                       <div>
                         <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="government_housing_scheme" id="toilet_govt_yes" value="1">
+                          <input class="form-check-input" type="radio" name="government_housing_scheme"
+                            id="toilet_govt_yes" value="1">
                           <label class="form-check-label" for="toilet_govt_yes">होय</label>
                         </div>
                         <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="government_housing_scheme" id="toilet_govt_no" value="0">
+                          <input class="form-check-input" type="radio" name="government_housing_scheme"
+                            id="toilet_govt_no" value="0">
                           <label class="form-check-label" for="toilet_govt_no">नाही</label>
                         </div>
                       </div>
@@ -497,20 +524,23 @@
                   </div>
                 </div>
               </div>
-              
+
               <!-- Housing need field - shown only if user doesn't have own house -->
               <div id="own-house-no-field" class="conditional-container">
                 <div class="form-row">
                   <div class="form-col col-md-6">
                     <div class="form-group">
-                      <label class="form-label required">4. स्वतःचे घर नसल्‍यास घरकुल योजने अंतर्गत घराची आवश्‍यक्‍ता आहे का ?</label>
+                      <label class="form-label required">4. स्वतःचे घर नसल्‍यास घरकुल योजने अंतर्गत घराची आवश्‍यक्‍ता
+                        आहे का ?</label>
                       <div>
                         <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="housing_need" id="house_scheme_yes" value="1">
+                          <input class="form-check-input" type="radio" name="housing_need" id="house_scheme_yes"
+                            value="1">
                           <label class="form-check-label" for="house_scheme_yes">होय</label>
                         </div>
                         <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="housing_need" id="house_scheme_no" value="0">
+                          <input class="form-check-input" type="radio" name="housing_need" id="house_scheme_no"
+                            value="0">
                           <label class="form-check-label" for="house_scheme_no">नाही</label>
                         </div>
                       </div>
@@ -520,7 +550,7 @@
                 </div>
               </div>
             </div>
-            
+
             <!-- Row 3 -->
             <div class="form-row">
               <div class="form-col col-md-6">
@@ -528,28 +558,32 @@
                   <label class="form-label required">5. घरासाठी कर्ज काढण्‍यात आले आहे का ?</label>
                   <div>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="house_loan_taken" id="house_loan_yes" value="होय" required>
+                      <input class="form-check-input" type="radio" name="house_loan_taken" id="house_loan_yes"
+                        value="होय" required>
                       <label class="form-check-label" for="house_loan_yes">होय</label>
                     </div>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="house_loan_taken" id="house_loan_no" value="नाही">
+                      <input class="form-check-input" type="radio" name="house_loan_taken" id="house_loan_no"
+                        value="नाही">
                       <label class="form-check-label" for="house_loan_no">नाही</label>
                     </div>
                   </div>
                   <div class="validation-error">कृपया उत्तर निवडा</div>
                 </div>
               </div>
-              
+
               <div class="form-col col-md-6">
                 <div class="form-group">
                   <label class="form-label required">6. वीज जोडणी आहे का ?</label>
                   <div>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="electricity_connection" id="electricity_yes" value="1" required>
+                      <input class="form-check-input" type="radio" name="electricity_connection" id="electricity_yes"
+                        value="1" required>
                       <label class="form-check-label" for="electricity_yes">होय</label>
                     </div>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="electricity_connection" id="electricity_no" value="0">
+                      <input class="form-check-input" type="radio" name="electricity_connection" id="electricity_no"
+                        value="0">
                       <label class="form-check-label" for="electricity_no">नाही</label>
                     </div>
                   </div>
@@ -557,15 +591,16 @@
                 </div>
               </div>
             </div>
-            
+
             <!-- Row 4 -->
             <div class="form-row">
               <div class="form-col col-md-6">
                 <div class="form-group">
-                  <label class="form-label required">7.गॅस जोडणी आहे का  ?</label>
+                  <label class="form-label required">7.गॅस जोडणी आहे का ?</label>
                   <div>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="gas_connection" id="gas_yes" value="1" required>
+                      <input class="form-check-input" type="radio" name="gas_connection" id="gas_yes" value="1"
+                        required>
                       <label class="form-check-label" for="gas_yes">होय</label>
                     </div>
                     <div class="form-check form-check-inline">
@@ -576,13 +611,14 @@
                   <div class="validation-error">कृपया उत्तर निवडा</div>
                 </div>
               </div>
-              
+
               <div class="form-col col-md-6">
                 <div class="form-group">
                   <label class="form-label required">8. नळ जोडणी आहे का ?</label>
                   <div>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="water_connection" id="water_yes" value="1" required>
+                      <input class="form-check-input" type="radio" name="water_connection" id="water_yes" value="1"
+                        required>
                       <label class="form-check-label" for="water_yes">होय</label>
                     </div>
                     <div class="form-check form-check-inline">
@@ -594,7 +630,7 @@
                 </div>
               </div>
             </div>
-            
+
             <!-- Row 5 -->
             <div class="form-row">
               <div class="form-col col-md-6">
@@ -602,7 +638,8 @@
                   <label class="form-label required">9. घरी शौचालय आहे का ?</label>
                   <div>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="toilet_facility" id="toilet_yes" value="1" required>
+                      <input class="form-check-input" type="radio" name="toilet_facility" id="toilet_yes" value="1"
+                        required>
                       <label class="form-check-label" for="toilet_yes">होय</label>
                     </div>
                     <div class="form-check form-check-inline">
@@ -613,20 +650,23 @@
                   <div class="validation-error">कृपया उत्तर निवडा</div>
                 </div>
               </div>
-              
+
               <!-- Swachh Bharat field - shown only if toilet facility is not available -->
               <div id="toilet-no-field" class="conditional-container">
                 <div class="form-row">
                   <div class="form-col col-md-6">
                     <div class="form-group">
-                      <label class="form-label required">10. घरी शौचालय नसल्‍यास स्‍वच्‍छ भारत मिशन अंतर्गत मागणी केली आहे का ?</label>
+                      <label class="form-label required">10. घरी शौचालय नसल्‍यास स्‍वच्‍छ भारत मिशन अंतर्गत मागणी केली
+                        आहे का ?</label>
                       <div>
                         <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="swachh_bharat_application" id="swachh_yes" value="1">
+                          <input class="form-check-input" type="radio" name="swachh_bharat_application" id="swachh_yes"
+                            value="1">
                           <label class="form-check-label" for="swachh_yes">होय</label>
                         </div>
                         <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="swachh_bharat_application" id="swachh_no" value="0">
+                          <input class="form-check-input" type="radio" name="swachh_bharat_application" id="swachh_no"
+                            value="0">
                           <label class="form-check-label" for="swachh_no">नाही</label>
                         </div>
                       </div>
@@ -639,254 +679,282 @@
           </div>
         </div>
       </div>
-  </div>
-        
-      <!-- Submit Button -->
-      <!-- Include SweetAlert2 -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    </div>
 
-<div class="text-center">
-  <button type="button" class="btn btn-submit" name="register" onclick="confirmSubmit()">
-    सबमिट करा
-  </button>
-</div>
+    <!-- Submit Button -->
+    <!-- Include SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<script>
-  function confirmSubmit() {
-    Swal.fire({
-      title: 'तुम्हाला खात्री आहे का?',
-      text: "फॉर्म सबमिट केल्यावर पुढील पानावर जाल.",
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonText: 'हो, पुढे जा',
-      cancelButtonText: 'रद्द करा',
-      reverseButtons: true
-    }).then((result) => {
-      if (result.isConfirmed) {
-        // Redirect after confirmation
-        window.location.href = 'social_participation.php';
-      }
-    });
-  }
+    <div class="text-center">
+      <button type="submit" class="btn btn-submit" name="register">
+        सबमिट करा
+      </button>
+    </div>
+
+   <script>
+document.getElementById('familyForm').addEventListener('submit', function (e) {
+  e.preventDefault(); // Prevent default submit
+
+  Swal.fire({
+    title: 'तुम्हाला खात्री आहे का?',
+    text: "फॉर्म सबमिट केल्यावर पुढील पानावर जाल.",
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonText: 'हो, सबमिट करा',
+    cancelButtonText: 'रद्द करा',
+    reverseButtons: true
+  }).then((result) => {
+    if (result.isConfirmed) {
+      const form = document.getElementById('familyForm');
+      const formData = new FormData(form);
+
+      fetch('farmer_survey_db.php', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.status === 'success') {
+          Swal.fire({
+            title: 'यशस्वी!',
+            text: data.message,
+            icon: 'success',
+            confirmButtonText: 'पुढे जा'
+          }).then(() => {
+            window.location.href = 'social_participation.php'; // Redirect
+          });
+        } else {
+          Swal.fire('त्रुटी', data.message || 'काहीतरी चूक झाली आहे.', 'error');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        Swal.fire('त्रुटी', 'नेटवर्क किंवा सर्व्हर त्रुटी आली.', 'error');
+      });
+    }
+  });
+});
 </script>
+
 
     </form>
   </div>
-</div>
+  </div>
 
-<?php include 'include/footer.php'; ?>
+  <?php include 'include/footer.php'; ?>
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('familyForm');
-    
-    // Elements for conditional display
-    const ownHouseYes = document.getElementById('house_yes');
-    const ownHouseNo = document.getElementById('house_no');
-    const ownHouseYesFields = document.getElementById('own-house-yes-fields');
-    const ownHouseNoField = document.getElementById('own-house-no-field');
-    
-    const toiletYes = document.getElementById('toilet_yes');
-    const toiletNo = document.getElementById('toilet_no');
-    const toiletNoField = document.getElementById('toilet-no-field');
-    
-    // Toggle conditional fields
-    function toggleConditionalFields() {
-      // Toggle housing fields based on own_house
-      const addiction_in_familyYes = document.querySelector('input[name="addiction_in_family"][value="1"]')?.checked;
-      const serious_illnessYes = document.querySelector('input[name="serious_illness"][value="1"]')?.checked;
-      const ownHouse = document.querySelector('input[name="own_house"]:checked')?.value;
-      const hasToilet = document.querySelector('input[name="toilet_facility"]:checked')?.value;
-      
-      const q6Container = document.getElementById('q6-container');
-      const q8Container = document.getElementById('q8-container');
-      
-      // Addiction type field
-      if (q6Container) {
-        q6Container.style.display = addiction_in_familyYes ? 'block' : 'none';
-      }
-      
-      // Illness type field
-      if (q8Container) {
-        q8Container.style.display = serious_illnessYes ? 'block' : 'none';
-      }
-      
-      // Housing fields
-      if (ownHouseYesFields && ownHouseNoField) {
-        if (ownHouse === "1") {
-          ownHouseYesFields.style.display = 'block';
-          ownHouseNoField.style.display = 'none';
-          
-          // Make house type and govt scheme fields required
-          document.querySelectorAll('input[name="house_type"]').forEach(el => {
-            el.required = true;
-          });
-          document.querySelectorAll('input[name="government_housing_scheme"]').forEach(el => {
-            el.required = true;
-          });
-          
-          // Unrequire housing need field
-          document.querySelectorAll('input[name="housing_need"]').forEach(el => {
-            el.required = false;
-          });
-        } else if (ownHouse === "0") {
-          ownHouseYesFields.style.display = 'none';
-          ownHouseNoField.style.display = 'block';
-          
-          // Make housing need field required
-          document.querySelectorAll('input[name="housing_need"]').forEach(el => {
-            el.required = true;
-          });
-          
-          // Unrequire house type and govt scheme fields
-          document.querySelectorAll('input[name="house_type"]').forEach(el => {
-            el.required = false;
-          });
-          document.querySelectorAll('input[name="government_housing_scheme"]').forEach(el => {
-            el.required = false;
-          });
-        } else {
-          ownHouseYesFields.style.display = 'none';
-          ownHouseNoField.style.display = 'none';
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const form = document.getElementById('familyForm');
+
+      // Elements for conditional display
+      const ownHouseYes = document.getElementById('house_yes');
+      const ownHouseNo = document.getElementById('house_no');
+      const ownHouseYesFields = document.getElementById('own-house-yes-fields');
+      const ownHouseNoField = document.getElementById('own-house-no-field');
+
+      const toiletYes = document.getElementById('toilet_yes');
+      const toiletNo = document.getElementById('toilet_no');
+      const toiletNoField = document.getElementById('toilet-no-field');
+
+      // Toggle conditional fields
+      function toggleConditionalFields() {
+        // Toggle housing fields based on own_house
+        const addiction_in_familyYes = document.querySelector('input[name="addiction_in_family"][value="1"]')?.checked;
+        const serious_illnessYes = document.querySelector('input[name="serious_illness"][value="1"]')?.checked;
+        const ownHouse = document.querySelector('input[name="own_house"]:checked')?.value;
+        const hasToilet = document.querySelector('input[name="toilet_facility"]:checked')?.value;
+
+        const q6Container = document.getElementById('q6-container');
+        const q8Container = document.getElementById('q8-container');
+
+        // Addiction type field
+        if (q6Container) {
+          q6Container.style.display = addiction_in_familyYes ? 'block' : 'none';
         }
-      }
-      
-      // Toilet field
-      if (toiletNoField) {
-        if (hasToilet === "0") {
-          toiletNoField.style.display = 'block';
-          
-          // Make Swachh Bharat field required
-          document.querySelectorAll('input[name="swachh_bharat_application"]').forEach(el => {
-            el.required = true;
-          });
-        } else {
-          toiletNoField.style.display = 'none';
-          
-          // Unrequire Swachh Bharat field
-          document.querySelectorAll('input[name="swachh_bharat_application"]').forEach(el => {
-            el.required = false;
-          });
+
+        // Illness type field
+        if (q8Container) {
+          q8Container.style.display = serious_illnessYes ? 'block' : 'none';
         }
-      }
-    }
-    
-    // Add event listeners for conditional questions
-    document.querySelectorAll('input[name="addiction_in_family"]').forEach(el => {
-      el.addEventListener('change', toggleConditionalFields);
-    });
-    
-    document.querySelectorAll('input[name="serious_illness"]').forEach(el => {
-      el.addEventListener('change', toggleConditionalFields);
-    });
-    
-    document.querySelectorAll('input[name="own_house"]').forEach(el => {
-      el.addEventListener('change', toggleConditionalFields);
-    });
-    
-    document.querySelectorAll('input[name="toilet_facility"]').forEach(el => {
-      el.addEventListener('change', toggleConditionalFields);
-    });
-    
-    // Form validation
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      let valid = true;
 
-      // Clear previous errors
-      document.querySelectorAll('.validation-error').forEach(el => {
-        el.style.display = 'none';
-      });
+        // Housing fields
+        if (ownHouseYesFields && ownHouseNoField) {
+          if (ownHouse === "1") {
+            ownHouseYesFields.style.display = 'block';
+            ownHouseNoField.style.display = 'none';
 
-      // Check required fields
-      const requiredFields = form.querySelectorAll('[required]');
-      requiredFields.forEach(field => {
-        if (field.type === 'radio') {
-          const radioGroup = form.querySelectorAll(`input[name="${field.name}"]`);
-          const isChecked = Array.from(radioGroup).some(radio => radio.checked);
-          if (!isChecked) {
-            valid = false;
-            const error = field.closest('.form-group')?.querySelector('.validation-error');
-            if (error) error.style.display = 'block';
-          }
-        } else if (!field.value) {
-          valid = false;
-          const error = field.closest('.form-group')?.querySelector('.validation-error') || 
-                       field.parentElement.querySelector('.validation-error');
-          if (error) error.style.display = 'block';
-        }
-      });
+            // Make house type and govt scheme fields required
+            document.querySelectorAll('input[name="house_type"]').forEach(el => {
+              el.required = true;
+            });
+            document.querySelectorAll('input[name="government_housing_scheme"]').forEach(el => {
+              el.required = true;
+            });
 
-      // Check unemployed count if unemployment is yes
-      const unemploymentYes = document.querySelector('input[name="unemployment"][value="1"]')?.checked;
-      const unemployedCount = document.querySelector('input[name="unemployed_count"]');
-      if (unemploymentYes && (!unemployedCount.value || parseInt(unemployedCount.value) <= 0)) {
-        valid = false;
-        const error = unemployedCount.nextElementSibling;
-        if (error) {
-          error.style.display = 'block';
-          error.textContent = "कृपया बेरोजगार व्यक्तींची संख्या प्रविष्ट करा";
-        }
-      }
+            // Unrequire housing need field
+            document.querySelectorAll('input[name="housing_need"]').forEach(el => {
+              el.required = false;
+            });
+          } else if (ownHouse === "0") {
+            ownHouseYesFields.style.display = 'none';
+            ownHouseNoField.style.display = 'block';
 
-      if (!valid) {
-        Swal.fire({
-          icon: 'error',
-          title: 'त्रुटी',
-          text: 'कृपया सर्व आवश्यक माहिती भरा.',
-          confirmButtonText: 'ठीक आहे'
-        });
+            // Make housing need field required
+            document.querySelectorAll('input[name="housing_need"]').forEach(el => {
+              el.required = true;
+            });
 
-        // Scroll to first error
-        const firstError = document.querySelector('.validation-error[style*="block"]');
-        if (firstError) {
-          firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-      } else {
-        // AJAX submission
-        const formData = new FormData(form);
-        
-        fetch('household_facilities_db.php', {
-          method: 'POST',
-          body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-          if (data.status === 'success') {
-            Swal.fire({
-              icon: 'success',
-              title: 'यशस्वी',
-              text: data.message,
-              confirmButtonText: 'ठीक आहे'
-            }).then(() => {
-              // Reset the form
-              form.reset();
-              toggleConditionalFields();
+            // Unrequire house type and govt scheme fields
+            document.querySelectorAll('input[name="house_type"]').forEach(el => {
+              el.required = false;
+            });
+            document.querySelectorAll('input[name="government_housing_scheme"]').forEach(el => {
+              el.required = false;
             });
           } else {
-            Swal.fire({
-              icon: 'error',
-              title: 'त्रुटी',
-              text: data.message,
-              confirmButtonText: 'ठीक आहे'
+            ownHouseYesFields.style.display = 'none';
+            ownHouseNoField.style.display = 'none';
+          }
+        }
+
+        // Toilet field
+        if (toiletNoField) {
+          if (hasToilet === "0") {
+            toiletNoField.style.display = 'block';
+
+            // Make Swachh Bharat field required
+            document.querySelectorAll('input[name="swachh_bharat_application"]').forEach(el => {
+              el.required = true;
+            });
+          } else {
+            toiletNoField.style.display = 'none';
+
+            // Unrequire Swachh Bharat field
+            document.querySelectorAll('input[name="swachh_bharat_application"]').forEach(el => {
+              el.required = false;
             });
           }
-        })
-        .catch(error => {
+        }
+      }
+
+      // Add event listeners for conditional questions
+      document.querySelectorAll('input[name="addiction_in_family"]').forEach(el => {
+        el.addEventListener('change', toggleConditionalFields);
+      });
+
+      document.querySelectorAll('input[name="serious_illness"]').forEach(el => {
+        el.addEventListener('change', toggleConditionalFields);
+      });
+
+      document.querySelectorAll('input[name="own_house"]').forEach(el => {
+        el.addEventListener('change', toggleConditionalFields);
+      });
+
+      document.querySelectorAll('input[name="toilet_facility"]').forEach(el => {
+        el.addEventListener('change', toggleConditionalFields);
+      });
+
+      // Form validation
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        let valid = true;
+
+        // Clear previous errors
+        document.querySelectorAll('.validation-error').forEach(el => {
+          el.style.display = 'none';
+        });
+
+        // Check required fields
+        const requiredFields = form.querySelectorAll('[required]');
+        requiredFields.forEach(field => {
+          if (field.type === 'radio') {
+            const radioGroup = form.querySelectorAll(`input[name="${field.name}"]`);
+            const isChecked = Array.from(radioGroup).some(radio => radio.checked);
+            if (!isChecked) {
+              valid = false;
+              const error = field.closest('.form-group')?.querySelector('.validation-error');
+              if (error) error.style.display = 'block';
+            }
+          } else if (!field.value) {
+            valid = false;
+            const error = field.closest('.form-group')?.querySelector('.validation-error') ||
+              field.parentElement.querySelector('.validation-error');
+            if (error) error.style.display = 'block';
+          }
+        });
+
+        // Check unemployed count if unemployment is yes
+        const unemploymentYes = document.querySelector('input[name="unemployment"][value="1"]')?.checked;
+        const unemployedCount = document.querySelector('input[name="unemployed_count"]');
+        if (unemploymentYes && (!unemployedCount.value || parseInt(unemployedCount.value) <= 0)) {
+          valid = false;
+          const error = unemployedCount.nextElementSibling;
+          if (error) {
+            error.style.display = 'block';
+            error.textContent = "कृपया बेरोजगार व्यक्तींची संख्या प्रविष्ट करा";
+          }
+        }
+
+        if (!valid) {
           Swal.fire({
             icon: 'error',
             title: 'त्रुटी',
-            text: 'अपेक्षित त्रुटी: ' + error,
+            text: 'कृपया सर्व आवश्यक माहिती भरा.',
             confirmButtonText: 'ठीक आहे'
           });
-        });
-      }
-    });
 
-    // Initialize conditional fields
-    toggleConditionalFields();
-  });
-</script>
+          // Scroll to first error
+          const firstError = document.querySelector('.validation-error[style*="block"]');
+          if (firstError) {
+            firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        } else {
+          // AJAX submission
+          const formData = new FormData(form);
+
+          fetch('household_facilities_db.php', {
+            method: 'POST',
+            body: formData
+          })
+            .then(response => response.json())
+            .then(data => {
+              if (data.status === 'success') {
+                Swal.fire({
+                  icon: 'success',
+                  title: 'यशस्वी',
+                  text: data.message,
+                  confirmButtonText: 'ठीक आहे'
+                }).then(() => {
+                  // Reset the form
+                  form.reset();
+                  toggleConditionalFields();
+                });
+              } else {
+                Swal.fire({
+                  icon: 'error',
+                  title: 'त्रुटी',
+                  text: data.message,
+                  confirmButtonText: 'ठीक आहे'
+                });
+              }
+            })
+            .catch(error => {
+              Swal.fire({
+                icon: 'error',
+                title: 'त्रुटी',
+                text: 'अपेक्षित त्रुटी: ' + error,
+                confirmButtonText: 'ठीक आहे'
+              });
+            });
+        }
+      });
+
+      // Initialize conditional fields
+      toggleConditionalFields();
+    });
+  </script>
 </body>
+
 </html>

@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         // Bind parameters
         $stmt->bind_param(
-            "siiiiisssiiiiisssiiiii", 
+            "siiiiisssiiiiisssiiiiii", 
             $survey_id, $marriageable_daughters, $marriage_financial_difficulty, $family_respect_issue, 
             $family_conflict, $addiction_in_family, $addiction_type, $serious_illness, 
             $illness_type, $suicide_history, $unemployment, $unemployed_count, 

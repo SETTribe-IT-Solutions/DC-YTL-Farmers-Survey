@@ -254,7 +254,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <div class="text-center">
-  <button type="button" class="btn btn-submit" name="register" onclick="confirmSubmit()">
+  <button type="submit" class="btn btn-submit" name="register" onclick="confirmSubmit()">
     सबमिट करा
   </button>
 </div>
@@ -266,17 +266,17 @@
       text: "फॉर्म सबमिट केल्यावर पुढील पानावर जाल.",
       icon: 'question',
       showCancelButton: true,
-      confirmButtonText: 'हो, पुढे जा',
+      confirmButtonText: 'हो, सबमिट करा',
       cancelButtonText: 'रद्द करा',
       reverseButtons: true
     }).then((result) => {
       if (result.isConfirmed) {
-        // Redirect after confirmation
-        window.location.href = 'household_facilities.php';
+        document.getElementById('farmerForm').submit(); // ✅ Properly submits the form
       }
     });
   }
 </script>
+
 
     </form>
   </div>
