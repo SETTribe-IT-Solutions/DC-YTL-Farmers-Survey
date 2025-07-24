@@ -26,6 +26,9 @@ $survey_id = "survey{$currentYear}_" . str_pad($nextNumber, 2, '0', STR_PAD_LEFT
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>आत्महत्याग्रस्त शेतकरी माहिती फॉर्म</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <?php
+  include('include/cssLinks.php');
+  ?>
   <style>
     :root {
       --primary-color: #2c3e50;
