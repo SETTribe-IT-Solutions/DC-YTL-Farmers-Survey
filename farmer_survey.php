@@ -710,7 +710,7 @@ $survey_id = "survey{$currentYear}_" . str_pad($nextNumber, 2, '0', STR_PAD_LEFT
           </button>
         </div>
 
-        <script>
+        <!-- <script>
           function confirmSubmit() {
             Swal.fire({
               title: 'तुम्हाला खात्री आहे का?',
@@ -727,11 +727,28 @@ $survey_id = "survey{$currentYear}_" . str_pad($nextNumber, 2, '0', STR_PAD_LEFT
               }
             });
           }
-        </script>
+        </script> -->
 
       </form>
     </div>
   </div>
+<script>
+  function confirmSubmit() {
+    Swal.fire({
+      title: 'तुम्हाला खात्री आहे का?',
+      text: "फॉर्म सबमिट केल्यावर पुढील पानावर जाल.",
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'हो, सबमिट करा',
+      cancelButtonText: 'रद्द करा',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        document.getElementById('farmerForm').submit(); // ✅ Properly submits the form
+      }
+    });
+  }
+</script>
 
   <?php include 'include/footer.php'; ?>
 
