@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         confirmButtonText: 'ठीक आहे'
     }).then((result) => {
         if (result.isConfirmed) {
-            window.location.href = 'migration_survey_form.php';
+            window.location.href = 'natural_calamity_impact_form.php';
         }
     });
 </script>
