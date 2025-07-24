@@ -60,7 +60,7 @@ $survey_id = "survey{$currentYear}_" . str_pad($nextNumber, 2, '0', STR_PAD_LEFT
       border-radius: 15px 15px 0 0;
       box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
       margin-bottom: 30px;
-      position: relative;
+      /* position: relative; */
       overflow: hidden;
     }
 
@@ -80,13 +80,13 @@ $survey_id = "survey{$currentYear}_" . str_pad($nextNumber, 2, '0', STR_PAD_LEFT
       margin-bottom: 10px;
       font-weight: 700;
       text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-      position: relative;
+      /* position: relative; */
     }
 
     .header1 p {
       font-size: 1.1rem;
       opacity: 0.9;
-      position: relative;
+      /* position: relative; */
       max-width: 700px;
       margin: 0 auto;
     }
@@ -98,7 +98,7 @@ $survey_id = "survey{$currentYear}_" . str_pad($nextNumber, 2, '0', STR_PAD_LEFT
       overflow: hidden;
       padding: 30px;
       margin-bottom: 30px;
-      position: relative;
+      /* position: relative; */
       z-index: 1;
     }
 
@@ -356,7 +356,7 @@ $survey_id = "survey{$currentYear}_" . str_pad($nextNumber, 2, '0', STR_PAD_LEFT
 </head>
 
 <body>
-  <?php include 'include/header.php'; ?>
+  <?php include('include/header.php'); ?>
 
   <div class="container-fluid">
     <!-- <div class="header1">
@@ -713,7 +713,7 @@ $survey_id = "survey{$currentYear}_" . str_pad($nextNumber, 2, '0', STR_PAD_LEFT
           </button>
         </div>
 
-        <script>
+        <!-- <script>
           function confirmSubmit() {
             Swal.fire({
               title: 'तुम्हाला खात्री आहे का?',
@@ -730,11 +730,28 @@ $survey_id = "survey{$currentYear}_" . str_pad($nextNumber, 2, '0', STR_PAD_LEFT
               }
             });
           }
-        </script>
+        </script> -->
 
       </form>
     </div>
   </div>
+<script>
+  function confirmSubmit() {
+    Swal.fire({
+      title: 'तुम्हाला खात्री आहे का?',
+      text: "फॉर्म सबमिट केल्यावर पुढील पानावर जाल.",
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'हो, सबमिट करा',
+      cancelButtonText: 'रद्द करा',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        document.getElementById('farmerForm').submit(); // ✅ Properly submits the form
+      }
+    });
+  }
+</script>
 
   <?php include 'include/footer.php'; ?>
 
