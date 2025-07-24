@@ -1,15 +1,13 @@
 <?php
 session_start();
-ini_set('display_errors', 0);
-ini_set('display_startup_errors', 0);
-error_reporting(0);
+
 if (isset($_REQUEST['logIn'])) {
     include('../include/conn.php');
-    include('../    include/sweetAlert.php');
+    include('../include/sweetAlert.php');
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $sql = "SELECT * FROM admin WHERE `username` = '$username' AND `password` = '$password' AND status = 'Active'";
+    $sql = "SELECT * FROM admins WHERE `username` = '$username' AND `password` = '$password' AND status = 'Active'";
 
 
 
@@ -33,7 +31,7 @@ if (isset($_REQUEST['logIn'])) {
                 setcookie('designation', "surveyor", time() + (86400 * 30), '/');
             }
 
-            echo "<script>window.location = 'farmer_survey.php';</script>";
+            echo "<script>window.location = 'index.php';</script>";
 
         } else {
             $_SESSION['status'] = false;

@@ -228,7 +228,7 @@ error_reporting(0);
                     <div class="w-lg-700px p-10 p-lg-15 mx-auto">
                         <!--begin::Form-->
                         <div class="login-form">
-                            <form class="form w-100" method="post" id="kt_sign_in_form" action="login_db.php">
+                            <form class="form w-100" method="post" id="kt_sign_in_form" action="admin/login_db.php">
                                 <!--begin::Heading-->
                                 <div class="text-center mb-8">
                                     <!--begin::Title-->
