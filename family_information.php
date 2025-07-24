@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="mr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -40,7 +41,7 @@
       overflow: hidden;
       padding: 30px;
       margin-bottom: 30px;
-       /* margin-top: -2% !important; */
+      /* margin-top: -2% !important; */
     }
 
     .section-title {
@@ -60,7 +61,8 @@
       font-size: 1.1rem;
     }
 
-    .form-control, .form-select {
+    .form-control,
+    .form-select {
       border: 2px solid #e0e6ed;
       border-radius: 8px;
       padding: 5px 15px;
@@ -68,7 +70,8 @@
       background: #f8f9fa;
     }
 
-    .form-control:focus, .form-select:focus {
+    .form-control:focus,
+    .form-select:focus {
       border-color: #3498db;
       background: white;
       box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
@@ -108,8 +111,14 @@
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
       transition: 0.5s;
+    }
+
+    .other-field {
+      margin-top: 10px;
+      display: none;
+      animation: fadeIn 0.4s ease;
     }
 
     .btn-submit:hover::after {
@@ -148,22 +157,22 @@
       border: none;
       transition: all 0.3s;
     }
-    
+
     .add-member-btn:hover {
       background: #2980b9;
       transform: translateY(-2px);
     }
-    
+
     .member-form {
       background: white;
       border-radius: 10px;
       padding: 20px;
       margin-bottom: 25px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
       border: 1px solid #e0e6ed;
       /* position: relative; */
     }
-    
+
     .remove-member {
       position: relative;
       /* top: 15px;
@@ -182,12 +191,12 @@
       cursor: pointer;
       transition: all 0.3s;
     }
-    
+
     .remove-member:hover {
       transform: scale(1.1);
       background: #c0392b;
     }
-    
+
     .member-title {
       font-weight: bold;
       margin-bottom: 20px;
@@ -202,101 +211,98 @@
       /* .header h1 {
         font-size: 1.8rem;
       } */
-      
+
       .main-container {
         padding: 20px;
       }
-      
+
       .btn-submit {
         width: 100%;
         padding: 15px;
       }
-     
+
       .remove-member {
         width: 28px;
         height: 28px;
         top: -10px;
         right: -230px;
       }
-}
-
-
-
-    
+    }
   </style>
 </head>
+
 <body>
   <?php include 'include/header.php'; ?>
 
-<div class="container-fluid">
-  <!-- <div class="header">
+  <div class="container-fluid">
+    <!-- <div class="header">
     <h1><i class="fas fa-users me-3"></i>कुटुंबिक माहिती फॉर्म</h1>
     <p>कृपया आपल्या कुटुंबाची सविस्तर माहिती भरा</p>
   </div> -->
-  
-  <div class="main-container">
-    <h4 class="section-title typewriter">शेतकरी कुटुंबातील सदस्य
-      <!-- <i class="fas fa-users info-icon"></i> -->
-    </h4>
-    
-    <form id="familyForm" action="family_information_db.php" method="POST" novalidate>
-      <div id="members-container">
-        <!-- First member will be added here by JavaScript -->
-      </div>
-      
-      <div class="text-center mt-4">
-        <button type="button" class="btn add-member-btn" id="addMemberBtn">
-          <i class="fas fa-plus-circle me-2"></i>अजून सदस्य जोडा
-        </button>
-      </div>
-        
-      <!-- Include SweetAlert2 -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<div class="text-center">
-  <button type="submit" class="btn btn-submit" name="register" onclick="confirmSubmit()">
-    सबमिट करा
-  </button>
-</div>
+    <div class="main-container">
+      <h4 class="section-title typewriter">शेतकरी कुटुंबातील सदस्य
+        <!-- <i class="fas fa-users info-icon"></i> -->
+      </h4>
 
-<script>
-  function confirmSubmit() {
-    Swal.fire({
-      title: 'तुम्हाला खात्री आहे का?',
-      text: "फॉर्म सबमिट केल्यावर पुढील पानावर जाल.",
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonText: 'हो, सबमिट करा',
-      cancelButtonText: 'रद्द करा',
-      reverseButtons: true
-    }).then((result) => {
-      if (result.isConfirmed) {
-        document.getElementById('farmerForm').submit(); // ✅ Properly submits the form
-      }
-    });
-  }
-</script>
+      <form id="familyForm" action="family_information_db.php" method="POST" novalidate>
+        <div id="members-container">
+          <!-- First member will be added here by JavaScript -->
+        </div>
+
+        <div class="text-center mt-4">
+          <button type="button" class="btn add-member-btn" id="addMemberBtn">
+            <i class="fas fa-plus-circle me-2"></i>अजून सदस्य जोडा
+          </button>
+        </div>
+
+        <!-- Include SweetAlert2 -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <div class="text-center">
+          <button type="submit" class="btn btn-submit" name="register" onclick="confirmSubmit()">
+            सबमिट करा
+          </button>
+        </div>
+
+        <script>
+          function confirmSubmit() {
+            Swal.fire({
+              title: 'तुम्हाला खात्री आहे का?',
+              text: "फॉर्म सबमिट केल्यावर पुढील पानावर जाल.",
+              icon: 'question',
+              showCancelButton: true,
+              confirmButtonText: 'हो, सबमिट करा',
+              cancelButtonText: 'रद्द करा',
+              reverseButtons: true
+            }).then((result) => {
+              if (result.isConfirmed) {
+                document.getElementById('farmerForm').submit(); // ✅ Properly submits the form
+              }
+            });
+          }
+        </script>
 
 
-    </form>
+      </form>
+    </div>
   </div>
-</div>
-<?php include 'include/footer.php'; ?>
+  <?php include 'include/footer.php'; ?>
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('familyForm');
-    const membersContainer = document.getElementById('members-container');
-    const addMemberBtn = document.getElementById('addMemberBtn');
-    let memberCount = 0;
-    
-    // Function to create a new member form
-    function createMemberForm() {
-      memberCount++;
-      const memberForm = document.createElement('div');
-      memberForm.className = 'member-form';
-      memberForm.innerHTML = `
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const form = document.getElementById('familyForm');
+      const membersContainer = document.getElementById('members-container');
+      const addMemberBtn = document.getElementById('addMemberBtn');
+      let memberCount = 0;
+
+      // Function to create a new member form
+      function createMemberForm() {
+        memberCount++;
+        const memberForm = document.createElement('div');
+        memberForm.className = 'member-form';
+        memberForm.innerHTML = `
         <div class="member-title">
           <i class="fas fa-user info-icon"></i>सदस्य क्रमांक ${memberCount}
           <button type="button" class="remove-member" title="हा सदस्य काढा"><i class="fas fa-times"></i></button>
@@ -323,7 +329,7 @@
           </div>
           <div class="col-md-4">
             <label class="form-label required">शेतकरी-याशी नाते</label>
-            <select name="relation_with_farmer[]" class="form-select" required>
+            <select name="relation_with_farmer[]" class="form-select" id="relationLevel" required>
               <option value="">निवडा</option>
               <option value="आई">आई</option>
               <option value="वडील">वडील</option>
@@ -337,10 +343,14 @@
               <option value="इतर">इतर</option>
             </select>
             <div class="validation-error">कृपया नाते निवडा</div>
+            <div class="other-field" id="relationOther">
+                <label class="form-label">इतर नाते सांगा</label>
+                <input type="text" class="form-control" name="relation_other[]" placeholder="नाते तपशील">
+              </div>
           </div>
           <div class="col-md-4">
             <label class="form-label required">शिक्षण</label>
-            <select name="education[]" class="form-select" required>
+            <select name="education[]" class="form-select" id="educationLevel" required>
               <option value="" disabled selected>निवडा</option>
               <option value="अशिक्षित">अशिक्षित</option>
               <option value="प्राथमिक">प्राथमिक</option>
@@ -352,11 +362,15 @@
               <option value="इतर शिक्षण">इतर शिक्षण</option>
             </select>
             <div class="validation-error">कृपया शिक्षण प्रविष्ट करा</div>
+            <div class="other-field" id="educationOther">
+                <label class="form-label">इतर शिक्षण सांगा</label>
+                <input type="text" class="form-control" name="education_other[]" placeholder="शिक्षण तपशील">
+              </div>
           </div>
 
           <div class="col-md-4">
             <label class="form-label required">व्यवसाय</label>
-            <select name="occupation[]" class="form-select" required>
+            <select name="occupation[]" class="form-select" id="occupationLevel"required>
               <option value="" disabled selected>निवडा</option>
               <option value="स्वतची शेती">स्वतची शेती</option>
               <option value="शेतमजूर">शेतमजूर</option>
@@ -371,6 +385,10 @@
               <option value="इतर">इतर</option>
             </select>
             <div class="validation-error">कृपया व्यवसाय प्रविष्ट करा</div>
+              <div class="other-field" id="occupationOther">
+                <label class="form-label">इतर व्यवसाय सांगा</label>
+                <input type="text" class="form-control" name="occupation_other[]" placeholder="व्यवसाय तपशील">
+              </div>
           </div>
           <div class="col-12">
             <label class="form-label required">आरोग्य विषयक / विमा तपशील</label>
@@ -379,45 +397,12 @@
           </div>
         </div>
       `;
-      
-      // Add remove member functionality
-      const removeBtn = memberForm.querySelector('.remove-member');
-      removeBtn.addEventListener('click', function() {
-        if (memberCount > 1) {
-          memberForm.remove();
-          memberCount--;
-          updateMemberTitles();
-        } else {
-          Swal.fire({
-            icon: 'warning',
-            title: 'सूचना',
-            text: 'किमान एक सदस्य असणे आवश्यक आहे!',
-            confirmButtonText: 'ठीक आहे'
-          });
-        }
-      });
-      
-      membersContainer.appendChild(memberForm);
-      
-      // Scroll to the new member
-      memberForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-    
-    // Function to update member titles after removal
-    function updateMemberTitles() {
-      const memberForms = document.querySelectorAll('.member-form');
-      memberForms.forEach((form, index) => {
-        const title = form.querySelector('.member-title');
-        title.innerHTML = `
-          <i class="fas fa-user info-icon"></i>सदस्य क्रमांक ${index + 1}
-          <button type="button" class="remove-member" title="हा सदस्य काढा"><i class="fas fa-times"></i></button>
-        `;
-        
-        // Reattach event listener to the new remove button
-        const removeBtn = title.querySelector('.remove-member');
-        removeBtn.addEventListener('click', function() {
-          if (memberForms.length > 1) {
-            form.remove();
+
+        // Add remove member functionality
+        const removeBtn = memberForm.querySelector('.remove-member');
+        removeBtn.addEventListener('click', function () {
+          if (memberCount > 1) {
+            memberForm.remove();
             memberCount--;
             updateMemberTitles();
           } else {
@@ -429,106 +414,169 @@
             });
           }
         });
-      });
-    }
-    
-    // Create first member form on page load
-    createMemberForm();
-    
-    // Add event listener for adding new members
-    addMemberBtn.addEventListener('click', createMemberForm);
-    
-    // Form validation
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      let valid = true;
 
-      // Clear previous errors
-      document.querySelectorAll('.validation-error').forEach(el => {
-        el.style.display = 'none';
-      });
+        membersContainer.appendChild(memberForm);
 
-      // Check required fields
-      const requiredFields = form.querySelectorAll('[required]');
-      requiredFields.forEach(field => {
-        if (field.type === 'radio') {
-          const radioGroup = form.querySelectorAll(`input[name="${field.name}"]`);
-          const isChecked = Array.from(radioGroup).some(radio => radio.checked);
-          if (!isChecked) {
+        // Scroll to the new member
+        memberForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+
+      // Function to update member titles after removal
+      function updateMemberTitles() {
+        const memberForms = document.querySelectorAll('.member-form');
+        memberForms.forEach((form, index) => {
+          const title = form.querySelector('.member-title');
+          title.innerHTML = `
+          <i class="fas fa-user info-icon"></i>सदस्य क्रमांक ${index + 1}
+          <button type="button" class="remove-member" title="हा सदस्य काढा"><i class="fas fa-times"></i></button>
+        `;
+
+          // Reattach event listener to the new remove button
+          const removeBtn = title.querySelector('.remove-member');
+          removeBtn.addEventListener('click', function () {
+            if (memberForms.length > 1) {
+              form.remove();
+              memberCount--;
+              updateMemberTitles();
+            } else {
+              Swal.fire({
+                icon: 'warning',
+                title: 'सूचना',
+                text: 'किमान एक सदस्य असणे आवश्यक आहे!',
+                confirmButtonText: 'ठीक आहे'
+              });
+            }
+          });
+        });
+      }
+
+      // Create first member form on page load
+      createMemberForm();
+      const occupationLevel = document.getElementById('occupationLevel');
+      const occupationOther = document.getElementById('occupationOther');
+
+      occupationLevel.addEventListener('change', function () {
+        if (this.value === 'इतर') {
+          occupationOther.style.display = 'block';
+        } else {
+          occupationOther.style.display = 'none';
+        }
+      });
+      const educationLevel = document.getElementById('educationLevel');
+      const educationOther = document.getElementById('educationOther');
+
+      educationLevel.addEventListener('change', function () {
+        if (this.value === 'इतर शिक्षण') {
+          educationOther.style.display = 'block';
+        } else {
+          educationOther.style.display = 'none';
+        }
+      });
+      const relationLevel = document.getElementById('relationLevel');
+      const relationOther = document.getElementById('relationOther');
+
+      relationLevel.addEventListener('change', function () {
+        if (this.value === 'इतर') {
+          relationOther.style.display = 'block';
+        } else {
+          relationOther.style.display = 'none';
+        }
+      });
+      // Add event listener for adding new members
+      addMemberBtn.addEventListener('click', createMemberForm);
+
+      // Form validation
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        let valid = true;
+
+        // Clear previous errors
+        document.querySelectorAll('.validation-error').forEach(el => {
+          el.style.display = 'none';
+        });
+
+        // Check required fields
+        const requiredFields = form.querySelectorAll('[required]');
+        requiredFields.forEach(field => {
+          if (field.type === 'radio') {
+            const radioGroup = form.querySelectorAll(`input[name="${field.name}"]`);
+            const isChecked = Array.from(radioGroup).some(radio => radio.checked);
+            if (!isChecked) {
+              valid = false;
+              const error = field.closest('.form-group')?.querySelector('.validation-error');
+              if (error) error.style.display = 'block';
+            }
+          } else if (!field.value) {
             valid = false;
-            const error = field.closest('.form-group')?.querySelector('.validation-error');
+            const error = field.closest('.form-group')?.querySelector('.validation-error') ||
+              field.parentElement.querySelector('.validation-error');
             if (error) error.style.display = 'block';
           }
-        } else if (!field.value) {
-          valid = false;
-          const error = field.closest('.form-group')?.querySelector('.validation-error') || 
-                       field.parentElement.querySelector('.validation-error');
-          if (error) error.style.display = 'block';
-        }
-      });
+        });
 
-      // Check all age fields
-      const ageFields = form.querySelectorAll('input[name="age[]"]');
-      ageFields.forEach(ageField => {
-        if (ageField.value) {
-          const age = parseInt(ageField.value);
-          if (isNaN(age) || age < 0 || age > 120) {
-            valid = false;
-            const error = ageField.nextElementSibling;
-            if (error) {
-              error.style.display = 'block';
-              error.textContent = "कृपया वैध वय प्रविष्ट करा (0-120)";
+        // Check all age fields
+        const ageFields = form.querySelectorAll('input[name="age[]"]');
+        ageFields.forEach(ageField => {
+          if (ageField.value) {
+            const age = parseInt(ageField.value);
+            if (isNaN(age) || age < 0 || age > 120) {
+              valid = false;
+              const error = ageField.nextElementSibling;
+              if (error) {
+                error.style.display = 'block';
+                error.textContent = "कृपया वैध वय प्रविष्ट करा (0-120)";
+              }
             }
           }
+        });
+
+        if (!valid) {
+          Swal.fire({
+            icon: 'error',
+            title: 'त्रुटी',
+            text: 'कृपया सर्व आवश्यक माहिती भरा.',
+            confirmButtonText: 'ठीक आहे'
+          });
+        } else {
+          const formData = new FormData(form);
+
+          fetch('family_information_db.php', {
+            method: 'POST',
+            body: formData
+          })
+            .then(response => response.json())
+            .then(data => {
+              Swal.fire({
+                icon: data.status === 'success' ? 'success' : 'error',
+                title: data.status === 'success' ? 'यशस्वी!' : 'त्रुटी!',
+                text: data.message,
+                confirmButtonText: 'ठीक आहे'
+              }).then(() => {
+                if (data.status === 'success') {
+                  // Reset form and reinitialize
+                  form.reset();
+                  membersContainer.innerHTML = '';
+                  memberCount = 0;
+                  createMemberForm(); // Add first member again
+                }
+              });
+            })
+            .catch(error => {
+              Swal.fire({
+                icon: 'error',
+                title: 'सर्व्हर त्रुटी',
+                text: 'फॉर्म सबमिट करताना अडचण आली.',
+                confirmButtonText: 'ठीक आहे'
+              });
+              console.error(error);
+            });
         }
+
       });
-
-      if (!valid) {
-  Swal.fire({
-    icon: 'error',
-    title: 'त्रुटी',
-    text: 'कृपया सर्व आवश्यक माहिती भरा.',
-    confirmButtonText: 'ठीक आहे'
-  });
-} else {
-  const formData = new FormData(form);
-
-  fetch('family_information_db.php', {
-    method: 'POST',
-    body: formData
-  })
-  .then(response => response.json())
-  .then(data => {
-    Swal.fire({
-      icon: data.status === 'success' ? 'success' : 'error',
-      title: data.status === 'success' ? 'यशस्वी!' : 'त्रुटी!',
-      text: data.message,
-      confirmButtonText: 'ठीक आहे'
-    }).then(() => {
-      if (data.status === 'success') {
-        // Reset form and reinitialize
-        form.reset();
-        membersContainer.innerHTML = '';
-        memberCount = 0;
-        createMemberForm(); // Add first member again
-      }
     });
-  })
-  .catch(error => {
-    Swal.fire({
-      icon: 'error',
-      title: 'सर्व्हर त्रुटी',
-      text: 'फॉर्म सबमिट करताना अडचण आली.',
-      confirmButtonText: 'ठीक आहे'
-    });
-    console.error(error);
-  });
-}
-
-    });
-  });
-</script>
+  </script>
 
 
 </body>
+
 </html>
