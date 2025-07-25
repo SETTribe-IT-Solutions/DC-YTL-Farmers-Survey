@@ -1,7 +1,9 @@
 <?php
 include('include/conn.php');
 
-// Initialize values to 0 or null if not set
+// Debugging check
+// echo "<pre>"; print_r($_POST); echo "</pre>"; exit;
+
 $gram_panchayat = 0;
 $society_member = 0;
 $other_org_member = 0;
@@ -13,10 +15,12 @@ $shg_benefits = isset($_POST['shg_benefits']) ? (int)$_POST['shg_benefits'] : 0;
 $shg_benefit_details = $_POST['shg_benefit_details'] ?? '';
 $farmer_group = isset($_POST['farmer_producer_group']) ? (int)$_POST['farmer_producer_group'] : 0;
 
-// Handle org types only if gram_panchayat_member == 1
-if (isset($_POST['gram_panchayat_member']) && $_POST['gram_panchayat_member'] == 1) {
+// 👇 Form मधून येणारं हे मुख्य radio input
+$gp_member = isset($_POST['gram_panchayat_member']) ? (int)$_POST['gram_panchayat_member'] : 0;
+
+if ($gp_member == 1) {
     $org_type = $_POST['society_member'] ?? '';
-    if ($org_type === 'gram') {
+    if ($org_type === 'gram_panchayat') {
         $gram_panchayat = 1;
     } elseif ($org_type === 'society') {
         $society_member = 1;
@@ -25,7 +29,6 @@ if (isset($_POST['gram_panchayat_member']) && $_POST['gram_panchayat_member'] ==
     }
 }
 
-// Prepare SQL
 $stmt = $conn->prepare("INSERT INTO social_participation1 (
     gram_panchayat_member,
     society_member,
@@ -43,9 +46,8 @@ if (!$stmt) {
     die("Prepare failed: " . $conn->error);
 }
 
-// Bind parameters
 $stmt->bind_param(
-    "iiisiiisii",
+    "iiisississ",
     $gram_panchayat,
     $society_member,
     $other_org_member,
@@ -58,11 +60,10 @@ $stmt->bind_param(
     $farmer_group
 );
 
-// Execute and give alert
 if ($stmt->execute()) {
     echo "<script>
         alert('माहिती यशस्वीरित्या साठवली गेली आहे!');
-        window.location.href='social_participation.php'; // change if needed
+        window.location.href='social_participation.php';
     </script>";
 } else {
     echo "<script>

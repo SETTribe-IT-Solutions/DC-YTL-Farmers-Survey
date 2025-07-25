@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="mr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,9 +11,9 @@
     :root {
       --primary-gradient: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
       --secondary-gradient: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
-      --box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
-    
+
     /* body {
       background-color: #f8f9fa;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -39,7 +40,7 @@
       margin-top: 0.5%;
 
     }
-    
+
     .header1::before {
       content: "";
       position: absolute;
@@ -47,7 +48,7 @@
       left: -50%;
       width: 200%;
       height: 200%;
-      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
       transform: rotate(30deg);
     }
 
@@ -91,7 +92,7 @@
       align-items: center;
       gap: 15px;
     }
-    
+
     .section-title i {
       background: #e3f2fd;
       width: 50px;
@@ -113,7 +114,8 @@
       gap: 8px;
     }
 
-    .form-control, .form-select {
+    .form-control,
+    .form-select {
       border: 2px solid #e0e6ed;
       border-radius: 8px;
       padding: 12px 15px;
@@ -122,27 +124,28 @@
       font-size: 1rem;
     }
 
-    .form-control:focus, .form-select:focus {
+    .form-control:focus,
+    .form-select:focus {
       border-color: #3498db;
       background: white;
       box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
       outline: none;
     }
-    
+
     .form-check-input {
       width: 20px;
       height: 20px;
       margin-top: 0.1em;
     }
-    
+
     .form-check-label {
       font-size: 1rem;
     }
-    
+
     .question-card {
       padding: 13px;
     }
-    
+
     .btn-submit {
       background: var(--secondary-gradient);
       border: none;
@@ -176,7 +179,7 @@
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
       transition: 0.5s;
     }
 
@@ -194,13 +197,13 @@
       content: " *";
       color: #e74c3c;
     }
-    
+
     .additional-info {
       margin-top: 15px;
       padding-top: 15px;
       border-top: 1px dashed #e0e6ed;
     }
-    
+
     .form-footer {
       text-align: center;
       margin-top: 30px;
@@ -209,7 +212,7 @@
       color: #6c757d;
       font-size: 0.9rem;
     }
-    
+
     .conditional-section {
       margin-top: 15px;
       padding: 15px;
@@ -218,281 +221,328 @@
       /* border-left: 3px solid #3498db; */
       display: none;
     }
-    
+
     .conditional-section.visible {
       display: block;
       animation: fadeIn 0.3s ease-in-out;
     }
-    
+
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     @media (max-width: 768px) {
       .header1 h1 {
         font-size: 1.8rem;
       }
-      
+
       .main-container {
         padding: 20px;
       }
-      
+
       .section-title {
         font-size: 1.5rem;
       }
     }
   </style>
 </head>
+
 <body>
   <?php include('include/header.php'); ?>
 
-<div class="container-fluid">
-  <!-- <div class="header1">
+  <div class="container-fluid">
+    <!-- <div class="header1">
     <h1><i class="fas fa-hands-helping me-3"></i>सामाजिक सहभाग माहिती फॉर्म</h1>
     <p>कृपया आपल्या सामाजिक सहभागाविषयी माहिती भरा</p>
   </div> -->
-  
-  <div class="main-container">
-    <h4 class="section-title">
-      <i class="fas fa-users"></i>सामाजिक सहभाग विषयक माहिती
-    </h4>
-    
-    <form id="socialForm" action="social_participation_db.php" method="POST">
-      <!-- Question 1: Organization Membership -->
-      <div class="question-card">
-        <label class="form-label">
-          <span class="question-number">1.</span>
-          कुटुंबातील कोणी ग्रामपंचायत सदस्‍य अथवा सोसायटी सदस्‍य किंवा इतर संस्‍था/समिती सदस्‍य आहे का ?
-          <span class="required"></span>
-        </label>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="gram_panchayat_member" id="org_yes" value="1" required>
-          <label class="form-check-label" for="org_yes">होय</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="gram_panchayat_member" id="org_no" value="0" >
-          <label class="form-check-label" for="org_no">नाही</label>
-        </div>
-        
-        <!-- Organization type dropdown -->
-        <div id="orgTypeContainer" class="conditional-section">
-          <div class="mb-3">
-            <label class="form-label">संस्थेचा प्रकार निवडा:</label>
-            <select class="form-select" name="society_member" id="orgType" required>
-              <option value="">-- प्रकार निवडा --</option>
-             <option value="gram_panchayat">ग्रामपंचायत सदस्‍य</option>
-            <option value="society">सोसायटी सदस्‍य</option>
-            <option value="other">संस्‍था/समिती सदस्‍य</option>
-            </select>
+
+    <div class="main-container">
+      <h4 class="section-title">
+        <i class="fas fa-users"></i>सामाजिक सहभाग विषयक माहिती
+      </h4>
+
+      <form id="socialForm" action="social_participation_db.php" method="POST">
+        <!-- Question 1: Organization Membership -->
+        <div class="question-card">
+          <label class="form-label">
+            <span class="question-number">1.</span>
+            कुटुंबातील कोणी ग्रामपंचायत सदस्‍य अथवा सोसायटी सदस्‍य किंवा इतर संस्‍था/समिती सदस्‍य आहे का ?
+            <span class="required"></span>
+          </label>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gram_panchayat_member" id="org_yes" value="1" required>
+            <label class="form-check-label" for="org_yes">होय</label>
           </div>
-          
-          <!-- Organization details -->
-          <div id="orgDetailsContainer" class="conditional-section">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gram_panchayat_member" id="org_no" value="0">
+            <label class="form-check-label" for="org_no">नाही</label>
+          </div>
+
+          <!-- Organization type dropdown -->
+          <div id="orgTypeContainer" class="conditional-section">
             <div class="mb-3">
-              <label class="form-label">संस्थेची अधिक माहिती:</label>
-              <input type="text" class="form-control" name="organization_details" placeholder="संस्थेची नाव, सदस्याचे नाव, कार्यकाल इ.">
+              <label class="form-label">संस्थेचा प्रकार निवडा:</label>
+              <select class="form-select" name="society_member" id="orgType" required>
+                <option value="">-- प्रकार निवडा --</option>
+                <option value="gram_panchayat">ग्रामपंचायत सदस्‍य</option>
+                <option value="society">सोसायटी सदस्‍य</option>
+                <option value="other">संस्‍था/समिती सदस्‍य</option>
+              </select>
+            </div>
+
+            <!-- Organization details -->
+            <div id="orgDetailsContainer" class="conditional-section">
+              <div class="mb-3">
+                <label class="form-label">संस्थेची अधिक माहिती:</label>
+                <input type="text" class="form-control" name="organization_details"
+                  placeholder="संस्थेची नाव, सदस्याचे नाव, कार्यकाल इ.">
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      
-      <!-- Question 2: Self Help Group Member -->
-      <div class="question-card">
-        <label class="form-label">
-          <span class="question-number">2.</span>
-         कुटुंबातील कोणी बचत गट सदस्‍य आहे का ?
-          <span class="required"></span>
-        </label>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="self_help_group_member" id="bg_yes" value="1" required>
-          <label class="form-check-label" for="bg_yes">होय</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="self_help_group_member" id="bg_no" value="0">
-          <label class="form-check-label" for="bg_no">नाही</label>
-        </div>
-        <div class="additional-info">
-          <input type="text" class="form-control mt-2" name="shg_details" placeholder="अधिक माहिती">
-        </div>
-      </div>
-      
-      <!-- Question 3: SHG Benefits -->
-      <div class="question-card">
-        <label class="form-label">
-          <span class="question-number">3.</span>
-          बचत गटातील काही लाभ मिळाले आहे का ?
-          <span class="required"></span>
-        </label>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="shg_benefits" id="benefit_yes" value="1" required>
-          <label class="form-check-label" for="benefit_yes">होय</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="shg_benefits" id="benefit_no" value="0">
-          <label class="form-check-label" for="benefit_no">नाही</label>
-        </div>
-        <div class="additional-info">
-          <input type="text" class="form-control mt-2" name="shg_benefit_details" placeholder="अधिक माहिती">
-        </div>
-      </div>
-      
-      <!-- Question 4: Farmer Producer Group -->
-      <div class="question-card">
-        <label class="form-label">
-          <span class="question-number">4.</span>
-         शेतकरी उत्‍पादक गटातील सदस्‍य आहे का ?
-          <span class="required"></span>
-        </label>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="farmer_producer_group" id="prod_yes" value="1" required>
-          <label class="form-check-label" for="prod_yes">होय</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="farmer_producer_group" id="prod_no" value="0">
-          <label class="form-check-label" for="prod_no">नाही</label>
-        </div>
-      </div>
-      
-      <!-- Question 5: Religious Activities -->
-      <div class="question-card">
-        <label class="form-label">
-          <span class="question-number">5.</span>
-          धार्मिक कार्यक्रमांची आवड आहे काय? (भजन/कीर्तन/नमाज/वेदपठन/इ. स्वरूपात)
-        </label>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="religious_activities" id="religious_yes" value="1">
-          <label class="form-check-label" for="religious_yes">होय</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="religious_activities" id="religious_no" value="0">
-          <label class="form-check-label" for="religious_no">नाही</label>
-        </div>
-      </div>
 
-        
-      <div class="text-center">
-        <button type="submit" class="btn btn-submit" name="register">
-          <i class="fas fa-paper-plane me-2"></i>सबमिट करा
-        </button>
-      </div>
-    </form>
+        <!-- Question 2: Self Help Group Member -->
+        <div class="question-card">
+          <label class="form-label">
+            <span class="question-number">2.</span>
+            कुटुंबातील कोणी बचत गट सदस्‍य आहे का ?
+            <span class="required"></span>
+          </label>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="self_help_group_member" id="bg_yes" value="1" required>
+            <label class="form-check-label" for="bg_yes">होय</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="self_help_group_member" id="bg_no" value="0">
+            <label class="form-check-label" for="bg_no">नाही</label>
+          </div>
+          <div class="additional-info">
+            <input type="text" class="form-control mt-2" name="shg_details" placeholder="अधिक माहिती">
+          </div>
+        </div>
+
+        <!-- Question 3: SHG Benefits -->
+        <div class="question-card">
+          <label class="form-label">
+            <span class="question-number">3.</span>
+            बचत गटातील काही लाभ मिळाले आहे का ?
+            <span class="required"></span>
+          </label>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="shg_benefits" id="benefit_yes" value="1" required>
+            <label class="form-check-label" for="benefit_yes">होय</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="shg_benefits" id="benefit_no" value="0">
+            <label class="form-check-label" for="benefit_no">नाही</label>
+          </div>
+          <div class="additional-info">
+            <input type="text" class="form-control mt-2" name="shg_benefit_details" placeholder="अधिक माहिती">
+          </div>
+        </div>
+
+        <!-- Question 4: Farmer Producer Group -->
+        <div class="question-card">
+          <label class="form-label">
+            <span class="question-number">4.</span>
+            शेतकरी उत्‍पादक गटातील सदस्‍य आहे का ?
+            <span class="required"></span>
+          </label>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="farmer_producer_group" id="prod_yes" value="1" required>
+            <label class="form-check-label" for="prod_yes">होय</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="farmer_producer_group" id="prod_no" value="0">
+            <label class="form-check-label" for="prod_no">नाही</label>
+          </div>
+        </div>
+
+        <!-- Question 5: Religious Activities -->
+        <div class="question-card">
+          <label class="form-label">
+            <span class="question-number">5.</span>
+            धार्मिक कार्यक्रमांची आवड आहे काय? (भजन/कीर्तन/नमाज/वेदपठन/इ. स्वरूपात)
+          </label>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="religious_activities" id="religious_yes" value="1">
+            <label class="form-check-label" for="religious_yes">होय</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="religious_activities" id="religious_no" value="0">
+            <label class="form-check-label" for="religious_no">नाही</label>
+          </div>
+        </div>
+
+
+        <div class="text-center">
+          <button type="submit" class="btn btn-submit" name="register">
+            <i class="fas fa-paper-plane me-2"></i>सबमिट करा
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
-</div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const memberRadios = document.querySelectorAll('input[name="gram_panchayat_member"]');
+      const orgTypeContainer = document.getElementById('orgTypeContainer');
 
-<?php include 'include/footer.php'; ?>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('socialForm');
-    const orgTypeContainer = document.getElementById('orgTypeContainer');
-    const orgDetailsContainer = document.getElementById('orgDetailsContainer');
-    const orgTypeSelect = document.getElementById('orgType');
-    
-    // Toggle organization type dropdown based on radio selection
-    function toggleOrgTypeContainer() {
-      const orgYes = document.getElementById('org_yes');
-      if (orgYes.checked) {
-        orgTypeContainer.classList.add('visible');
-      } else {
-        orgTypeContainer.classList.remove('visible');
-        orgDetailsContainer.classList.remove('visible');
-        // Reset values when hidden
-        orgTypeSelect.value = '';
-        document.querySelector('input[name="organization_details"]').value = '';
-      }
-    }
-    
-    // Toggle organization details based on dropdown selection
-    function toggleOrgDetailsContainer() {
-      if (orgTypeSelect.value) {
-        orgDetailsContainer.classList.add('visible');
-      } else {
-        orgDetailsContainer.classList.remove('visible');
-        document.querySelector('input[name="organization_details"]').value = '';
-      }
-    }
-    
-    // Add event listeners
-    document.getElementById('org_yes').addEventListener('change', toggleOrgTypeContainer);
-    document.getElementById('org_no').addEventListener('change', toggleOrgTypeContainer);
-    orgTypeSelect.addEventListener('change', toggleOrgDetailsContainer);
-    
-    // Initialize on page load
-    toggleOrgTypeContainer();
-    toggleOrgDetailsContainer();
-    
-    // Function to toggle additional info fields for other questions
-    function toggleAdditionalInfo() {
-      document.querySelectorAll('.question-card').forEach((card) => {
-        const additionalInfo = card.querySelector('.additional-info');
-        if (!additionalInfo) return;
-        
-        const yesRadios = card.querySelectorAll('input[type="radio"][value="1"]');
-        
-        let show = false;
-        yesRadios.forEach(radio => {
-          if (radio.checked) show = true;
+      memberRadios.forEach(radio => {
+        radio.addEventListener('change', function () {
+          if (this.value === '1') {
+            orgTypeContainer.style.display = 'block';
+            document.getElementById('orgType').setAttribute('required', 'required');
+          } else {
+            orgTypeContainer.style.display = 'none';
+            document.getElementById('orgType').removeAttribute('required');
+            document.getElementById('orgType').value = '';
+          }
         });
-        
-        additionalInfo.style.display = show ? 'block' : 'none';
-        
-        // Clear input when "No" is selected
-        if (!show) {
-          const input = additionalInfo.querySelector('input');
-          if (input) input.value = '';
-        }
       });
-    }
-    
-    // Add event listeners to all radio buttons for other questions
-    document.querySelectorAll('input[type="radio"]').forEach(radio => {
-      radio.addEventListener('change', toggleAdditionalInfo);
     });
-    
-    // Initialize on page load
-    toggleAdditionalInfo();
-    
-    // Form submission logic
-    form.addEventListener('submit', function(e) {
-      // e.preventDefault();
-      
-      // Simple form validation
-      let valid = true;
-      
-      // Check all required fields
-      const requiredFields = form.querySelectorAll('[required]');
-      requiredFields.forEach(field => {
-        if (!field.value) {
-          valid = false;
-          field.classList.add('is-invalid');
+  </script>
+
+  <?php include 'include/footer.php'; ?>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const form = document.getElementById('socialForm');
+      const orgTypeContainer = document.getElementById('orgTypeContainer');
+      const orgDetailsContainer = document.getElementById('orgDetailsContainer');
+      const orgTypeSelect = document.getElementById('orgType');
+
+      // Toggle organization type dropdown based on radio selection
+      function toggleOrgTypeContainer() {
+        const orgYes = document.getElementById('org_yes');
+        if (orgYes.checked) {
+          orgTypeContainer.classList.add('visible');
         } else {
-          field.classList.remove('is-invalid');
-        }
-      });
-      
-      // Special validation for organization fields
-      if (document.getElementById('org_yes').checked) {
-        if (!orgTypeSelect.value) {
-          valid = false;
-          orgTypeSelect.classList.add('is-invalid');
-        } else {
-          orgTypeSelect.classList.remove('is-invalid');
+          orgTypeContainer.classList.remove('visible');
+          orgDetailsContainer.classList.remove('visible');
+          // Reset values when hidden
+          orgTypeSelect.value = '';
+          document.querySelector('input[name="organization_details"]').value = '';
         }
       }
-      
-      if (valid) {
-        // Form is valid - show success message
-        // alert('फॉर्म सबमिट झाला आहे! धन्यवाद!');
-        form.reset();
-        // Reset all conditional displays
-        toggleOrgTypeContainer();
-        toggleAdditionalInfo();
-      } else {
-        alert('कृपया सर्व आवश्यक फील्ड भरा!');
+
+      // Toggle organization details based on dropdown selection
+      function toggleOrgDetailsContainer() {
+        if (orgTypeSelect.value) {
+          orgDetailsContainer.classList.add('visible');
+        } else {
+          orgDetailsContainer.classList.remove('visible');
+          document.querySelector('input[name="organization_details"]').value = '';
+        }
       }
+
+      // Add event listeners
+      document.getElementById('org_yes').addEventListener('change', toggleOrgTypeContainer);
+      document.getElementById('org_no').addEventListener('change', toggleOrgTypeContainer);
+      orgTypeSelect.addEventListener('change', toggleOrgDetailsContainer);
+
+      // Initialize on page load
+      toggleOrgTypeContainer();
+      toggleOrgDetailsContainer();
+
+      // Function to toggle additional info fields for other questions
+      function toggleAdditionalInfo() {
+        document.querySelectorAll('.question-card').forEach((card) => {
+          const additionalInfo = card.querySelector('.additional-info');
+          if (!additionalInfo) return;
+
+          const yesRadios = card.querySelectorAll('input[type="radio"][value="1"]');
+
+          let show = false;
+          yesRadios.forEach(radio => {
+            if (radio.checked) show = true;
+          });
+
+          additionalInfo.style.display = show ? 'block' : 'none';
+
+          // Clear input when "No" is selected
+          if (!show) {
+            const input = additionalInfo.querySelector('input');
+            if (input) input.value = '';
+          }
+        });
+      }
+
+      // Add event listeners to all radio buttons for other questions
+      document.querySelectorAll('input[type="radio"]').forEach(radio => {
+        radio.addEventListener('change', toggleAdditionalInfo);
+      });
+
+      // Initialize on page load
+      toggleAdditionalInfo();
+
+      // Form submission logic
+      form.addEventListener('submit', function (e) {
+        // e.preventDefault();
+
+        // Simple form validation
+        let valid = true;
+
+        // Check all required fields
+        const requiredFields = form.querySelectorAll('[required]');
+        requiredFields.forEach(field => {
+          if (!field.value) {
+            valid = false;
+            field.classList.add('is-invalid');
+          } else {
+            field.classList.remove('is-invalid');
+          }
+        });
+
+        // Special validation for organization fields
+        if (document.getElementById('org_yes').checked) {
+          if (!orgTypeSelect.value) {
+            valid = false;
+            orgTypeSelect.classList.add('is-invalid');
+          } else {
+            orgTypeSelect.classList.remove('is-invalid');
+          }
+        }
+
+        form.addEventListener('submit', function (e) {
+          let valid = true;
+
+          const requiredFields = form.querySelectorAll('[required]');
+          requiredFields.forEach(field => {
+            if (!field.value) {
+              valid = false;
+              field.classList.add('is-invalid');
+            } else {
+              field.classList.remove('is-invalid');
+            }
+          });
+
+          if (document.getElementById('org_yes').checked) {
+            if (!orgTypeSelect.value) {
+              valid = false;
+              orgTypeSelect.classList.add('is-invalid');
+            } else {
+              orgTypeSelect.classList.remove('is-invalid');
+            }
+          }
+
+          if (!valid) {
+            e.preventDefault(); // फॉर्मला थांबवा फक्त जर इनवॅलिड असेल तर
+            alert('कृपया सर्व आवश्यक फील्ड भरा!');
+          }
+        });
+
+      });
     });
-  });
-</script>
+  </script>
 </body>
+
 </html>
