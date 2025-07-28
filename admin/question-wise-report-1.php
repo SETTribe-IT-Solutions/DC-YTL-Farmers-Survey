@@ -390,7 +390,7 @@ $survey_id = "survey{$currentYear}_" . str_pad($nextNumber, 2, '0', STR_PAD_LEFT
                             <tbody id="farmerTable">
                                 <?php
 
-                                $sql = $_GET['query'];
+                                $sql = base64_decode($_GET['query']);
                                 $survey_id = [];
                                 $query = mysqli_query($con, $sql);
                                 while ($result = mysqli_fetch_assoc($query)) {
