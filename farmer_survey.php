@@ -802,6 +802,15 @@ $survey_id = "survey{$currentYear}_" . str_pad($nextNumber, 2, '0', STR_PAD_LEFT
 
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script>
+
+    $("#taluka").on('change', function () {
+      var taluka = $("#taluka").val();
+      if (taluka) {
+        $.ajax({
+          url: ''
+        })
+      }
+    })
     document.addEventListener('DOMContentLoaded', function () {
       // Set today's date for survey date field
       const today = new Date().toISOString().split('T')[0];
