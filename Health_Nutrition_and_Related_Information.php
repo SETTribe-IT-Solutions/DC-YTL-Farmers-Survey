@@ -30,19 +30,29 @@
             padding: 0 20px;
         }
 
-        .header1 {
-            background: linear-gradient(135deg, #2c3e50, #3498db);
-            color: white;
-            text-align: center;
-            padding: 25px 0;
-            border-radius: 15px 15px 0 0;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        }
+     
 
-        .header1 h1 {
-            font-size: 2rem;
-            font-weight: bold;
-        }
+ .styled-heading {
+      font-size: 24px;
+      color: #0074cc;
+      position: relative;
+      display: inline-block;
+      margin-bottom: 1.2rem;
+      font-weight: 600;
+      padding-bottom: 6px;
+      padding-left: 5px;
+    }
+
+.styled-heading::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 3px;
+      width: 100%;
+      background-color: #0074cc;
+      border-radius: 2px;
+    }
 
         /* Main Container */
         .main-container {
@@ -240,17 +250,17 @@
         .section-heading {
             font-size: 20px;
             font-weight: 600;
-            color: #033c5dff;
+            color: #0d47a1;;
             /* Deep red */
-            background-color: #b7b5e8ff;
+            background-color:
             /* Light pinkish background */
             padding: 12px 20px;
-            border-left: 5px solid #1b2531ff;
+           
             border-radius: 6px;
             margin: 20px 0;
             display: flex;
             align-items: center;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+       
             font-family: 'Segoe UI', sans-serif;
         }
 
@@ -258,6 +268,18 @@
             font-size: 22px;
             margin-right: 10px;
         }
+            .info-box {
+      background: linear-gradient(135deg, rgba(52, 152, 219, 0.1) 0%, rgba(41, 128, 185, 0.1) 100%);
+      /* border-left: 4px solid var(--secondary-color); */
+      padding: 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 25px 0;
+      font-size: 1rem;
+      color: var(--primary-color);
+      text-align: left;
+      margin-top:5px;
+      font-weight:bold;
+    }
     </style>
     <?php
     // include('include/header.php');
@@ -269,11 +291,12 @@
 
 <body>
     <div class="container-fluid">
-        <div class="header1">
-            <h1>आरोग्‍य पोषण व शिक्षण विषयक माहीती </h1>
-            <p>कृपया खालील माहिती अचूकपणे भरा</p>
+        <div class="styled-heading">
+            <h3 style="font-weight:bold;">आरोग्‍य पोषण व शिक्षण विषयक माहीती </h3>
         </div>
-
+        <div>
+         <p class="info-box">कृपया खालील माहिती अचूकपणे भरा</p>
+           </div>
         <form class="main-container needs-validation" action="Health_Nutrition_and_Related_Information_db.php" method="POST" novalidate>
             <div class="section-heading health-education">
                 <i class="bi bi-heart-pulse-fill text-danger me-2"></i>
