@@ -18,9 +18,10 @@
 		}
 
 		.container-fluid {
-			/* max-width: 900px; */
+			/* max-width: 100px; */
 			/* margin: 0 auto; */
-			margin-top: 1%;
+			margin:20px auto;
+			padding: 10px 15px;
 		}
 
 		.header {
@@ -66,7 +67,7 @@
 		.sub-section {
 			margin-bottom: 40px;
 			padding: 20px;
-			background-color: #f8f9fa;
+			background-color:;
 			border-radius: 8px;
 		}
 
@@ -288,6 +289,33 @@
 			flex-direction: column;
 			gap: 20px;
 		}
+       .styled-heading {
+      font-size: 24px;
+      color: #0074cc;
+      position: relative;
+      display: inline-block;
+      margin-bottom: 1.2rem;
+      font-weight: 600;
+      padding-bottom: 6px;
+      padding-left: 5px;
+    }
+
+.styled-heading::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 3px;
+      width: 100%;
+      background-color: #0074cc;
+      border-radius: 2px;
+    }
+
+    .styled-heading h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+      font-weight: 800;
+    }
 
 		@media (max-width: 768px) {
 			.header h1 {
@@ -322,20 +350,20 @@
 	data-kt-app-header-secondary-enabled="true" data-kt-app-toolbar-enabled="true" class="app-default">
 
 	<!--begin::App-->
-	<div class="d-flex flex-column flex-root app-root" id="kt_app_root">
+	<div class="d-flex flex-column flex-root app-root mb-5" id="kt_app_root">
 		<!--begin::Page-->
 		<div class="app-page flex-column flex-column-fluid" id="kt_app_page">
 			<!--begin::Header-->
 				<?php
 				include('include/header.php');
 				?>
-			<div class="container-fluid">
+			<div class="container-fluid ">
 
 
 				<div class="main-container">
-					<h4 class="section-title" style="color: #2c3e50; margin-bottom: 20px;">
+					<h1 class="styled-heading">
 						<i class="fas fa-truck-moving info-icon"></i> स्‍थलांतर विषयक बाबी
-					</h4>
+					</h1>
 
 
 					<form id="familyForm" action="migration_survey_form_db.php" method="POST" class="needs-validation"
@@ -394,12 +422,12 @@
 							</button>
 						</div>
 					</form>
-					<?php
-					include('include/footer.php')
-						?>
+					
 				</div>
 			</div>
-
+<?php
+					include('include/footer.php')
+						?>
 			<script>
 				// Bootstrap validation
 				(() => {

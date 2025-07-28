@@ -49,24 +49,6 @@
             overflow: hidden;
         }
 
-        .header1 {
-            background: linear-gradient(135deg, #292f4dff 0%, #764ba2 100%);
-            color: white;
-            padding: 25px;
-            text-align: center;
-        }
-
-        .header1 h1 {
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-
-        .header1 p {
-            font-size: 16px;
-            opacity: 0.9;
-        }
-
         /* Section Heading Style */
         .section-heading {
             font-size: 20px;
@@ -99,7 +81,7 @@
             padding: 25px;
             background: #f8f9fa;
             border-radius: 12px;
-            border-left: 5px solid #020c36ff;
+            border-left: 5px solid #112da5;
             transition: all 0.3s ease;
         }
 
@@ -380,14 +362,46 @@
                 font-size: 12px;
             }
         }
+/* Section Styles */
+    .form-section {
+      margin-bottom: 30px;
+    }
 
+    .section-title {
+      font-size: 22px;
+      color: #2c3e50;
+      border-bottom: 2px solid #f0f0f0;
+      padding-bottom: 10px;
+      margin-bottom: 25px;
+    }
+.styled-heading {
+      font-size: 24px;
+      color: #0074cc;
+      position: relative;
+      display: inline-block;
+      margin-bottom: 1.2rem;
+      font-weight: 600;
+      padding-bottom: 6px;
+      padding-left: 5px;
+    }
+
+    .styled-heading::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 3px;
+      width: 100%;
+      background-color: #0074cc;
+      border-radius: 2px;
+    }
         .form-section {
             background-color: #ffffff;
             padding: 24px 32px;
             border-radius: 12px;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
             margin: 24px auto;
-            border-left: 6px solid #1e40af;
+            border-left: 6px solid #08472cff;
             /* Dark blue vertical line */
             position: relative;
             transition: all 0.3s ease;
@@ -471,11 +485,10 @@ include('include/header.php')
 
 <body>
     <div class="container-fluid">
-        <div class="container1">
-            <div class="header1">
-                <h1>शेतकरी कर्ज सर्वेक्षण फॉर्म</h1>
-                <p>कृपया सर्व प्रश्नांची उत्तरे देऊन फॉर्म भरा</p>
-            </div>
+        <div class="form-section container mt-4">
+                <h1 class="section-title styled-heading text-center mb-4">शेतकरी कर्ज सर्वेक्षण फॉर्म</h1>
+                <p style="font-weight:bold">कृपया सर्व प्रश्नांची उत्तरे देऊन फॉर्म भरा</p>
+        
 
             <div class="form-content">
                 <form id="surveyForm" action="Agricultural_land_information.php" method="POST" novalidate>
@@ -841,7 +854,7 @@ include('include/header.php')
                             </div>
                         </div>
                     </div>
-                    <div class="form-section">
+                    <div class="question-block">
 
                         <div class="form-group">
                             <label class="form-label">11. थकबाकीदार आहे का?</label>
