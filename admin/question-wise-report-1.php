@@ -389,16 +389,27 @@ $survey_id = "survey{$currentYear}_" . str_pad($nextNumber, 2, '0', STR_PAD_LEFT
                             </thead>
                             <tbody id="farmerTable">
                                 <?php
-                                $sql = "SELECT survey_id, farmer_name, suicide_date, village, taluka, suicide_type, status FROM farmer_survey";
+
+                                $sql = $_GET['query'];
+                                $survey_id = [];
+                                $query = mysqli_query($con, $sql);
+                                while ($result = mysqli_fetch_assoc($query)) {
+                                    $survey_id[] = "'" . $result['survey_id'] . "'";
+                                }
+
+                                $survey_ids = implode(',', $survey_id);
+
+
+                                $sql = "SELECT survey_id, farmer_name, suicide_date, village, taluka, suicide_type, status FROM farmer_survey WHERE survey_id IN ($survey_ids)";
 
                                 $i = 1;
                                 $query = mysqli_query($con, $sql);
-                                if (0 == 0) {
+                                if (mysqli_num_rows($query) == 0) {
                                     ?>
                                     <td>No Data available</td>
                                     <?php
                                 }
-                                /* while ($row = mysqli_fetch_assoc($query)) {
+                                while ($row = mysqli_fetch_assoc($query)) {
                                     ?>
                                     <tr>
                                         <td><?php echo $i++; ?></td>
@@ -422,7 +433,7 @@ $survey_id = "survey{$currentYear}_" . str_pad($nextNumber, 2, '0', STR_PAD_LEFT
                                         </td>
                                     </tr>
                                     <?php
-                                }*/
+                                }
                                 ?>
                             </tbody>
                         </table>
