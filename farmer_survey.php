@@ -189,15 +189,17 @@ $survey_id = "survey{$currentYear}_" . str_pad($nextNumber, 2, '0', STR_PAD_LEFT
       font-size: 1.1rem;
       color: var(--primary-color);
       text-align: left;
-      margin-top:5px;
-      font-weight:bold;
+      margin-top: 5px;
+      font-weight: bold;
     }
 
-.info-icon {
-  font-size: 1.8rem;
-  color: #0d6efd; /* You can use any primary theme color */
-  margin-right:5px;
-}
+    .info-icon {
+      font-size: 1.8rem;
+      color: #0d6efd;
+      /* You can use any primary theme color */
+      margin-right: 5px;
+    }
+
     .required::after {
       content: " *";
       color: var(--error-color);
@@ -358,7 +360,8 @@ $survey_id = "survey{$currentYear}_" . str_pad($nextNumber, 2, '0', STR_PAD_LEFT
       text-align: center;
       font-size: 1.8rem;
     }
-      .styled-heading {
+
+    .styled-heading {
       font-size: 20px;
       color: #0074cc;
       position: relative;
@@ -379,16 +382,17 @@ $survey_id = "survey{$currentYear}_" . str_pad($nextNumber, 2, '0', STR_PAD_LEFT
       background-color: #0074cc;
       border-radius: 2px;
     }
-    @media (max-width: 768px) {
-  .info-icon {
-    font-size: 1.5rem;
-  }
-}
 
-@media (min-width: 769px) {
-  .info-icon {
-    font-size: 2rem;
-  }
+    @media (max-width: 768px) {
+      .info-icon {
+        font-size: 1.5rem;
+      }
+    }
+
+    @media (min-width: 769px) {
+      .info-icon {
+        font-size: 2rem;
+      }
   </style>
 </head>
 
@@ -407,7 +411,7 @@ $survey_id = "survey{$currentYear}_" . str_pad($nextNumber, 2, '0', STR_PAD_LEFT
         <p>महाराष्ट्र सरकारच्या योजनेअंतर्गत आत्महत्या झालेल्या शेतकऱ्यांच्या कुटुंबियांना सहाय्य</p>
       </div> -->
       <h4 class="section-title styled-heading">
-         <i class="fas fa-info-circle fa-2x info-icon me-2"></i>आत्महत्याग्रस्त शेतकरी माहिती फॉर्म
+        <i class="fas fa-info-circle fa-2x info-icon me-2"></i>आत्महत्याग्रस्त शेतकरी माहिती फॉर्म
       </h4>
 
       <div class="info-box">
@@ -546,26 +550,30 @@ $survey_id = "survey{$currentYear}_" . str_pad($nextNumber, 2, '0', STR_PAD_LEFT
 
           <div class="row">
             <div class="col-md-6 mb-3">
-              <label class="form-label required">गावाचे नाव</label>
-              <select class="form-select" name="village" required>
-                <option selected disabled value="">निवडा</option>
-                <option value="पांढरकवडा">पांढरकवडा</option>
-                <option value="झरी जामनी">झरी जामनी</option>
-                <option value="वणी">वणी</option>
-                <option value="नेर">नेर</option>
-                <option value="पोहरादेवी">पोहरादेवी</option>
-              </select>
-              <div class="validation-error">कृपया गावाचे नाव निवडा</div>
-            </div>
-            <div class="col-md-6 mb-3">
               <label class="form-label required">तालुका</label>
               <select class="form-select" name="taluka" required>
                 <option selected disabled value="">निवडा</option>
-                <option value="पांढरकवडा">पांढरकवडा</option>
-                <option value="दिग्रस">दिग्रस</option>
-                <option value="उमरखेड">उमरखेड</option>
+                <?php
+
+                $sql = "SELECT DISTINCT taluka FROM master";
+                $query = mysqli_query($con, $sql);
+                while ($result = mysqli_fetch_assoc($query)) {
+
+                  ?>
+                  <option value="<?= $result['taluka'] ?>"><?= $result['taluka'] ?></option>
+                  <?php
+                }
+                ?>
               </select>
               <div class="validation-error">कृपया तालुका निवडा</div>
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label class="form-label required">गावाचे नाव</label>
+              <select class="form-select" name="village" required>
+                <option selected disabled value="">निवडा</option>
+              </select>
+              <div class="validation-error">कृपया गावाचे नाव निवडा</div>
             </div>
           </div>
 
@@ -772,23 +780,23 @@ $survey_id = "survey{$currentYear}_" . str_pad($nextNumber, 2, '0', STR_PAD_LEFT
       </form>
     </div>
   </div>
-<script>
-  function confirmSubmit() {
-    Swal.fire({
-      title: 'तुम्हाला खात्री आहे का?',
-      text: "फॉर्म सबमिट केल्यावर पुढील पानावर जाल.",
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonText: 'हो, सबमिट करा',
-      cancelButtonText: 'रद्द करा',
-      reverseButtons: true
-    }).then((result) => {
-      if (result.isConfirmed) {
-        document.getElementById('farmerForm').submit(); // ✅ Properly submits the form
-      }
-    });
-  }
-</script>
+  <script>
+    function confirmSubmit() {
+      Swal.fire({
+        title: 'तुम्हाला खात्री आहे का?',
+        text: "फॉर्म सबमिट केल्यावर पुढील पानावर जाल.",
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'हो, सबमिट करा',
+        cancelButtonText: 'रद्द करा',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+          document.getElementById('farmerForm').submit(); // ✅ Properly submits the form
+        }
+      });
+    }
+  </script>
 
   <?php include 'include/footer.php'; ?>
 

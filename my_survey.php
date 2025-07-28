@@ -1,5 +1,10 @@
 <?php
-include('../include/conn.php');
+session_start();
+if (isset($_SESSION['user_id'])) {
+    header('location: login.php');
+    exit;
+}
+include('include/conn.php');
 
 // Generate survey ID for display
 $currentYear = date("Y");
@@ -22,13 +27,12 @@ $survey_id = "survey{$currentYear}_" . str_pad($nextNumber, 2, '0', STR_PAD_LEFT
 <html lang="mr">
 
 <head>
-    <base href="../">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>आत्महत्याग्रस्त शेतकरी माहिती फॉर्म</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <?php
-    include('../include/cssLinks.php');
+    include('include/cssLinks.php');
     ?>
     <style>
         :root {
@@ -353,97 +357,118 @@ $survey_id = "survey{$currentYear}_" . str_pad($nextNumber, 2, '0', STR_PAD_LEFT
             text-align: center;
             font-size: 1.8rem;
         }
+
+        /* Table */
+        .table-section {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .table-section h3 {
+            margin-bottom: 16px;
+            font-size: 20px;
+        }
+
+        .table-container table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table-container thead {
+            background-color: #003366;
+            color: white;
+        }
+
+        .table-container th,
+        .table-container td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
     </style>
 </head>
 
 <body>
-    <?php include('../include/admin-header.php'); ?>
+    <?php include('include/header.php'); ?>
 
     <div class="container-fluid">
+
+
         <div class="main-container">
+
             <h4 class="section-title">
-                Question wise report
+                My Survey
             </h4>
 
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th rowspan="2">Taluka</th>
-                                    <?php
-                                    $tables = [];
-                                    $columns = [];
-                                    $q = mysqli_query($conn, "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'u952673419_farmer_survey' AND TABLE_NAME != 'admin' AND TABLE_NAME != 'users'");
-                                    while ($r = mysqli_fetch_assoc($q)) {
-                                        $table = $r['TABLE_NAME'];
-                                        $tables[] = "'" . $table . "'";
-                                    }
+            <div class="container">
+                <div class="row">
 
-                                    $tables_array = implode(',', $tables);
-                                    $q1 = mysqli_query($conn, "SELECT TABLE_NAME, COLUMN_NAME, COLUMN_COMMENT, DATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'u952673419_farmer_survey' AND TABLE_NAME IN ($tables_array)  AND DATA_TYPE = 'tinyint' AND COLUMN_COMMENT != ''");
-                                    while ($col = mysqli_fetch_assoc($q1)) {
-                                        echo "<th colspan='2'>{$col['COLUMN_COMMENT']}</th>";
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <div class="table-section">
+                                <div class="table-container">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>क्र</th>
+                                                <th>नाव</th>
+                                                <th>गाव</th>
+                                                <th>तालुका</th>
+                                                <th>आत्महत्येचा प्रकार</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="farmerTable">
+                                            <?php
+                                            $userId = $_SESSION['userId'];
+                                            $sql = "SELECT survey_id, farmer_name, suicide_date, village, taluka, suicide_type, status FROM farmer_survey WHERE created_by = '$userId'";
 
-                                        $columns[] = [
-                                            'table' => $col['TABLE_NAME'],
-                                            'name' => htmlspecialchars($col['COLUMN_NAME']),
-                                            'comment' => htmlspecialchars($col['COLUMN_COMMENT']),
-                                            'type' => $col['DATA_TYPE']
-                                        ];
-                                    }
+                                            $i = 1;
+                                            $query = mysqli_query($con, $sql);
+                                            while ($row = mysqli_fetch_assoc($query)) {
+                                                ?>
+                                                <tr>
+                                                    <td><?php echo $i++; ?></td>
+                                                    <td><?php echo $row['farmer_name']; ?></td>
+                                                    <td><?php echo $row['village']; ?></td>
+                                                    <td><?php echo $row['taluka']; ?></td>
+                                                    <td>
+                                                        <?php
+                                                        echo $row['suicide_type'];
+                                                        // if ($row['suicide_type'] == 'इतर') {
+                                                        //     echo ' (' . $row['suicide_type_other'] . ')';
+                                                        // }
+                                                        ?>
 
-                                    ?>
-                                </tr>
-                                <tr>
-                                    <?php
-                                    foreach ($columns as $column) {
-                                        ?>
-                                        <td>
-                                            होय
-                                        </td>
-                                        <td>
-                                            नाही
-                                        </td>
-                                        <?php
-                                    }
-                                    ?>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                $q = mysqli_query($conn, "SELECT DISTINCT taluka FROM master");
-                                while ($row = mysqli_fetch_assoc($q)) {
-                                    $taluka = htmlspecialchars($row['taluka']);
-                                    echo "<tr>";
-                                    echo "<td>{$taluka}</td>";
+                                                    </td>
+                                                    <td><?php echo $row['status']; ?></td>
+                                                    <td>
 
-                                    foreach ($columns as $column) {
-                                        $table_name = $column['table'];
-                                        $col_name = $column['name'];
-                                        $col_comment = $column['comment'];
-
-                                        // Count 'yes' and 'no' responses
-                                        $yes_count = 0;//mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS count FROM $table_name  WHERE $col_name = 1"))['count'];
-                                        $no_count = 0;//mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS count FROM $table_name WHERE  $col_name = 0"))['count'];
-                                
-                                        echo "<td><a href='admin/question-wise-report-1.php'>{$yes_count}</a></td>";
-                                        echo "<td><a href='admin/question-wise-report-1.php'>{$no_count}</a></td>";
-                                    }
-                                    echo "</tr>";
-                                }
-                                ?>
-                            </tbody>
-                        </table>
+                                                        <a href="view_survey.php?id=<?php echo $row['survey_id']; ?>"><button
+                                                                class="btn btn-primary">View</button></a>
+                                                    </td>
+                                                </tr>
+                                                <?php
+                                            }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </div>
-    </div>
-    <?php include '../include/footer.php'; ?>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <?php include 'include/footer.php'; ?>
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
 
 </html>

@@ -216,9 +216,9 @@
                 <span></span>
             </div>
             <ul class="nav-menu" id="navMenu">
-                <li><a href="#">Home</a></li>
+                <li><a href="User_Dashboard.php">Home</a></li>
                 <li><a href="farmer_survey.php">New Survey</a></li>
-                <li><a href="#">My Surveys</a></li>
+                <li><a href="my_survey.php">My Surveys</a></li>
                 <!-- <li><a href="#">Reports</a></li> -->
                 <li>
                     <a href="#" class="dropdown-toggle" onclick="event.preventDefault()">Forms</a>

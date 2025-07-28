@@ -364,6 +364,13 @@ $survey_id = "survey{$currentYear}_" . str_pad($nextNumber, 2, '0', STR_PAD_LEFT
             <h4 class="section-title">
                 Question wise report
             </h4>
+            <div class="text-end">
+                <a href="admin/question-wise-report.php">
+                    <button type="button" class="btn btn-primary">
+                        Back
+                    </button>
+                </a>
+            </div>
 
             <div class="row">
                 <div class="col-md-12">
@@ -371,68 +378,51 @@ $survey_id = "survey{$currentYear}_" . str_pad($nextNumber, 2, '0', STR_PAD_LEFT
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th rowspan="2">Taluka</th>
-                                    <?php
-                                    $tables = [];
-                                    $columns = [];
-                                    $q = mysqli_query($conn, "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'u952673419_farmer_survey' AND TABLE_NAME != 'admin' AND TABLE_NAME != 'users'");
-                                    while ($r = mysqli_fetch_assoc($q)) {
-                                        $table = $r['TABLE_NAME'];
-                                        $tables[] = "'" . $table . "'";
-                                    }
-
-                                    $tables_array = implode(',', $tables);
-                                    $q1 = mysqli_query($conn, "SELECT TABLE_NAME, COLUMN_NAME, COLUMN_COMMENT, DATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'u952673419_farmer_survey' AND TABLE_NAME IN ($tables_array)  AND DATA_TYPE = 'tinyint' AND COLUMN_COMMENT != ''");
-                                    while ($col = mysqli_fetch_assoc($q1)) {
-                                        echo "<th colspan='2'>{$col['COLUMN_COMMENT']}</th>";
-
-                                        $columns[] = [
-                                            'table' => $col['TABLE_NAME'],
-                                            'name' => htmlspecialchars($col['COLUMN_NAME']),
-                                            'comment' => htmlspecialchars($col['COLUMN_COMMENT']),
-                                            'type' => $col['DATA_TYPE']
-                                        ];
-                                    }
-
-                                    ?>
-                                </tr>
-                                <tr>
-                                    <?php
-                                    foreach ($columns as $column) {
-                                        ?>
-                                        <td>
-                                            होय
-                                        </td>
-                                        <td>
-                                            नाही
-                                        </td>
-                                        <?php
-                                    }
-                                    ?>
+                                    <th>क्र</th>
+                                    <th>नाव</th>
+                                    <th>गाव</th>
+                                    <th>तालुका</th>
+                                    <th>आत्महत्येचा प्रकार</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="farmerTable">
                                 <?php
-                                $q = mysqli_query($conn, "SELECT DISTINCT taluka FROM master");
-                                while ($row = mysqli_fetch_assoc($q)) {
-                                    $taluka = htmlspecialchars($row['taluka']);
-                                    echo "<tr>";
-                                    echo "<td>{$taluka}</td>";
+                                $sql = "SELECT survey_id, farmer_name, suicide_date, village, taluka, suicide_type, status FROM farmer_survey";
 
-                                    foreach ($columns as $column) {
-                                        $table_name = $column['table'];
-                                        $col_name = $column['name'];
-                                        $col_comment = $column['comment'];
-
-                                        // Count 'yes' and 'no' responses
-                                        $yes_count = 0;//mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS count FROM $table_name  WHERE $col_name = 1"))['count'];
-                                        $no_count = 0;//mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS count FROM $table_name WHERE  $col_name = 0"))['count'];
-                                
-                                        echo "<td><a href='admin/question-wise-report-1.php'>{$yes_count}</a></td>";
-                                        echo "<td><a href='admin/question-wise-report-1.php'>{$no_count}</a></td>";
-                                    }
-                                    echo "</tr>";
+                                $i = 1;
+                                $query = mysqli_query($con, $sql);
+                                if (0 == 0) {
+                                    ?>
+                                    <td>No Data available</td>
+                                    <?php
                                 }
+                                /* while ($row = mysqli_fetch_assoc($query)) {
+                                    ?>
+                                    <tr>
+                                        <td><?php echo $i++; ?></td>
+                                        <td><?php echo $row['farmer_name']; ?></td>
+                                        <td><?php echo $row['village']; ?></td>
+                                        <td><?php echo $row['taluka']; ?></td>
+                                        <td>
+                                            <?php
+                                            echo $row['suicide_type'];
+                                            // if ($row['suicide_type'] == 'इतर') {
+                                            //     echo ' (' . $row['suicide_type_other'] . ')';
+                                            // }
+                                            ?>
+
+                                        </td>
+                                        <td><?php echo $row['status']; ?></td>
+                                        <td>
+
+                                            <a href="view_survey.php?id=<?php echo $row['survey_id']; ?>"><button
+                                                    class="btn btn-primary">View</button></a>
+                                        </td>
+                                    </tr>
+                                    <?php
+                                }*/
                                 ?>
                             </tbody>
                         </table>

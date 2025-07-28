@@ -655,7 +655,7 @@ $survey_id = "survey{$currentYear}_" . str_pad($nextNumber, 2, '0', STR_PAD_LEFT
                         <div class="icon-box"><i class="fas fa-clipboard-list"></i></div>
                         <div class="text-content">
                             <div class="label">एकूण अर्ज</div>
-                            <div class="value">10</div>
+                            <div class="value">0</div>
                         </div>
                     </div>
 
@@ -663,7 +663,7 @@ $survey_id = "survey{$currentYear}_" . str_pad($nextNumber, 2, '0', STR_PAD_LEFT
                         <div class="icon-box"><i class="fas fa-check-circle"></i></div>
                         <div class="text-content">
                             <div class="label">मंजूर अर्ज</div>
-                            <div class="value">4</div>
+                            <div class="value">0</div>
                         </div>
                     </div>
 
@@ -671,7 +671,7 @@ $survey_id = "survey{$currentYear}_" . str_pad($nextNumber, 2, '0', STR_PAD_LEFT
                         <div class="icon-box"><i class="fas fa-times-circle"></i></div>
                         <div class="text-content">
                             <div class="label">नामंजूर अर्ज</div>
-                            <div class="value">3</div>
+                            <div class="value">0</div>
                         </div>
                     </div>
 
@@ -679,7 +679,7 @@ $survey_id = "survey{$currentYear}_" . str_pad($nextNumber, 2, '0', STR_PAD_LEFT
                         <div class="icon-box"><i class="fas fa-hourglass-half"></i></div>
                         <div class="text-content">
                             <div class="label">प्रलंबित अर्ज</div>
-                            <div class="value">3</div>
+                            <div class="value">0</div>
                         </div>
                     </div>
                 </div>
@@ -711,25 +711,7 @@ $survey_id = "survey{$currentYear}_" . str_pad($nextNumber, 2, '0', STR_PAD_LEFT
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>Gaurav Patil</td>
-                                        <td>Haveli</td>
-                                        <td>Wagholi</td>
-                                        <td>2025-07-15</td>
-                                        <td>Pending</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Ravi Deshmukh</td>
-                                        <td>Mulshi</td>
-                                        <td>Paud</td>
-                                        <td>2025-07-12</td>
-                                        <td>Approved</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Sunil Shinde</td>
-                                        <td>Pune City</td>
-                                        <td>Shivajinagar</td>
-                                        <td>2025-07-10</td>
-                                        <td>Rejected</td>
+                                        <th colspan="4" class="text-center">No Data avaible</th>
                                     </tr>
                                 </tbody>
                             </table>
