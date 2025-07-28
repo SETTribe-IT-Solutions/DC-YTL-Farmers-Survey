@@ -409,8 +409,10 @@ $stmt->close();
                                             SUM(CASE WHEN $col_name = 0 THEN 1 ELSE 0 END) AS no_count
                                             FROM $table_name";
 
-                                        $yes_query = "SELECT survey_id FROM $table_name WHERE $col_name = 1";
-                                        $no_query = "SELECT survey_id FROM $table_name WHERE $col_name = 0";
+                                        $yes_query = urlencode("SELECT survey_id FROM $table_name WHERE $col_name = 1");
+                                        ;
+                                        $no_query = urlencode("SELECT survey_id FROM $table_name WHERE $col_name = 0");
+                                        ;
                                         $result = mysqli_query($conn, $sql);
                                         if (!$result) {
                                             echo "<td colspan='2'>Error: " . mysqli_error($conn) . "</td>";
