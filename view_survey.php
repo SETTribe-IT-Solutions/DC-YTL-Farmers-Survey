@@ -1,5 +1,5 @@
 <?php
-include('../include/conn.php');
+include('include/conn.php');
 
 // Generate survey ID for display
 $currentYear = date("Y");
@@ -22,13 +22,12 @@ $survey_id = "survey{$currentYear}_" . str_pad($nextNumber, 2, '0', STR_PAD_LEFT
 <html lang="mr">
 
 <head>
-    <base href="../">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>आत्महत्याग्रस्त शेतकरी माहिती फॉर्म</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <?php
-    include('../include/cssLinks.php');
+    include('include/cssLinks.php');
     ?>
     <style>
         :root {
@@ -357,93 +356,170 @@ $survey_id = "survey{$currentYear}_" . str_pad($nextNumber, 2, '0', STR_PAD_LEFT
 </head>
 
 <body>
-    <?php include('../include/admin-header.php'); ?>
+    <?php include('include/header.php'); ?>
 
     <div class="container-fluid">
+
+
         <div class="main-container">
+
             <h4 class="section-title">
-                Question wise report
+                My Survey
             </h4>
+            <div class="text-end">
+                <a href="my_survey.php">
+                    <button type="button" class="btn btn-primary">
+                        Back
+                    </button>
+                </a>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
 
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th rowspan="2">Taluka</th>
-                                    <?php
-                                    $tables = [];
-                                    $columns = [];
-                                    $q = mysqli_query($conn, "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'u952673419_farmer_survey' AND TABLE_NAME != 'admin' AND TABLE_NAME != 'users'");
-                                    while ($r = mysqli_fetch_assoc($q)) {
-                                        $table = $r['TABLE_NAME'];
-                                        $tables[] = "'" . $table . "'";
-                                    }
-
-                                    $tables_array = implode(',', $tables);
-                                    $q1 = mysqli_query($conn, "SELECT TABLE_NAME, COLUMN_NAME, COLUMN_COMMENT, DATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'u952673419_farmer_survey' AND TABLE_NAME IN ($tables_array)  AND DATA_TYPE = 'tinyint' AND COLUMN_COMMENT != ''");
-                                    while ($col = mysqli_fetch_assoc($q1)) {
-                                        echo "<th colspan='2'>{$col['COLUMN_COMMENT']}</th>";
-
-                                        $columns[] = [
-                                            'table' => $col['TABLE_NAME'],
-                                            'name' => htmlspecialchars($col['COLUMN_NAME']),
-                                            'comment' => htmlspecialchars($col['COLUMN_COMMENT']),
-                                            'type' => $col['DATA_TYPE']
-                                        ];
-                                    }
-
-                                    ?>
-                                </tr>
-                                <tr>
-                                    <?php
-                                    foreach ($columns as $column) {
-                                        ?>
-                                        <td>
-                                            होय
-                                        </td>
-                                        <td>
-                                            नाही
-                                        </td>
+                                <thead>
+                                    <tr>
+                                        <th>Sr. No.</th>
+                                        <th>सर्वेक्षण आयडी</th>
                                         <?php
-                                    }
-                                    ?>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                $q = mysqli_query($conn, "SELECT DISTINCT taluka FROM master");
-                                while ($row = mysqli_fetch_assoc($q)) {
-                                    $taluka = htmlspecialchars($row['taluka']);
-                                    echo "<tr>";
-                                    echo "<td>{$taluka}</td>";
 
-                                    foreach ($columns as $column) {
-                                        $table_name = $column['table'];
-                                        $col_name = $column['name'];
-                                        $col_comment = $column['comment'];
+                                        $columns = array();
+                                        $q = mysqli_query($conn, "SELECT COLUMN_NAME, COLUMN_COMMENT, DATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'u952673419_farmer_survey' AND TABLE_NAME = 'farmer_survey' AND COLUMN_NAME NOT IN ('id', 'survey_id', 'updated_at', 'created_at', 'created_by', 'status', 'reject_reason', 'migration_since');");
+                                        while ($row = mysqli_fetch_assoc($q)) {
+                                            echo "<th>" . htmlspecialchars($row['COLUMN_COMMENT']) . "</th>";
+                                            $columns[] = [
+                                                'name' => htmlspecialchars($row['COLUMN_NAME']),
+                                                'comment' => htmlspecialchars($row['COLUMN_COMMENT']),
+                                                'type' => $row['DATA_TYPE']
+                                            ];
+                                        }
 
-                                        // Count 'yes' and 'no' responses
-                                        $yes_count = 0;//mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS count FROM $table_name  WHERE $col_name = 1"))['count'];
-                                        $no_count = 0;//mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS count FROM $table_name WHERE  $col_name = 0"))['count'];
-                                
-                                        echo "<td><a href='admin/question-wise-report-1.php'>{$yes_count}</a></td>";
-                                        echo "<td><a href='admin/question-wise-report-1.php'>{$no_count}</a></td>";
-                                    }
-                                    echo "</tr>";
-                                }
-                                ?>
-                            </tbody>
-                        </table>
+                                        ?>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <?php
+                                        $i = 1;
+                                        $survey_id = $_GET['id'];
+                                        $q = mysqli_query($conn, "SELECT * FROM farmer_survey WHERE survey_id = '$survey_id'");
+                                        while ($row = mysqli_fetch_assoc($q)) {
+                                            echo "<td>" . $i++ . "</td>";
+                                            echo "<td>" . htmlspecialchars($row['survey_id']) . "</td>";
+                                            foreach ($columns as $column) {
+                                                if (isset($row[$column['name']])) {
+                                                    if ($column['type'] === 'date') {
+                                                        echo "<td>" . htmlspecialchars(date('d-m-Y', strtotime($row[$column['name']]))) . "</td>";
+                                                    } else if ($column['type'] === 'tinyint') {
+                                                        if ($row[$column['name']] == 1) {
+                                                            echo "<td>होय</td>";
+                                                        } else {
+                                                            echo "<td>नाही</td>";
+                                                        }
+                                                    } else {
+                                                        echo "<td>" . htmlspecialchars($row[$column['name']]) . "</td>";
+                                                    }
+                                                } else {
+                                                    echo "<td></td>";
+                                                }
+                                            }
+                                            echo "</tr>";
+                                        }
+                                        ?>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
+                    <?php
+                    $sql = "SELECT table_name FROM information_schema.tables WHERE table_schema = 'u952673419_farmer_survey' and TABLE_NAME NOT IN ('users', 'master', 'admins', 'farmer_survey');";
+                    $query = mysqli_query($conn, $sql);
+                    while ($result = mysqli_fetch_assoc($query)) {
+                        $table_name = $result['table_name'];
+                        ?>
+                        <div class="col-md-12">
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+
+                                    <thead>
+                                        <tr>
+                                            <th>Sr. No.</th>
+                                            <th>सर्वेक्षण आयडी</th>
+                                            <?php
+
+                                            $columns = array();
+                                            $q = mysqli_query($conn, "SELECT COLUMN_NAME, COLUMN_COMMENT, DATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'u952673419_farmer_survey' AND TABLE_NAME = '$table_name' AND COLUMN_NAME NOT IN ('id', 'survey_id', 'updated_at', 'created_at', 'created_by', 'status', 'reject_reason', 'migration_since');");
+                                            while ($row = mysqli_fetch_assoc($q)) {
+                                                echo "<th>" . htmlspecialchars($row['COLUMN_COMMENT']) . "</th>";
+                                                $columns[] = [
+                                                    'name' => htmlspecialchars($row['COLUMN_NAME']),
+                                                    'comment' => htmlspecialchars($row['COLUMN_COMMENT']),
+                                                    'type' => $row['DATA_TYPE']
+                                                ];
+                                            }
+
+                                            ?>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <?php
+                                            $i = 1;
+                                            $survey_id = $_GET['id'];
+                                            $q = mysqli_query($conn, "SELECT * FROM $table_name WHERE survey_id = '$survey_id'");
+                                            if (mysqli_num_rows($q) > 0) {
+                                                while ($row = mysqli_fetch_assoc($q)) {
+                                                    echo "<td>" . $i++ . "</td>";
+                                                    echo "<td>" . htmlspecialchars($row['survey_id']) . "</td>";
+                                                    foreach ($columns as $column) {
+                                                        if (isset($row[$column['name']])) {
+                                                            if ($column['type'] === 'date') {
+                                                                echo "<td>" . htmlspecialchars(date('d-m-Y', strtotime($row[$column['name']]))) . "</td>";
+                                                            } else if ($column['type'] === 'tinyint') {
+                                                                if ($row[$column['name']] == 1) {
+                                                                    echo "<td>होय</td>";
+                                                                } else {
+                                                                    echo "<td>नाही</td>";
+                                                                }
+                                                            } else {
+                                                                echo "<td>" . htmlspecialchars($row[$column['name']]) . "</td>";
+                                                            }
+                                                        } else {
+                                                            echo "<td></td>";
+                                                        }
+                                                    }
+                                                    echo "</tr>";
+                                                }
+                                            } else {
+                                                ?>
+                                                <td colspan="<?= count($columns) + 2 ?>" class="text-danger">
+
+                                                    No data avaible
+
+                                                </td>
+                                                <?php
+                                            }
+                                            ?>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <?php
+                    }
+                    ?>
                 </div>
             </div>
         </div>
-    </div>
-    <?php include '../include/footer.php'; ?>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <?php include 'include/footer.php'; ?>
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
 
 </html>

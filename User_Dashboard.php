@@ -1,3 +1,14 @@
+<?php
+session_start();
+if (isset($_SESSION['user_id'])) {
+    header('location: login.php');
+    exit;
+}
+include('include/conn.php');
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="hi">
 
@@ -179,12 +190,6 @@
 </head>
 
 <body>
-    <div class="navbar1">
-        <div class="greeting">👋 Hi Gaurav</div>
-        <button class="logout-btn">
-            <i class="bi bi-box-arrow-right"></i> Logout
-        </button>
-    </div>
     <div class="container">
         <div class="main-content">
 
@@ -214,13 +219,6 @@
                     </div>
                 </div>
 
-                <div class="status-card completed">
-                    <div class="card-icon"><i class="bi bi-hourglass-split"></i></div>
-                    <div class="card-content">
-                        <h3>प्रलंबित अर्ज</h3>
-                        <div class="count">3</div>
-                    </div>
-                </div>
             </div>
 
 
@@ -230,55 +228,42 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>Farmer Name</th>
-                                <th>Village</th>
-                                <th>Taluka</th>
-                                <th>Mobile</th>
-                                <th>Suicide Type</th>
+                                <th>क्र</th>
+                                <th>नाव</th>
+                                <th>गाव</th>
+                                <th>तालुका</th>
+                                <th>आत्महत्येचा प्रकार</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
                         <tbody id="farmerTable">
-                            <tr>
-                                <td>रमेश कुमार पाटील</td>
-                                <td>शिरूर</td>
-                                <td>हवेली</td>
-                                <td>+91 98765 43210</td>
-                                <td><span class="suicide-type financial">Financial</span></td>
-                                <td>✅ Completed</td>
-                            </tr>
-                            <tr>
-                                <td>सुनील राठोड</td>
-                                <td>पुणे</td>
-                                <td>पुणे शहर</td>
-                                <td>+91 87654 32109</td>
-                                <td><span class="suicide-type health">Health</span></td>
-                                <td>⏳ Pending</td>
-                            </tr>
-                            <tr>
-                                <td>विजय शिंदे</td>
-                                <td>वाघोली</td>
-                                <td>हवेली</td>
-                                <td>+91 76543 21098</td>
-                                <td><span class="suicide-type social">Social</span></td>
-                                <td>✅ Completed</td>
-                            </tr>
-                            <tr>
-                                <td>अनिल जाधव</td>
-                                <td>कोथरुड</td>
-                                <td>पुणे शहर</td>
-                                <td>+91 65432 10987</td>
-                                <td><span class="suicide-type financial">Financial</span></td>
-                                <td>❌ Rejected</td>
-                            </tr>
-                            <tr>
-                                <td>प्रकाश देशमुख</td>
-                                <td>बावधन</td>
-                                <td>मुळशी</td>
-                                <td>+91 54321 09876</td>
-                                <td><span class="suicide-type health">Health</span></td>
-                                <td>✅ Completed</td>
-                            </tr>
+                            <?php
+                            $userId = $_SESSION['userId'];
+                            $sql = "SELECT farmer_name, suicide_date, village, taluka, suicide_type, status FROM farmer_survey WHERE created_by = '$userId'";
+
+                            $i = 1;
+                            $query = mysqli_query($con, $sql);
+                            while ($row = mysqli_fetch_assoc($query)) {
+                                ?>
+                                <tr>
+                                    <td><?php echo $i++; ?></td>
+                                    <td><?php echo $row['farmer_name']; ?></td>
+                                    <td><?php echo $row['village']; ?></td>
+                                    <td><?php echo $row['taluka']; ?></td>
+                                    <td>
+                                        <?php
+                                        echo $row['suicide_type'];
+                                        // if ($row['suicide_type'] == 'इतर') {
+                                        //     echo ' (' . $row['suicide_type_other'] . ')';
+                                        // }
+                                        ?>
+
+                                    </td>
+                                    <td><?php echo $row['status']; ?></td>
+                                </tr>
+                                <?php
+                            }
+                            ?>
                         </tbody>
                     </table>
                 </div>
@@ -305,28 +290,6 @@
             alert('Filters removed');
             // Here you would reset the table and charts to show all data
         }
-
-        // Add hover effects to status cards
-        document.querySelectorAll('.status-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-5px)';
-                this.style.boxShadow = '0 15px 35px rgba(0,0,0,0.1)';
-            });
-
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0)';
-                this.style.boxShadow = 'none';
-            });
-        });
-
-        // Add click functionality to table rows
-        document.querySelectorAll('#farmerTable tr').forEach(row => {
-            row.addEventListener('click', function() {
-                const farmerName = this.cells[0].textContent;
-                alert(`Viewing details for: ${farmerName}`);
-                // Here you would implement navigation to farmer details page
-            });
-        });
     </script>
     <?php
     include('include/footer.php');

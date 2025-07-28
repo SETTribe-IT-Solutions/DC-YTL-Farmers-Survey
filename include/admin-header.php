@@ -245,7 +245,7 @@
                     </div>
                 </li>
 
-                <li><a href="logout.php">Log Out</a></li>
+                <li><a href="admin_logout.php">Log Out</a></li>
             </ul>
         </div>
     </nav>
