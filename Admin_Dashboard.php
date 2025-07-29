@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
-      <?php
+    <?php
     include('include/header.php');
     ?>
     <style>
@@ -372,7 +372,7 @@
             </table>
         </div>
     </div>
-  <?php
+    <?php
     include('include/footer.php');
     ?>
 

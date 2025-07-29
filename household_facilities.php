@@ -25,17 +25,29 @@
       padding: 0 15px;
     }
 
-    .header1 {
-      background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
-      color: white;
-      text-align: center;
-      padding: 25px 0;
-      border-radius: 15px 15px 0 0;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      margin-bottom: 30px;
+    .styled-heading {
+      font-size: 24px;
+      color: #0074cc;
+      position: relative;
+      display: inline-block;
+      margin-bottom: 1.2rem;
+      font-weight: 600;
+      padding-bottom: 6px;
+      padding-left: 5px;
     }
 
-    .header1 h1 {
+.styled-heading::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 3px;
+      width: 100%;
+      background-color: #0074cc;
+      border-radius: 2px;
+    }
+
+    .styled-heading h1 {
       font-size: 2.2rem;
       margin-bottom: 10px;
       font-weight: 800;
@@ -204,7 +216,7 @@
 <body>
   <?php include 'include/header.php'; ?>
   <div class="container-fluid">
-    <!-- <div class="header1">
+    <!-- <div class="styled-heading">
     <h1><i class="fas fa-users me-3"></i>कुटुंबिक माहिती फॉर्म</h1>
     <p>कृपया आपल्या कुटुंबाची सविस्तर माहिती भरा</p>
   </div> -->
@@ -220,7 +232,7 @@
 
         <!-- इतर कुटुंबिक माहिती Section -->
         <div class="sub-section">
-          <h4 class="section-title">1. इतर कुटुंबिक माहिती
+          <h4 class="styled-heading">1. इतर कुटुंबिक माहिती
             <!-- <i class="fas fa-info-circle info-icon"></i> -->
           </h4>
 
@@ -458,7 +470,7 @@
     <!-- घरसुखी सुविधा विषयक माहिती Section -->
     <div class="main-container">
       <div class="sub-section">
-        <h4 class="section-title">2. घरसुखी सुविधा विषयक माहिती
+        <h4 class="styled-heading">2. घरसुखी सुविधा विषयक माहिती
           <!-- <i class="fas fa-home info-icon"></i>  -->
         </h4>
 

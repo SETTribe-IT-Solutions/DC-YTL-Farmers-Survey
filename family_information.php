@@ -33,7 +33,50 @@
       font-size: 1.1rem;
       opacity: 0.9;
     } */
+    /* Section Styles */
+    .form-section {
+      margin-bottom: 30px;
+    }
 
+    .section-title {
+      font-size: 22px;
+      color: #2c3e50;
+      border-bottom: 2px solid #f0f0f0;
+      padding-bottom: 10px;
+      margin-bottom: 25px;
+    }
+.styled-heading {
+      font-size: 24px;
+      color: #0074cc;
+      position: relative;
+      display: inline-block;
+      margin-bottom: 1.2rem;
+      font-weight: 600;
+      padding-bottom: 6px;
+      padding-left: 5px;
+    }
+
+    .styled-heading::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 3px;
+      width: 100%;
+      background-color: #0074cc;
+      border-radius: 2px;
+    }
+        .form-section {
+            background-color: #ffffff;
+            padding: 24px 32px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            margin: 24px auto;
+            border-left: 6px solid #08472cff;
+            /* Dark blue vertical line */
+            position: relative;
+            transition: all 0.3s ease;
+        }
     .main-container {
       background: white;
       border-radius: 15px;
@@ -148,9 +191,9 @@
     }
 
     .add-member-btn {
-      padding: 12px 25px;
+      padding: 5px 10px;
       font-size: 1.1rem;
-      margin-top: 20px;
+    
       border-radius: 8px;
       background: #3498db;
       color: white;
@@ -163,39 +206,6 @@
       transform: translateY(-2px);
     }
 
-    .member-form {
-      background: white;
-      border-radius: 10px;
-      padding: 20px;
-      margin-bottom: 25px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-      border: 1px solid #e0e6ed;
-      /* position: relative; */
-    }
-
-    .remove-member {
-      position: relative;
-      /* top: 15px;
-      right: 15px; */
-      top: 60%;
-      right: -860%;
-      background: #e74c3c;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 30px;
-      height: 30px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-
-    .remove-member:hover {
-      transform: scale(1.1);
-      background: #c0392b;
-    }
 
     .member-title {
       font-weight: bold;
@@ -218,7 +228,7 @@
 
       .btn-submit {
         width: 100%;
-        padding: 15px;
+        padding:0px;
       }
 
       .remove-member {
@@ -228,6 +238,54 @@
         right: -230px;
       }
     }
+  </style>
+  <style>
+  html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.member-form {
+  position: relative;
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  border: ;
+}
+
+.remove-member {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.remove-member:hover {
+  transform: scale(1.1);
+  background: #c0392b;
+}
+
+@media (max-width: 768px) {
+  .remove-member {
+    width: 28px;
+    height: 28px;
+    top: 10px;
+    right: 10px;
+  }
+}
+
   </style>
 </head>
 
@@ -240,8 +298,8 @@
     <p>कृपया आपल्या कुटुंबाची सविस्तर माहिती भरा</p>
   </div> -->
 
-    <div class="main-container">
-      <h4 class="section-title typewriter">शेतकरी कुटुंबातील सदस्य
+    <div aedsx class="from-section container">
+      <h4 class="section-title styled-heading text-center">शेतकरी कुटुंबातील सदस्य
         <!-- <i class="fas fa-users info-icon"></i> -->
       </h4>
 
@@ -252,7 +310,7 @@
 
         <div class="text-center mt-4">
           <button type="button" class="btn add-member-btn" id="addMemberBtn">
-            <i class="fas fa-plus-circle me-2"></i>अजून सदस्य जोडा
+            <p style="font-weight:Bold;margin-top:3px"><i class="fas fa-plus-circle me-2 my-2"></i>अजून सदस्य जोडा</p>
           </button>
         </div>
 
@@ -303,8 +361,8 @@
         const memberForm = document.createElement('div');
         memberForm.className = 'member-form';
         memberForm.innerHTML = `
-        <div class="member-title">
-          <i class="fas fa-user info-icon"></i>सदस्य क्रमांक ${memberCount}
+        <div >
+          <p style="color:#16185C;font-weight:bold;font-size:1.2rem"><i class="fas fa-user info-icon" ></i>सदस्य क्रमांक ${memberCount}</p>
           <button type="button" class="remove-member" title="हा सदस्य काढा"><i class="fas fa-times"></i></button>
         </div>
         <div class="row g-3">

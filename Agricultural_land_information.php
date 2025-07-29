@@ -290,7 +290,18 @@
       display: inline-block;
       width: 100%;
     }
-    
+      .info-box {
+      background: linear-gradient(135deg, rgba(52, 152, 219, 0.1) 0%, rgba(41, 128, 185, 0.1) 100%);
+      /* border-left: 4px solid var(--secondary-color); */
+      padding: 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 25px 0;
+      font-size: 1rem;
+      color: var(--primary-color);
+      text-align: left;
+      margin-top: -1%;
+    }
+
   </style>
   <?php
   include('include/header.php')
@@ -300,19 +311,16 @@
 
 <body>
   <div class="container-fluid">
-    <div class="header1">
-      <h1>शेतजमीन विषयक माहिती</h1>
-      <p>कृपया खालील माहिती अचूकपणे भरा</p>
-    </div>
-
+   
     <form class="main-form" action="Agricultural_land_information_db.php" method="POST" novalidate>
       <div class="form-section container mt-4">
         <h3 class="section-title styled-heading text-center mb-4">
           <span class="heading-icon">🌾</span> शेतजमीन विषयक माहिती
         </h3>
+        <p  class="info-box" style="margin-bottom:10px;font-weight:bold">कृपया खालील माहिती अचूकपणे भरा</p>
 
         <!-- Radio Options Section -->
-        <div class="row mb-4">
+        <div class="row mb-4 mt-2">
           <!-- Total Land -->
           <div class="col-md-6 mb-3">
             <label class="form-label required heading-title">शेतजमीन (एकुण)</label>

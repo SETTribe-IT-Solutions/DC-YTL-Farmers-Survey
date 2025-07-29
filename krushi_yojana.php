@@ -106,7 +106,7 @@ $survey_id = "survey{$currentYear}_" . str_pad($nextNumber, 2, '0', STR_PAD_LEFT
       font-weight: 600;
       margin-bottom: 8px;
       color: var(--primary-color);
-      font-size: 1.05rem;
+      font-size: 1.2rem;
       display: block;
     }
 
@@ -186,10 +186,11 @@ $survey_id = "survey{$currentYear}_" . str_pad($nextNumber, 2, '0', STR_PAD_LEFT
       padding: 20px;
       border-radius: 0 8px 8px 0;
       margin: 25px 0;
-      font-size: 1rem;
+      font-size: 1.2rem;
       color: var(--primary-color);
       text-align: left;
-      margin-top: -1%;
+      margin-top: 5px;
+      font-weight:bold;
     }
 
     .required::after {
@@ -352,6 +353,34 @@ $survey_id = "survey{$currentYear}_" . str_pad($nextNumber, 2, '0', STR_PAD_LEFT
       text-align: center;
       font-size: 1.8rem;
     }
+       .styled-heading {
+      font-size: 24px;
+      color: #0074cc;
+      position: relative;
+      display: inline-block;
+      margin-bottom: 1.2rem;
+      font-weight: 600;
+      padding-bottom: 6px;
+      padding-left: 5px;
+    }
+
+.styled-heading::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 3px;
+      width: 100%;
+      background-color: #0074cc;
+      border-radius: 2px;
+    }
+
+    .styled-heading h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+      font-weight: 800;
+    }
+
   </style>
 </head>
 
@@ -369,9 +398,9 @@ $survey_id = "survey{$currentYear}_" . str_pad($nextNumber, 2, '0', STR_PAD_LEFT
         <h4>शेतकऱ्यांच्या कुटुंबासाठी सहाय्य योजना</h4>
         <p>महाराष्ट्र सरकारच्या योजनेअंतर्गत आत्महत्या झालेल्या शेतकऱ्यांच्या कुटुंबियांना सहाय्य</p>
       </div> -->
-      <h4 class="section-title">
+      <h1 class="styled-heading">
         <i class="fas fa-info-circle info-icon"></i>आत्महत्याग्रस्त शेतकरी माहिती फॉर्म
-      </h4>
+      </h1>
 
       <div class="info-box">
         कृषी योजना विषयक
